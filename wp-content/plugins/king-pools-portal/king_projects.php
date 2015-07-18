@@ -218,7 +218,7 @@ echo "</table>\n\n";
             </tr>
             <tr class="vendor_phase">
                 <td colspan=2 style="color:blue">
-                    <i>This phase will notify the vendor of the confirmed schedule.</i>
+                    <i>The selected vendor will be notified when updating this project.</i>
                 </td>
             </tr> 
             <tr class="vendor_phase">
