@@ -1,0 +1,45 @@
+/**
+ * King Pools Portal Styles CSS
+ *
+ * CSS for the King Pools Portal
+ *
+ * @author Aaron Cunningham
+ */
+
+.tablenav .tablenav-pages {
+    float:left;    
+}
+
+.wp-list-table #lead_id {
+    width:165px;
+}
+
+.wp-list-table #lead_id, #customer_id, #project_id, #vendor_id {
+    width:175px;
+}
+
+.wp-list-table #customer_state {
+    width:35px;
+}
+
+.wp-list-table #customer_firstname, #customer_lastname {
+    width:100px;
+}
+
+.wp-list-table #vendor_email, #customer_email, #email {
+    width:200px;
+}
+
+#project_edit_form span.description{ 
+    font-size:20px;
+    color:#2ea2cc;
+}
+
+#project_assets{
+    width:750px;        
+}
+
+#vendor_edit_form .form-table th, #customer_edit_form .form-table th, #project_edit_form .form-table th{
+    width:150px;   
+}
+

@@ -1,0 +1,387 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"post",
+				"postData"
+			],
+			[
+				"func",
+				"func_parm"
+			],
+			[
+				"boxboard",
+				"boxboard_api_html"
+			],
+			[
+				"for",
+				"foreach	foreach …"
+			],
+			[
+				"return",
+				"returnText"
+			],
+			[
+				"gym",
+				"gym_id"
+			],
+			[
+				"post_",
+				"post_url"
+			],
+			[
+				"ifram",
+				"iframe_height"
+			],
+			[
+				"irame",
+				"iframe_width"
+			],
+			[
+				"ifr",
+				"iframe_atts"
+			],
+			[
+				"iframe",
+				"iframe_src"
+			],
+			[
+				"box",
+				"box_id"
+			],
+			[
+				"preg",
+				"preg_replace"
+			],
+			[
+				"ifra",
+				"iframe_src"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"to",
+				"to_i"
+			],
+			[
+				"project",
+				"project_amount"
+			],
+			[
+				"customer_pro",
+				"customer_project_subject"
+			],
+			[
+				"notification",
+				"notification_date"
+			],
+			[
+				"wp_king_",
+				"wp_king_notifications"
+			],
+			[
+				"notify",
+				"notification_body"
+			],
+			[
+				"notif",
+				"notifysubject"
+			],
+			[
+				"noti",
+				"notification_body"
+			],
+			[
+				"url",
+				"urldecode"
+			],
+			[
+				"phpin",
+				"php_ini_loaded_file"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "wp-content/plugins/king-pools-portal/king_projects.php",
+			"settings":
+			{
+				"buffer_size": 27461,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"Pac",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"Package  ",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				"Package Control: List Packages"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/aaronc/Sites/myapp/config/database.yml",
+		"/Users/aaronc/Projects/boxboard/scoreboard/wordpress/wp-content/plugins/boxboard/boxboard-plugin.php",
+		"/Users/Aaron/Projects/scoreboard/wordpress/boxboard/boxboard-plugin.php",
+		"/Users/Aaron/Projects/scoreboard/wordpress/boxboard/boxboard_interface.php",
+		"/Users/Aaron/Projects/scoreboard/wordpress/wp-content/plugins/boxboard-plugin/boxboard_interface.php",
+		"/Users/Aaron/Projects/scoreboard/wordpress/boxboard/boxboard_buttons.js",
+		"/Users/Aaron/Projects/scoreboard/wordpress/wp-content/plugins/boxboard-plugin/boxboard_buttons.js",
+		"/Users/Aaron/Projects/scoreboard/wordpress/wp-content/plugins/boxboard-plugin/boxboard-plugin.php",
+		"/Users/Aaron/Projects/scoreboard/wordpress/wp-content/plugins/boxboard-portal/boxboard_portal.php",
+		"/Users/Aaron/Projects/scoreboard/wordpress/wp-content/plugins/boxboard-portal/css/boxboard_portal.css",
+		"/Users/Aaron/Projects/scoreboard/wordpress/wp-content/plugins/boxboard-portal/boxboard_admin.php",
+		"/Users/Aaron/Projects/scoreboard/wordpress/boxboard_interface.php",
+		"/Users/Aaron/Projects/scoreboard/wordpress/wp-content/plugins/boxboard-portal/boxboard_interface.php",
+		"/Users/Aaron/Projects/scoreboard/wordpress/wp-content/plugins/boxboard-portal/boxboard-interface.php",
+		"/Users/Aaron/Projects/scoreboard/wordpress/wp-content/plugins/boxboard-plugin/boxboard-interface.php",
+		"/Users/Aaron/Projects/scoreboard/wordpress/wp-content/plugins/boxboard-portal/king_pools_portal.php",
+		"/Users/Aaron/Projects/scoreboard/wordpress/wp-content/plugins/king-pools-portal/king_pools_portal.php",
+		"/Users/Aaron/Projects/scoreboard/wordpress/wp-content/themes/twentyfourteen/functions.php",
+		"/Users/Aaron/Projects/scoreboard/wordpress/wp-content/themes/twentyfourteen/shortcodes.php",
+		"/Users/Aaron/Projects/scoreboard/app/models/movement_type.rb",
+		"/Users/Aaron/Projects/scoreboard/app/views/movements/show.html.slim",
+		"/Users/Aaron/Projects/scoreboard/app/assets/stylesheets/users.css.sass",
+		"/Users/Aaron/Projects/scoreboard/app/assets/javascripts/views/users/add_gym.js.coffee",
+		"/Users/Aaron/Projects/scoreboard/wordpress/wp-config-sample.php",
+		"/Users/Aaron/Projects/scoreboard/app/controllers/application_controller.rb",
+		"/Users/Aaron/Projects/scoreboard/app/controllers/movements_controller.rb",
+		"/Users/Aaron/Projects/scoreboard/app/views/workouts/_form.html.slim",
+		"/Users/Aaron/Projects/scoreboard/app/views/devise/sessions/new.html.slim",
+		"/Users/Aaron/Projects/scoreboard/app/views/devise/registrations/edit.html.slim",
+		"/Users/Aaron/Projects/scoreboard/app/views/gyms/members.html.slim",
+		"/Users/Aaron/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/Users/Aaron/Projects/scoreboard/app/assets/stylesheets/partials/_layout.css.sass",
+		"/Users/Aaron/Projects/scoreboard/app/assets/javascripts/views/workouts/edit_new.js.coffee",
+		"/Users/Aaron/Projects/KingPools/wp-includes/pluggable.php",
+		"/Users/Aaron/Projects/KingPools/wp-content/plugins/wp-file-upload/lib/wfu_processfiles.php",
+		"/Users/Aaron/Projects/KingPools/wp-content/plugins/king-pools-portal/king_admin.php",
+		"/Users/Aaron/Projects/KingPools/wp-content/plugins/jetpack/modules/contact-form/admin.php",
+		"/Users/Aaron/Projects/KingPools/wp-content/plugins/king-pools-portal/king_assets.php",
+		"/Users/Aaron/Projects/KingPools/wp-content/plugins/king-pools-portal/king_vendors.php",
+		"/Users/Aaron/Projects/KingPools/wp-content/plugins/king-pools-portal/king_customers.php",
+		"/Users/Aaron/Projects/KingPools/phpinfo.php",
+		"/Users/Aaron/Projects/scoreboard/config/database.yml",
+		"/Users/Aaron/Projects/scoreboard/app/views/home/index.html.slim"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"/Users/Aaron/Projects/scoreboard/wordpress/wp-content/plugins",
+			"/Users/Aaron/Projects/scoreboard",
+			"/Users/Aaron/Projects/scoreboard/app/controllers",
+			"/Users/Aaron/Projects/scoreboard",
+			"/Users/Aaron/Projects/scoreboard/app/assets/stylesheets",
+			"/Users/Aaron/Projects/scoreboard",
+			"/Users/Aaron/Projects/KingPools/wp-content/plugins/king-pools-portal",
+			"/Users/Aaron/Projects/KingPools/wp-includes",
+			"/Users/Aaron/Projects/KingPools/wp-content/plugins/wp-file-upload",
+			"/Users/Aaron/Projects/KingPools/wp-content/plugins"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"leaderboard",
+			"charmap",
+			"showDi",
+			"insert from URL",
+			";\n",
+			"progress",
+			"header",
+			"4.1.9",
+			"mail",
+			"rail",
+			"railties",
+			"devise",
+			"user_movement_progressions",
+			"progressions",
+			"data-bind=\"click",
+			"ko.applybindings",
+			"apply",
+			"#header",
+			"progressions_calc",
+			"selected_view",
+			"fadeInDown",
+			"logic_less",
+			"workout_navigation",
+			"All",
+			"projectListTable",
+			"page",
+			"startProject",
+			"$result",
+			"result",
+			"Started",
+			"global",
+			"function wp_mail",
+			"mime",
+			"wp_mail_content_type",
+			"function wp_mail",
+			"$params[\"notifyheaders\"]",
+			"header",
+			"wfu_send_notification_email",
+			"delete",
+			"wp_mail",
+			"concrete",
+			"delete_asset",
+			"delete_ass",
+			"delete_asset",
+			"send"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "wp-content/plugins/king-pools-portal/king_projects.php",
+					"settings":
+					{
+						"buffer_size": 27461,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 97.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 190.0,
+	"status_bar_visible": true
+}

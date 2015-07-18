@@ -1,0 +1,94 @@
+/*
+CSS Name: All white
+Description: A white based theme
+Author: Photocrati
+Version: 0.1
+*/
+.npl-style-white .galleria-container,
+.npl-style-white .galleria-sidebar-container,
+.npl-style-white #respond input, #respond textarea {
+    background: white;
+}
+
+.npl-style-white #respond input#submit {
+    background: #777777;
+}
+
+.npl-style-white .galleria-dock-toggle-container,
+.npl-style-white .galleria-info,
+.npl-style-white .galleria-info-description,
+.npl-style-white .galleria-info-title,
+.npl-style-white .galleria-thumbnails-container {
+    background: #ffffff;
+}
+
+.npl-style-white .galleria-info-title,
+.npl-style-white .galleria-info-description {
+    color: #7a7a7a;
+}
+
+.npl-style-white #respond,
+.npl-style-white .galleria-sidebar-container a,
+.npl-style-white #respond input, #respond textarea,
+.npl-style-white .galleria-sidebar-container,
+.npl-style-white .galleria-dock-toggle-container,
+.npl-style-white .comments-area,
+.npl-style-white .galleria-nextgen-buttons,
+.npl-style-white .galleria-thumb-nav-left i,
+.npl-style-white .galleria-thumb-nav-left i,
+.npl-style-white .galleria-image-nav-left i,
+.npl-style-white .galleria-image-nav-right i {
+    color: #7a7a7a;
+}
+
+.npl-style-white #respond input#submit {
+    color: #ffffff;
+}
+
+.npl-style-white .galleria-sidebar-toggle,
+.npl-style-white .comments-title,
+.npl-style-white .galleria-image-share-icons ul li a {
+    color: #7a7a7a;
+}
+
+.npl-style-white .galleria-sidebar-container .galleria-image-share-icons {
+    margin-bottom: 20px;
+}
+
+.npl-style-white .galleria-sidebar-container .galleria-image-share-icons ul {
+    border-bottom: 3px solid solid #7a7a7a;
+}
+
+.npl-style-white .comment-form label {
+    color: #777777;
+}
+
+.npl-style-white .comments-area {
+    padding-left: 20px;
+}
+
+.npl-style-white #respond input, #respond textarea {
+    border: 1px solid #9e9e9e;
+}
+
+#respond input#submit {
+    border: none;
+}
+
+li.comment section.comment p {
+    color: #9e9e9e;
+}
+
+.galleria-thumbnails .galleria-image {
+    border: none;
+}
+
+.galleria-sidebar-container {
+    border-left: none;
+}
+
+.galleria-counter {
+    text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.9);
+    font-weight: bold;
+}
+

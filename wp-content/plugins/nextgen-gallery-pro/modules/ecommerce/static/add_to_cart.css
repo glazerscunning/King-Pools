@@ -1,0 +1,131 @@
+/********* Cart stuff **********/
+#ngg_add_to_cart_container {
+    padding: 5px;
+    padding-left: 20px;
+}
+
+#ngg_add_to_cart_container,
+#ngg_add_to_cart_container table{
+    font-size: 12px;
+    font-family: Lato, sans-serif;
+    color: white;
+}
+
+#ngg_add_to_cart_container h2 {
+    text-transform: uppercase;
+    margin-bottom: 2px;
+    font-weight: normal;
+}
+
+#ngg_qty_add_desc {
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+    padding: 10px 0 0 0;
+    margin: 0;
+}
+
+.pricelist_source_accordion h3 {
+    font-weight: normal;
+    font-size: 18px;
+}
+
+#ngg_add_to_cart_container .cart_summary {
+    margin-right: 2%;
+}
+
+#ngg_add_to_cart_container .cart_total {
+    text-align: right;
+    float: right;
+}
+
+#ngg_add_to_cart_container hr {
+    width: 65%;
+    border: 0px;
+    margin-top: 14px;
+    margin-bottom: 14px;
+    border-top: solid 1px #3D3D3D;
+}
+
+#ngg_add_to_cart_container a {
+    font-size: 12px;
+    text-decoration: none;
+    color: white;
+}
+
+#ngg_add_to_cart_container a:hover {
+    text-decoration: underline;
+}
+
+#ngg_add_to_cart_container table th{
+    color: #777777;
+    font-weight: normal;
+}
+
+#ngg_add_to_cart_container .quantity_field {
+    width: 9%;
+    padding-right: 1%;
+}
+
+#ngg_add_to_cart_container .quantity_field input {
+    -moz-appearance: textfield;
+}
+
+#ngg_add_to_cart_container .quantity_field input:hover {
+    -moz-appearance: number-input;
+}
+
+#ngg_add_to_cart_container .quantity_field input{
+    max-width: 40px;
+}
+
+#ngg_add_to_cart_container .description_field {
+    width: 42%;
+    padding-left: 2%;
+    padding-right: 2%;
+    text-align: left;
+}
+
+#ngg_add_to_cart_container .price_field,
+#ngg_add_to_cart_container .total_field
+{
+    width: 20%;
+    padding-right: 1%;
+    padding-left: 1%;
+    text-align: right;
+}
+
+#ngg_add_to_cart_container table input{
+    background-color: black;
+    color: white;
+    width: 100%;
+    border: solid 1px #636363;
+}
+
+#ngg_add_to_cart_container .ui-accordion-header-icon {
+    margin-right: 5px;
+}
+
+#ngg_checkout_btn,
+#ngg_update_cart_btn {
+    float: right;
+}
+
+#not_for_sale {
+    text-align: center;
+    display: none;
+}
+
+#items_for_sale {
+    display: none;
+}
+
+.cart_summary {
+    height: 25px;
+}
+
+@media only screen and (max-width: 640px) {
+    #ngg_add_to_cart_container .quantity_field input {
+        width: 30px;
+    }
+}

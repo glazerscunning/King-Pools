@@ -1,0 +1,13 @@
+.digital_downloads_list table {
+    width: 100%;
+}
+.digital_downloads_list table td,
+.digital_downloads_list table th {
+    vertical-align: top;
+    text-align: left;
+}
+
+.digital_downloads_list .resolution_column {
+    white-space: nowrap;
+    word-wrap: break-word;
+}

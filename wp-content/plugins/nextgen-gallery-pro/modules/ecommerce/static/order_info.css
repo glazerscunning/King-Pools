@@ -1,0 +1,51 @@
+.ngg_pro_order_info table {
+    font-size: 84%;
+    width: auto;
+}
+
+.ngg_pro_order_info td, th {
+    text-align: left;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.ngg_pro_order_info .fa {
+    display: inline;
+}
+
+.ngg_order_interior_parent {
+    vertical-align: top;
+}
+
+.ngg_order_image_column {
+    width: 125px;
+}
+
+.ngg_order_image_column img {
+    margin: 0 auto;
+    display: block;
+}
+
+.ngg_order_image_filename {
+    clear: both;
+    text-align: center;
+    display: block;
+}
+
+.ngg_order_separator td {
+    padding: 0px;
+    border: 1px solid rgb(217, 209, 209);
+}
+
+td.ngg_order_interior_parent table {
+    width: 100%;
+}
+
+@media only screen and (max-width: 800px) {
+    .ngg_pro_order_info .ngg_order_price_column {
+        display: none;
+    }
+    .ngg_order_image_filename {
+        display: none;
+    }
+}

@@ -1,0 +1,22 @@
+/*
+CSS Name: All black
+Description: Removes borders from the comments panel
+Author: Photocrati
+Version: 0.1
+*/
+.npl-style-black .galleria-sidebar-container {
+    border-left: none;
+    background: #000;
+}
+
+.npl-style-black .comments-title {
+    color: #ccc;
+}
+
+.npl-style-black #share-buttons {
+    margin-bottom: 20px;
+}
+
+.npl-style-black .comments-area {
+    padding-left: 20px;
+}

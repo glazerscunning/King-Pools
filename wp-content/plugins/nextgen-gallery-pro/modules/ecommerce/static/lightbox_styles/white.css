@@ -1,0 +1,19 @@
+.npl-style-white #ngg_add_to_cart_container h2 {
+    color: #7A7A7A;
+}
+
+.npl-style-white #ngg_add_to_cart_container *,
+.npl-style-white #ngg_add_to_cart_container a {
+    color: #777777;
+}
+
+.npl-style-white #ngg_add_to_cart_container table input {
+    background-color: #777777;
+    color: #ffffff;
+}
+
+.npl-style-white #ngg_checkout_btn,
+.npl-style-white #ngg_update_cart_btn {
+    color: #FFFFFF;
+    background-color: #777777;
+}

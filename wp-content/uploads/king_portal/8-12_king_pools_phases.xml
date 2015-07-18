@@ -1,0 +1,468 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Author>Aaron Cunningham</Author>
+  <LastAuthor>Aaron Cunningham</LastAuthor>
+  <Created>2015-06-13T20:15:57Z</Created>
+  <Version>14.0</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>15260</WindowHeight>
+  <WindowWidth>25600</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <Date1904/>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="12" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="king_pools_phases.csv">
+  <Table ss:ExpandedColumnCount="3" ss:ExpandedRowCount="84" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="65" ss:DefaultRowHeight="15">
+   <Column ss:Width="287"/>
+   <Column ss:Width="304"/>
+   <Row>
+    <Cell><Data ss:Type="String">Signed Contract on File</Data></Cell>
+    <Cell><Data ss:Type="String">signed_contract_on_file</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Call In Dig Tess</Data></Cell>
+    <Cell><Data ss:Type="String">call_in_dig_tess</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Get Electric Permit</Data></Cell>
+    <Cell><Data ss:Type="String">get_electric_permit</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Got Electric Permit</Data></Cell>
+    <Cell><Data ss:Type="String">got_electric_permit</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Get City Or County Permit</Data></Cell>
+    <Cell><Data ss:Type="String">get_city_or_county_permit</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Got City or County Permit</Data></Cell>
+    <Cell><Data ss:Type="String">got_city_or_county_permit</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Do Pool Layout Inspection</Data></Cell>
+    <Cell><Data ss:Type="String">do_pool_layout_inspection</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Schedule Pool Excavation Date</Data></Cell>
+    <Cell><Data ss:Type="String">schedule_pool_excavation_date</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Order Equipment</Data></Cell>
+    <Cell><Data ss:Type="String">order_equipment</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Excavation Completion</Data></Cell>
+    <Cell><Data ss:Type="String">excavation_completion</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Mark Equipment Location</Data></Cell>
+    <Cell><Data ss:Type="String">mark_equipment_location</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">1st Draw Payment</Data></Cell>
+    <Cell><Data ss:Type="String">1st_draw_payment</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Get Tile Coping Other Material Selections</Data></Cell>
+    <Cell><Data ss:Type="String">get_tile_coping_other_material_selections</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Schedule Pool Plumbing Installation Date</Data></Cell>
+    <Cell><Data ss:Type="String">schedule_pool_plumbing_installation_date</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Pool Plumbing Completion</Data></Cell>
+    <Cell><Data ss:Type="String">pool_plumbing_completion</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Schedule Steel Size</Data></Cell>
+    <Cell><Data ss:Type="String">schedule_steel_size</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Schedule Pool Steel Installation Date</Data></Cell>
+    <Cell><Data ss:Type="String">schedule_pool_steel_installation_date</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Pool Steel Completion</Data></Cell>
+    <Cell><Data ss:Type="String">pool_steel_completion</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Schedule Belly Steel Inspections</Data></Cell>
+    <Cell><Data ss:Type="String">schedule_belly_steel_inspections</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Passed Belly Steel Inspections</Data></Cell>
+    <Cell><Data ss:Type="String">passed_belly_steel_inspections</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Schedule Gunite Installation Date</Data></Cell>
+    <Cell><Data ss:Type="String">schedule_gunite_installation_date</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Gunite Completion</Data></Cell>
+    <Cell><Data ss:Type="String">gunite_completion</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">2nd Draw Payment</Data></Cell>
+    <Cell><Data ss:Type="String">2nd_draw_payment</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Order Sand for Decking and Fill Date</Data></Cell>
+    <Cell><Data ss:Type="String">order_sand_for_decking_and_fill_date</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Sand Fill Dirt Delivery Completion</Data></Cell>
+    <Cell><Data ss:Type="String">sand_fill_dirt_delivery_completion</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Schedule Landscaper Customer Meeting Date</Data></Cell>
+    <Cell><Data ss:Type="String">schedule_landscaper_customer_meeting_date</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Schedule Tile Coping Masonry Install Date</Data></Cell>
+    <Cell><Data ss:Type="String">schedule_tile_coping_masonry_install_date</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Tile Coping Masonry Completion</Data></Cell>
+    <Cell><Data ss:Type="String">tile_coping_masonry_completion</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Schedule Gas Line for Pool Heater Date</Data></Cell>
+    <Cell><Data ss:Type="String">schedule_gas_line_for_pool_heater_date</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Schedule Gas Line for Fire Place or Fire Pit Date</Data></Cell>
+    <Cell><Data ss:Type="String">schedule_gas_line_for_fire_place_or_fire_pit_date</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Pool Gas Line Completion</Data></Cell>
+    <Cell><Data ss:Type="String">pool_gas_line_completion</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Fire Pit Fire Place Completion</Data></Cell>
+    <Cell><Data ss:Type="String">fire_pit_fire_place_completion</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Schedule Gas Line Inspection Date</Data></Cell>
+    <Cell><Data ss:Type="String">schedule_gas_line_inspection_date</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Passed Gas Line Inspection</Data></Cell>
+    <Cell><Data ss:Type="String">passed_gas_line_inspection</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Schedule P Trap Back Wash Line Date</Data></Cell>
+    <Cell><Data ss:Type="String">schedule_p_trap_back_wash_line_date</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">P Trap Back Wash Line Completion</Data></Cell>
+    <Cell><Data ss:Type="String">p_trap_back_wash_line_completion</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Schedule P Trap Back Wash Line Inspection Date</Data></Cell>
+    <Cell><Data ss:Type="String">schedule_p_trap_back_wash_line_inspection_date</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Passed P Trap Back Wash Line Inspection</Data></Cell>
+    <Cell><Data ss:Type="String">passed_p_trap_back_wash_line_inspection</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Schedule Electrical Rough In Only</Data></Cell>
+    <Cell><Data ss:Type="String">schedule_electrical_rough_in_only</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Electrical Rough Completion</Data></Cell>
+    <Cell><Data ss:Type="String">electrical_rough_completion</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Schedule Install Full Electrical Home Run Date</Data></Cell>
+    <Cell><Data ss:Type="String">schedule_install_full_electrical_home_run_date</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Tell Homeowner for Access to Panel</Data></Cell>
+    <Cell><Data ss:Type="String">tell_homeowner_for_access_to_panel</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Pool Electrical Completion</Data></Cell>
+    <Cell><Data ss:Type="String">pool_electrical_completion</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Schedule Pool Electrical Inspections</Data></Cell>
+    <Cell><Data ss:Type="String">schedule_pool_electrical_inspections</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Passed Electrical Inspections</Data></Cell>
+    <Cell><Data ss:Type="String">passed_electrical_inspections</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Schedule Deck Flat Work Forming Date</Data></Cell>
+    <Cell><Data ss:Type="String">schedule_deck_flat_work_forming_date</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Schedule Sprinkler Repair Install Date</Data></Cell>
+    <Cell><Data ss:Type="String">schedule_sprinkler_repair_install_date</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Confirm Deck Flat Work material</Data></Cell>
+    <Cell><Data ss:Type="String">confirm_deck_flat_work_material</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Confirm Deck Flat Work Sq. Ft.</Data></Cell>
+    <Cell><Data ss:Type="String">confirm_deck_flat_work_sq._ft.</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Schedule Deck Steel Inspection</Data></Cell>
+    <Cell><Data ss:Type="String">schedule_deck_steel_inspection</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Passed Deck Steel Inspection</Data></Cell>
+    <Cell><Data ss:Type="String">passed_deck_steel_inspection</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Check Pressure On Plumbing</Data></Cell>
+    <Cell><Data ss:Type="String">check_pressure_on_plumbing</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Check Auto Fill Overflow for Damage</Data></Cell>
+    <Cell><Data ss:Type="String">check_auto_fill_overflow_for_damage</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Schedule Deck Flat Work Pouring Date</Data></Cell>
+    <Cell><Data ss:Type="String">schedule_deck_flat_work_pouring_date</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Deck Flat Work Completion</Data></Cell>
+    <Cell><Data ss:Type="String">deck_flat_work_completion</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">3rd Draw Payment</Data></Cell>
+    <Cell><Data ss:Type="String">3rd_draw_payment</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Sprinkler Repair Completion</Data></Cell>
+    <Cell><Data ss:Type="String">sprinkler_repair_completion</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Schedule Fire Pit Fire Place Install Date</Data></Cell>
+    <Cell><Data ss:Type="String">schedule_fire_pit_fire_place_install_date</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Fire Pit Fire Place Completion</Data></Cell>
+    <Cell><Data ss:Type="String">fire_pit_fire_place_completion</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Schedule Kitchen Install Date</Data></Cell>
+    <Cell><Data ss:Type="String">schedule_kitchen_install_date</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Kitchen Completion</Data></Cell>
+    <Cell><Data ss:Type="String">kitchen_completion</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Schedule Gazebo, Arbor Patio Cover Date</Data></Cell>
+    <Cell><Data ss:Type="String">schedule_gazebo,_arbor_patio_cover_date</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Gazebo Arbor Patio Cover Completion</Data></Cell>
+    <Cell><Data ss:Type="String">gazebo_arbor_patio_cover_completion</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Install Mosaics or Tile Spots in Pool</Data></Cell>
+    <Cell><Data ss:Type="String">install_mosaics_or_tile_spots_in_pool</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Schedule Final Plumbing Set Equipment from Long Plumb</Data></Cell>
+    <Cell><Data ss:Type="String">schedule_final_plumbing_set_equipment_from_long_plumb</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Final Equipment Set Completion</Data></Cell>
+    <Cell><Data ss:Type="String">final_equipment_set_completion</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Schedule Final Electrical from Rough In Date</Data></Cell>
+    <Cell><Data ss:Type="String">schedule_final_electrical_from_rough_in_date</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Schedule Final Electrical Inspection from Rough In Date</Data></Cell>
+    <Cell><Data ss:Type="String">schedule_final_electrical_inspection_from_rough_in_date</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Final Electrical from Rough In Completion</Data></Cell>
+    <Cell><Data ss:Type="String">final_electrical_from_rough_in_completion</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Passed Electrical Inspection from Rough In</Data></Cell>
+    <Cell><Data ss:Type="String">passed_electrical_inspection_from_rough_in</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Schedule Clean Up Extra Dirt Fence Back Up Date</Data></Cell>
+    <Cell><Data ss:Type="String">schedule_clean_up_extra_dirt_fence_back_up_date</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Clean Up Extra Dirt Fence Back Up Completion</Data></Cell>
+    <Cell><Data ss:Type="String">clean_up_extra_dirt_fence_back_up_completion</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Schedule Pre Plaster City Inspection In Some Cities</Data></Cell>
+    <Cell><Data ss:Type="String">schedule_pre_plaster_city_inspection_in_some_cities</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Passed Pre Plaster Inspection</Data></Cell>
+    <Cell><Data ss:Type="String">passed_pre_plaster_inspection</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Schedule Plaster Pool Interior Finish Install Date</Data></Cell>
+    <Cell><Data ss:Type="String">schedule_plaster_pool_interior_finish_install_date</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Final All Payments Due Before Plaster Install</Data></Cell>
+    <Cell><Data ss:Type="String">final_all_payments_due_before_plaster_install</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Plaster Pool Interior Finish Install Completion</Data></Cell>
+    <Cell><Data ss:Type="String">plaster_pool_interior_finish_install_completion</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Order Start Up Materials</Data></Cell>
+    <Cell><Data ss:Type="String">order_start_up_materials</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Schedule Pool Start Up Date</Data></Cell>
+    <Cell><Data ss:Type="String">schedule_pool_start_up_date</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Schedule Pool School Date</Data></Cell>
+    <Cell><Data ss:Type="String">schedule_pool_school_date</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Start Punch List</Data></Cell>
+    <Cell><Data ss:Type="String">start_punch_list</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Pool Start up Completion</Data></Cell>
+    <Cell><Data ss:Type="String">pool_start_up_completion</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Pool School Completion</Data></Cell>
+    <Cell><Data ss:Type="String">pool_school_completion</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Punch List Completion</Data></Cell>
+    <Cell><Data ss:Type="String">punch_list_completion</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageLayoutZoom>0</PageLayoutZoom>
+   <Selected/>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>
