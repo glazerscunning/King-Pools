@@ -254,6 +254,68 @@ Thanks again, for your business.
 
 }
 
+function sendVendorScheduledEmail($vendor_id, $project_id){
+
+    global $wpdb;
+
+    $status_text = '[Project Phase Change]';
+
+    add_filter( 'wp_mail_content_type', function( $content_type ) {
+        return 'text/html';
+    });
+
+    $notifyheaders = 'From: King Pools Inc. <noreply@kingpoolsinc.com>' . "\r\n";  
+
+    $notifysubject = "Project Phase Update" . " - " . date_format(new DateTime(), "m/d/Y");
+    
+    $project_details = $wpdb->get_row('SELECT projects.* , phases.phase_name, customers.customer_email
+                                    FROM wp_king_projects projects
+                                    LEFT JOIN wp_king_phases phases
+                                    ON projects.phase_id = phases.phase_id
+                                    LEFT JOIN wp_king_customers customers
+                                    ON projects.customer_id = customers.customer_id
+                                    WHERE projects.project_id = ' . $project_id 
+                                  );
+
+    $notifyrecipients = $project_details->customer_email;
+
+    $notifymessage = '
+    <html>
+    <body>
+    <h2>King Pools Vendor Scheduling</h2>
+    <table>
+            <tr>
+                <td>
+This email confirms that $vendor_name has been scheduled for $scheduled_date.
+<br><br>
+The customer site is located at $customer_address.
+<br><br>
+Thank you,<br>
+King Pools Inc.
+                </td>
+            </tr>     
+    ';
+
+    $notifymessage .= '
+    </table>
+    </body>
+    </html>
+    ';
+
+    //$notify_sent = wp_mail($notifyrecipients, $notifysubject, $notifymessage, $notifyheaders); 
+    $notify_sent = true;
+
+    if($notify_sent){
+
+        addNotificationTrail($status_text, $notifyrecipients, $notifysubject, $notifymessage);
+
+    }
+
+    return ($notify_sent ? "$status_text notification sent!" : "$status_text notification could NOT be sent!" );
+
+}
+
+
 function sendWeeklyCustomerEmail($project_id){
 
     $status_text = '[Weekly Customer Email]';

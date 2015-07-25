@@ -63,6 +63,10 @@ jQuery(document).ready(function() {
         dateFormat : 'yy-mm-dd'
     });
 
+    if(jQuery("select.project_type option:selected").val() != "construction-remodel"){
+            jQuery('.construction_phase').hide();
+    }
+
 <?php
 if(empty($result->vendor_name)){
 ?>    
@@ -77,6 +81,14 @@ if(empty($result->vendor_name)){
             jQuery('.vendor_phase').fadeOut();
         }
     });
+
+    jQuery(".project_type").change(function() {
+        if(jQuery("select.project_type option:selected").val() == "construction-remodel"){
+            jQuery('.construction_phase').fadeIn();
+        }else{
+            jQuery('.construction_phase').fadeOut();
+        }
+    });    
 
 });
 
@@ -190,7 +202,7 @@ echo "</table>\n\n";
                     <label><?php _e("Type: " ); ?></label>
                 </th>
                 <td>
-                    <select name="project_type">
+                    <select name="project_type" class="project_type">
                         <option value="">Please select...</option>
                         <option value="construction-remodel" <?= ($result->project_type == "construction-remodel") ? "selected='selected'" : "";?>>Construction/Remodel</option>
                         <option value="cleaning" <?=($result->project_type == "cleaning") ? "selected='selected'" : "";?>>Pool Cleaning</option>
@@ -198,7 +210,7 @@ echo "</table>\n\n";
                     </select>
                 </td>
             </tr>             
-            <tr>
+            <tr class="construction_phase">
                 <th>
                     <label><?php _e("Construction Phase: " ); ?></label>
                 </th>
@@ -307,12 +319,10 @@ if($_REQUEST['action'] == 'view'){
                                              ), 
                                        array('project_id'=>$_REQUEST['project_id']));
 
-    $result = $wpdb->get_row('SELECT projects.project_id, projects.phase_id, phases.phase_type, vendors.vendor_id, vendors.vendor_type, vendors.vendor_email, phases.phase_trigger_customer_email, phases.phase_trigger_vendor_email
+    $result = $wpdb->get_row('SELECT projects.project_id, projects.phase_id, phases.phase_type, phases.phase_trigger_customer_email, phases.phase_trigger_vendor_email
                                FROM wp_king_projects projects
                                JOIN wp_king_phases phases
                                ON projects.phase_id = phases.phase_id
-                               LEFT JOIN wp_king_vendors vendors
-                               ON phases.vendor_id = vendors.vendor_id
                                WHERE project_id = ' . $_REQUEST['project_id']
                             );
 
@@ -328,7 +338,6 @@ if($_REQUEST['action'] == 'view'){
     if($result->phase_trigger_vendor_email > 0){
 
         $wpdb->insert('wp_king_scheduling', array(
-                                                 //'vendor_id'   => $result->vendor_id,
                                                  'vendor_id'   => $_REQUEST['vendor_id'],
                                                  'project_id'   => $_REQUEST['project_id'],
                                                  'schedule_date'   => $_REQUEST['schedule_date'],
@@ -336,9 +345,15 @@ if($_REQUEST['action'] == 'view'){
                                                  'phase_id'     => $result->phase_id
                                                  ));
 
-        //Send email to vendor with $result->vendor_email
+        $result = $wpdb->get_row('SELECT * 
+                                    FROM wp_king_vendors
+                                    WHERE vendor_id = ' . $_REQUEST['vendor_id']
+                                );
+        
+        sendVendorSchedulingEmail($_REQUEST['vendor_id'], $_REQUEST['project_id']);
+        
+        echo '<div id="message" class="updated">An email has been sent to ' . $result->vendor_email . ' to schedule services on ' . $_REQUEST['schedule_date'] . '</div>';
 
-        echo '<div id="message" class="updated">Vendor has been scheduled for ' . $_REQUEST['schedule_date'] . '</div>';
     }
 
     echo '<div id="message" class="updated">Project has been updated!</div>';
