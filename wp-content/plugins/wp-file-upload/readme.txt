@@ -3,7 +3,7 @@ Contributors: nickboss
 Donate link: http://www.iptanus.com/support/wordpress-file-upload
 Tags: upload, upload file, upload files, multiple, multiple upload, multiple uploads, captcha, progress bar, form, ajax, directory, HTML5, filelist, gallery, image gallery, browser, file browser, gallery, image gallery, shortcode, logging, file logging
 Requires at least: 2.9.2
-Tested up to: 4.2.1
+Tested up to: 4.2.2
 Stable tag: "trunk"
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -26,22 +26,29 @@ The characteristics of the plugin are:
 
 * It does not use flash and handles uploads using various technologies (HTML5, AJAX, classic HTML forms) depending on browser's capabilities, which detects automatically. As a result it can work in any browser, including mobiles phones (even old ones).
 * You can have more than one instances of the shortcode in the same page.
-* It includes an overall upload progress bar.
 * It supports multilingual characters and localization.
-* It integrates with WP-Filebase plugin.
 * Uploaded files can be added to Media or be attached to the current page.
 * It is highly customizable with many (more than 50) options.
 * It produces notification messages and e-mails.
 * You can create additional fields that the user must fill in along with the uploaded file.
+* You can select from a list of subfolders.
+* Upload progress can be monitored with a progress bar.
 * It supports redirection to another url after successful upload.
 * It supports filters and actions before and after file upload, so that programmers can extend the plugin and make it cooperate with other plugins.
 * It contains a visual editor for customizing the plugin easily and without any knowledge of shortcodes or programming
 * It supports logging of upload events or management of files, which can be viewed by admins through the Dashboard.
-* It includes a file browser in the Dashboard, from where admins can view the uploaded file and manage them.
+* It includes a file browser in the Dashboard, from where admins can view the uploaded files and manage them.
+
+The plugin is translated in the following languages:
+
+* German
+* French, kindly provided by Thomas Bastide of http://www.omicronn.fr/
+* Serbian, kindly provided by Andrijana Nikolic of http://webhostinggeeks.com/
+* Greek
 
 Please note that old desktop browsers or mobile browsers may not support all of the above functionalities. In order to get full functionality use the latest versions browsers, supporting HTML5, AJAX and CSS3.
 
-For additional features, such as multiple file upload, very large file upload, drag and drop of files, captcha, detailed upload progress bars, image gallery and custom css please consider [Wordpress File Upload Professional](http://www.iptanus.com/support/wordpress-file-upload/ "Wordpress File Upload support page").
+For additional features, such as multiple file upload, very large file upload, drag and drop of files, captcha, detailed upload progress bars, list of uploaded files, image gallery and custom css please consider [Wordpress File Upload Professional](http://www.iptanus.com/support/wordpress-file-upload/ "Wordpress File Upload support page").
 
 Please visit the **Other Notes** section for customization options of this plugin.
 
@@ -49,10 +56,12 @@ Please visit the **Other Notes** section for customization options of this plugi
 
 1. First install the plugin using Wordpress auto-installer or download the .zip file from wordpress.org and install it from the Plugins section of your Dashboard or copy wordpress_file_upload directory inside wp-contents/plugins directory of your wordpress site.
 1. Activate the plugin from Plugins section of your Dashboard.
-1. In order to use the plugin simply put the shortcode [wordpress_file_upload] in the contents of any page.
+1. In order to use the plugin simply go to the Dashboard / Settings / Wordpress File Upload and follow the instructions in Plugin Instances or alternatively put the shortcode [wordpress_file_upload] in the contents of any page.
 1. Open the page on your browser and you will see the upload form.
 1. You can change the upload directory or any other settings easily by pressing the small edit button found at the left-top corner of the upload form. A new window (or tab) with pop up with plugin options. If you do not see the new window, adjust your browser settings to allow pop-up windows.
 1. Full documentation about the plugin options can be found at https://wordpress.org/plugins/wp-file-upload/other_notes/ or at http://www.iptanus.com/wordpress-plugins/wordpress-file-upload/ (including the Pro version)
+
+A getting started guide can be found at http://www.iptanus.com/getting-started-with-wordpress-file-upload-plugin/
 
 == Frequently Asked Questions ==
 
@@ -80,6 +89,10 @@ Yes, but not in the free version. If you want to allow multiple file uploads, pl
 
 Files by default are uploaded inside wp-content directory of your Wordpress website. To change it use attribute uploadpath.
 
+= Can I see and download the uploaded files? =
+
+Administrators can view all uploaded files together with associated field data from the plugin's Settings in Dashboard. The [Professional](http://www.iptanus.com/support/wordpress-file-upload/ "Wordpress File Upload support page") version of the plugin allows users to view their uploaded files, either from the Dashboard, or from a page or post.
+
 = Are there filters to restrict uploaded content? =
 
 Yes, you can control allowed file size and file extensions by using the appropriate attribute (see Other Notes section).
@@ -90,19 +103,19 @@ Yes, there are file size limitations imposed by the web server or the host. If y
 
 = Who can upload files? =
 
-By default only administrators can upload files. However you can define which user roles are allowed to upload files, beyond administrators. Even guests can be allowed to upload files, however use this option with care.
+By default all users can upload files. You can define which user roles are allowed to upload files. Even guests can be allowed to upload files. If you want to allow only specific users to upload files, then please consider the [Professional](http://www.iptanus.com/support/wordpress-file-upload/ "Wordpress File Upload support page") version of the plugin.
 
 = What security is used for uploading files? =
 
-The plugin is designed not to expose website information by using sessions. Parameters passing from server to client side are encoded. For higher protection, like use of captcha, please consider the [Professional](http://www.iptanus.com/support/wordpress-file-upload/ "Wordpress File Upload support page") version of the plugin.
-
-= How can I view the uploaded files? =
-
-Administrators can view and manage the uploaded files from the File Browser that exists inside the plugin's Settings inside Dashboard, or use an FTP client. Other users can view their uploaded files by combining this plugin with WP-Filebase plugin. If you want to show the uploaded files as an image gallery please consider the [Professional](http://www.iptanus.com/support/wordpress-file-upload/ "Wordpress File Upload support page") version of the plugin.
+The plugin is designed not to expose website sensitive information. It has been tested by experts and verified that protects against CSRF and XSS attacks. All parameters passing from server to client side are encoded and sanitized. For higher protection, like use of captcha, please consider the [Professional](http://www.iptanus.com/support/wordpress-file-upload/ "Wordpress File Upload support page") version of the plugin.
 
 = What happens if connection is lost during a file upload? =
 
 In the free version the upload will fail. However in the Pro version the upload will resume and will continue until the file is fully uploaded. This is especially useful when uploading very large files.
+
+= The plugin does not look nice with my theme. What can I do? =
+
+There is an option in plugin's settings in Dashboard to relax the CSS rules, so that buttons and text boxes inherit the theme's styles. If additional styling is required, this can be done using CSS. The Professional version of the plugin allows CSS rules to be embed in the shortcode.
 
 == Screenshots ==
 
@@ -115,6 +128,76 @@ In the free version the upload will fail. However in the Pro version the upload 
 7. A screenshot of the file browser.
 
 == Changelog ==
+
+= 3.2.0 =
+* added option in plugin's settings to relax CSS rules so that plugin inherits theme styling
+* modifications in html and css of editable subfolders feature to look better
+* modifications in html and css of prompt message when a required userdata field is empty
+* PLUGINDIR was replaced by WP_PLUGIN_DIR so that the plugin can work for websites where the contents dir is other than wp-content
+* fixed bug that was not allowing Shortcode Composer to launch when the shortcode was too big
+* fixed bug that was causing front-end file list not to work properly when no instance of the plugin existed in the same page / post
+
+= 3.1.2 =
+* important bug detected and fixed that was stripping slashes from post or page content when updating the shortcode using the shortcode composer
+
+= 3.1.1 =
+* the previous version broke the easy creation of shortcodes through the plugin's settings in Dashboard and it has been corrected, together with some improvements
+
+= 3.1.0 =
+* an important feature (front-end file browser) has been added in professional version 3.1.0
+* added port number support for uploads using ftp mode
+* corrected bug that was not showing correctly in file browser files that were uploaded using ftp mode
+* eliminated confirmbox warning showing in page when website's DEBUG mode is ON
+* eliminated warning: "Invalid argument supplied for foreach() in ...plugins/wordpress-file-upload-pro/lib/wfu_admin.php on line 384"
+* eliminated warning: "Notice: Undefined index: postmethod in /var/www/wordpress/wp-content/plugins/wordpress-file-upload-pro/lib/wfu_functions.php on line 1348"
+* eliminated warnings in plugin's settings in Dashboard
+
+= 3.0.0 =
+* major version number has advanced because an important feature has been added in Pro version (logged users can browse their uploaded files through their Dashboard)
+* several code modifications in file browser to make the plugin more secure against hacking, some functionalities in file browser have slightly changed
+* new file browser cannot edit files that were not uploaded with the plugin and it cannot edit or create folders
+* upload path cannot be outside the wordpress installation root
+* files with extension php, js, pht, php3, php4, php5, phtml, htm, html and htaccess are forbidden for security reasons
+
+= 2.7.6 =
+* added functionality in Dashboard to add the plugin to a page automatically
+* fixed bug that was not showing the Shortcode Composer because the plugin could not find the plugin instance when the shortcode was nested in other shortcodes
+
+= 2.7.5 =
+* added German and Greek translation
+
+= 2.7.4 =
+* added Serbian translation thanks to Andrijana Nikolic from http://webhostinggeeks.com/
+* bug fix with %blogid%, %pageid% and %pagetitle% that where not implemented in notification emails
+* in single button operation selected files are removed in case that a subfolder has not been previously selected or a required user field has not been populated
+* bug fixed in single file operation that allowed selection of multiple files through drag-and-drop
+* bug fixed with files over 1MB that got corrupted when maintaining files with same filename
+* dummy (test) Shortcode Composer button removed from the plugin's Settings as it is no longer useful
+* added support for empty (zero size) files
+* many code optimizations and security enhancements
+* fixed javascript errors in IE8 that were breaking upload operation
+* code improvements to avoid display of session warnings
+* added %username% in redirect link
+* added option in plugin's Settings in Dashboard to select alternative POST Upload method, in order to resolve errors like "http:// wrapper is disabled in the server configuration by allow_url_fopen" or "Call to undefined function curl_init()"
+* added filter action wfu_after_upload, where the admin can define additional javascript code to be executed on user's browser after each file is finished
+
+= 2.7.3 =
+* important bug fix in Pro version
+* added wfu_before_email_notification filter
+* corrected bug not showing correctly special characters (double quotes and braces) in email notifications
+
+= 2.7.2 =
+* important bug fix in Pro version, very slight changes in free version
+
+= 2.7.1 =
+* fixed bug with faulty plugin instances appearing when Woocommerce plugin is also installed
+* Upload of javascript (.js) files is not allowed for avoiding security issues
+* fixed bug with medialink and postlink attributes that were not working correctly
+* when medialink or postlink is activated, the files will be uploaded to the upload folder of WP website
+* when medialink or postlink is activated, subfolders will be deactivated
+* added option in subfolders to enable the list to populate automatically
+* added option in subfolders the user to be able to type the subfolder
+* wfu_before_file_check filter can modify the target path (not only the file name)
 
 = 2.7.0 =
 * corrected bug when deleting plugin instance from the Dashboard
@@ -386,6 +469,36 @@ Initial version.
 
 == Upgrade Notice ==
 
+= 3.1.2 =
+Upgrade to fix an important bug.
+
+= 3.1.1 =
+Upgrade to fix a minor bug.
+
+= 3.1.0 =
+Upgrade to fix some minor bugs.
+
+= 3.0.0 =
+Upgrade to increase protection against hacking.
+
+= 2.7.6 =
+Upgrade to add some new features and address some bugs.
+
+= 2.7.5 =
+Upgrade to add some new features.
+
+= 2.7.4 =
+Upgrade to add some new features and address some bugs.
+
+= 2.7.3 =
+Upgrade to add some new features and address some bugs.
+
+= 2.7.2 =
+Upgrade to address some bugs.
+
+= 2.7.1 =
+Upgrade to add some new features and address some bugs.
+
 = 2.7.0 =
 Upgrade to address some minor bugs.
 
@@ -563,10 +676,10 @@ A detailed list of attributes, together with instructions is shown below:
 * **ftpinfo:** This attribute defines the ftp access information. It has the syntax *username:password@domain*. If username, password or domain contains the characters (:) or (@), then replace them with (\\:) and (\\@) in order to avoid misreading of the attribute.
 * **useftpdomain:** This attribute is used when the ftp domain used to upload files is in different domain than Wordpress installation. If it is set to "true" (and also uploadmethod is "ftp"), then the domain that will be used to upload files will be the one defined in ftpinfo attribute. Default value is "false".
 * **ftppassivemode:** If this attribute is set to "true", FTP passive mode will be used instead of active mode. It is used if files fail to upload when using FTP method. Default value is "false".
-* **ftpfilepermissions:** Force the uploaded files to have specific permissions. This is a 4-digit octal number, e.g. 0777. If left empty, then the ftp server will define the permissions.. Default value is "".
+* **ftpfilepermissions:** Force the uploaded files to have specific permissions. This is a 4-digit octal number, e.g. 0777. If left empty, then the ftp server will define the permissions. Default value is "".
 * **showtargetfolder:** This attribute defines if a message with the upload directory will be shown. Default value is "false".
 * **askforsubfolders:** This attribute defines if the user can select a subfolder to upload the file. Default value is "false". If set to "true", then the user is able to select a subfolder of the path, defined by the attribute *uploadpath*, to upload a file through a drop down list. This attributed is used together with attribute *subfoldertree*, which defines the subfolders.
-* **subfoldertree:** This attribute defines the structure of the subfolders that the user can select to upload a file. Default value is "". The format of this attribute is as follows: the subfolders are separated by commas (,), e.g. "subfolder1, subfolder2". It is possible to use nested subfolders (a folder inside another folder). To do this place stars (*) before the name of the subfolder. The number of stars determines nesting level, e.g. "subfolder1, *nested1, *nested2, **nested3". Please note that the first subfolder must be the name of the folder defined by attribute *uploadpath* (only the last part) without any stars, while all the next subfolders must have at least one star. The user has also the capability to use a different name (from the actual subfolder name) to be shown in the drop down list for every subfolder, by separating the actual and shown name using the slash (/) symbol, e.g. "subfolder1, *subfolder2/shownname2, *subfolder3/shownname3".
+* **subfoldertree:** This attribute defines the structure of the subfolders that the user can select to upload a file. Default value is "". The format of this attribute is as follows: the subfolders are separated by commas (,), e.g. "subfolder1, subfolder2". It is possible to use nested subfolders (a folder inside another folder). To do this place stars (\*) before the name of the subfolder. The number of stars determines nesting level, e.g. "subfolder1, \*nested1, \*nested2, \*\*nested3". Please note that the first subfolder must be the name of the folder defined by attribute *uploadpath* (only the last part) without any stars, while all the next subfolders must have at least one star. The user has also the capability to use a different name (from the actual subfolder name) to be shown in the drop down list for every subfolder, by separating the actual and shown name using the slash (/) symbol, e.g. "subfolder1, \*subfolder2/shownname2, \*subfolder3/shownname3". For defining a default value that will be preselected use the (&) symbol before the item name (but after the stars, e.g. \*\*&nested3.
 * **dublicatespolicy:** This attribute defines what to do when the upload file has the same name with another file inside target directory. If it is set to "overwrite" then the upload file will replace the existing file. If it is set to "reject" then the upload operation will be cancelled. If it is set to "maintain both" then the upload file will be saved inside the target directory with another name, in order to keep both files. Default value is "overwrite".
 * **uniquepattern:** This attribute defines how to save the upload file when a file with the same name already exists inside the target directory. If it is set to "index" then the upload file will be saved with a numeric suffix, like (1), (2) etc. in order to keep the name of the uploaded file unique. If it is set to "datetimestamp", then the suffix will be an encoded datetime of the upload operation. The plugin ensures that the name of the uploaded file will be unique, in order to avoid accidental replacement of existing files. Default value is "index".
 
@@ -692,7 +805,7 @@ For the time being, the following variables are supported:
 
 * **%userid%:** Is replaced by the id of the current user. Can be used inside attribute *uploadpath*.
 * **%username%:** Is replaced by the username of the current user. Can be used inside attributes *uploadpath*, *notifysubject* and *notifymessage*.
-* **%useremail%:** Is replaced by the email of the current user. Can be used inside attributes *notifyrecipients*, *notifysubject* and *notifymessage*.
+* **%useremail%:** Is replaced by the email of the current user. Can be used inside attributes *notifyrecipients*, *notifysubject*, *notifymessage* and *redirectlink*.
 * **%filename%:** Is replaced by the filename (not including path information) of the uploaded file. Can be used inside attributes *notifysubject*, *notifymessage*, *successmessage* and *redirectlink*.
 * **%filepath%:** Is replaced by the filepath (full path and filename) of the uploaded file. Can be used inside attributes *notifysubject*, *notifymessage* and *successmessage*.
 * **%blogid%:** Is replaced by the blog_id of the current site. Can be used inside attribute *uploadpath*, *notifysubject* and *notifymessage*.
@@ -724,13 +837,13 @@ add_filter('wfu_before_file_check', 'wfu_before_file_check_handler', 10, 2);
 //  $changable_data is an array that can be modified by the filter and contains the items:
 //    file_path: the full path of the uploaded file
 //    user_data: an array of user data values, if userdata are activated
-//    error_message: if this is non-zero, then upload of the file will be cancelled showing this error message to the user
+//    error_message: initially it is set to an empty value, if the handler sets a non-empty value then upload of the file will be cancelled showing this error message (message will be shown only to administrators if adminmessages attribute has been activated)
 //  $additional_data is an array with additional data to be used by the filter (but cannot be modified) as follows:
+//    shortcode_id: this is the id of the plugin, as set using uploadid attribute; it can be used to apply this filter only to a specific instance of the plugin (if it is used in more than one pages or posts)
 //    file_unique_id: this id is unique for each individual file upload and can be used to identify each separate upload
 //    file_size: the size of the uploaded file
 //    user_id: the id of the user that submitted the file for upload
 //    page_id: the id of the page from where the upload was performed (because there may be upload plugins in more than one page)
-//    shortcode_id: the id of the upload plugin (because more than one upload plugins can exist in the same page)
 //The function must return the final $changable_data.
 function wfu_before_file_check_handler($changable_data, $additional_data) {
 	// Add code here...
@@ -758,6 +871,59 @@ function wfu_before_file_upload_handler($file_path, $file_unique_id) {
 }
 `
 
+**wfu_before_email_notification**
+
+It is executed before email notification is sent, in order to allow advanced checks or modifications to the email. You can use it as follows:
+
+`
+add_filter('wfu_before_email_notification', 'wfu_before_email_notification_handler', 10, 2);
+
+//The following function takes two parameters, $changable_data and $additional_data.
+//  $changable_data is an array that can be modified by the filter and contains the items:
+//    recipients: the list of recipients (before dynamic variables are applied)
+//    subject: the email subject (before dynamic variables are applied)
+//    message: the email body (before dynamic variables are applied)
+//    headers: the email headers, if exist (before dynamic variables are applied)
+//    user_data: an array of user data values, if userdata are activated
+//    filename: a comma separated list of uploaded file names (only the file names)
+//    filepath: a comma separated list of uploaded file paths (absolute full file paths)
+//    error_message: initially it is set to an empty value, if the handler sets a non-empty value then email sending will be cancelled showing this error message (message will be shown only to administrators if adminmessages attribute has been activated)
+//  $additional_data is an array with additional data to be used by the filter (but cannot be modified) as follows:
+//    shortcode_id: this is the id of the plugin, as set using uploadid attribute; it can be used to apply this filter only to a specific instance of the plugin (if it is used in more than one pages or posts)
+//The function must return the final $changable_data.
+function wfu_before_email_notification_handler($changable_data, $additional_data) {
+	// Add code here...
+	return $changable_data;
+}
+`
+
+**wfu_after_file_upload**
+
+It is executed after the upload process for each individual file has finished, in order to allow additional actions to be executed (such as define custom javascript code to be executed in client's browser after file upload). You can use it as follows:
+
+`
+add_filter('wfu_after_file_upload', 'wfu_after_file_upload_handler', 10, 2);
+
+//The following function takes two parameters, $changable_data and $additional_data.
+//  $changable_data is an array that can be modified by the filter and contains the items:
+//    ret_value: not used for the moment, it exists for future additions
+//    js_script: javascript code to be executed on the client's browser after each file is uploaded
+//  $additional_data is an array with additional data to be used by the filter (but cannot be modified) as follows:
+//    shortcode_id: this is the id of the plugin, as set using uploadid attribute; it can be used to apply this filter only to a specific instance of the plugin (if it is used in more than one pages or posts)
+//    file_unique_id: this id is unique for each individual file upload and can be used to identify each separate upload
+//    upload_result is the result of the upload process:
+//      success: the upload was successful
+//      warning: the upload was successful but with warning messages
+//      error: the upload failed
+//    error_message: contains warning or error messages generated during the upload process
+//    admin_messages: contains detailed error messages for administrators generated during the upload process
+//The function must return the final $changable_data.
+function wfu_after_file_upload_handler($changable_data, $additional_data) {
+	// Add code here...
+	return $changable_data;
+}
+`
+
 The following actions are supported:
 
 **wfu_after_file_upload**
@@ -766,15 +932,16 @@ It is executed after the upload process for each individual file has finished, i
 
 `
 add_action('wfu_after_file_upload', 'wfu_after_file_upload_handler', 10, 4);
+(It is noted that this action will be removed in future version of the plugin, it is here only for compatibility with previous versions of the plugin, please use wfu_after_file_upload filter instead)
 
 //The following function takes four parameters, $file_unique_id, $upload_result, $error_message and $error_admin_messages.
 //  $file_unique_id is is unique for each individual file upload and can be used to identify each separate upload.
-//  $upload_result is is result of the upload process:
+//  $upload_result is the result of the upload process:
 //    success: the upload was successful
 //    warning: the upload was successful but with warning messages
 //    error: the upload failed
-//  $error_message: contains any warning or error messages generated during the upload process
-//  $admin_messages: contains any more detailed error messages for administrators generated during the upload process
+//  $error_message: contains warning or error messages generated during the upload process
+//  $admin_messages: contains detailed error messages for administrators generated during the upload process
 //If additional data are required (such as user id, userdata or filename) you can get them by implementing the previous filters
 //wfu_before_file_check or wfu_before_file_upload and link both filters by $file_unique_id parameter.
 function wfu_after_file_upload_handler($file_unique_id, $upload_result, $error_message, $error_admin_messages) {
@@ -786,3 +953,4 @@ function wfu_after_file_upload_handler($file_unique_id, $upload_result, $error_m
 
 The plugin requires to have Javascript enabled in your browser. For Internet Explorer you also need to have Active-X enabled.
 Please note that old desktop browsers or mobile browsers may not support all of the plugin's features. In order to get full functionality use the latest versions of browsers, supporting HTML5, AJAX and CSS3.
+

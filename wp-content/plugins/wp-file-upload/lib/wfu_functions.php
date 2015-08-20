@@ -76,6 +76,23 @@ function wfu_create_string($size) {
 	return $str;
 }
 
+function wfu_html_output($output) {
+	$output = str_replace(array("\r\n", "\r", "\n"), "<br/>", $output);
+	return str_replace(array("\t", " "), "&nbsp;", $output);
+}
+
+function wfu_sanitize_code($code) {
+	return preg_replace("/[^A-Za-z0-9]/", "", $code);
+}
+
+function wfu_sanitize_int($code) {
+	return preg_replace("/[^0-9]/", "", $code);
+}
+
+function wfu_sanitize_tag($code) {
+	return preg_replace("/[^A-Za-z_]/", "", $code);
+}
+
 //********************* Array Functions ****************************************************************************************************
 
 function wfu_encode_array_to_string($arr) {
@@ -235,8 +252,11 @@ function wfu_encode_plugin_options($plugin_options) {
 	$encoded_options .= 'shortcode='.wfu_plugin_encode_string($plugin_options['shortcode']).';';
 	$encoded_options .= 'hashfiles='.$plugin_options['hashfiles'].';';
 	$encoded_options .= 'basedir='.wfu_plugin_encode_string($plugin_options['basedir']).';';
+	$encoded_options .= 'postmethod='.$plugin_options['postmethod'].';';
+	$encoded_options .= 'relaxcss='.$plugin_options['relaxcss'].';';
 	$encoded_options .= 'captcha_sitekey='.wfu_plugin_encode_string($plugin_options['captcha_sitekey']).';';
-	$encoded_options .= 'captcha_secretkey='.wfu_plugin_encode_string($plugin_options['captcha_secretkey']);
+	$encoded_options .= 'captcha_secretkey='.wfu_plugin_encode_string($plugin_options['captcha_secretkey']).';';
+	$encoded_options .= 'browser_permissions='.wfu_encode_array_to_string($plugin_options['browser_permissions']);
 	return $encoded_options;
 }
 
@@ -248,6 +268,8 @@ function wfu_decode_plugin_options($encoded_options) {
 			list($item_key, $item_value) = explode("=", $decoded_item, 2);
 			if ( $item_key == 'shortcode' || $item_key == 'basedir' || $item_key == 'captcha_sitekey' || $item_key == 'captcha_secretkey' )
 				$plugin_options[$item_key] = wfu_plugin_decode_string($item_value);
+			elseif ( $item_key == 'browser_permissions' )
+				$plugin_options[$item_key] = wfu_decode_array_from_string($item_value);
 			else
 				$plugin_options[$item_key] = $item_value;
 		}
@@ -320,10 +342,27 @@ function wfu_basename($path) {
 	return preg_replace('/.*(\\\\|\\/)/', '', $path);
 }
 
+function wfu_basedir($path) {
+	if ( !$path || $path == "" ) return "";
+	return substr($path, 0, strlen($path) - strlen(wfu_basename($path)));
+}
+
+function wfu_path_abs2rel($path) {
+	$abspath_notrailing_slash = substr(ABSPATH, 0, -1);
+	return ( substr($path, 0, 6) == 'ftp://' || substr($path, 0, 7) == 'ftps://' || substr($path, 0, 7) == 'sftp://' ? $path : str_replace($abspath_notrailing_slash, "", $path) );
+}
+
+function wfu_path_rel2abs($path) {
+	if ( substr($path, 0, 1) == "/" ) $path = substr($path, 1);
+	return ( substr($path, 0, 6) == 'ftp://' || substr($path, 0, 7) == 'ftps://' || substr($path, 0, 7) == 'sftp://' ? $path : ABSPATH.$path );
+}
+
 function wfu_upload_plugin_full_path( $params ) {
 	$path = $params["uploadpath"];
 	if ( $params["accessmethod"]=='ftp' && $params["ftpinfo"] != '' && $params["useftpdomain"] == "true" ) {
 		$ftpdata_flat =  str_replace(array('\:', '\@'), array('\_', '\_'), $params["ftpinfo"]);
+		//remove parent folder symbol (..) in path so that the path does not go outside host
+		$ftpdata_flat =  str_replace('..', '', $ftpdata_flat);
 		$pos1 = strpos($ftpdata_flat, ":");
 		$pos2 = strpos($ftpdata_flat, "@");
 		if ( $pos1 && $pos2 && $pos2 > $pos1 ) {
@@ -342,6 +381,8 @@ function wfu_upload_plugin_full_path( $params ) {
 			$start_folder = ABSPATH;
 			$path = substr($path, 2, strlen($path) - 2);
 		}
+		//remove additional parent folder symbols (..) in path so that the path does not go outside the $start_folder
+		$path =  str_replace('..', '', $path);
 		if ( substr($path, 0, 1) == "/" ) $path = substr($path, 1, strlen($path) - 1);
 		if ( substr($path, -1, 1) == "/" ) $path = substr($path, 0, strlen($path) - 1);
 		$full_upload_path = $start_folder;
@@ -386,12 +427,22 @@ function wfu_delTree($dir) {
 	return rmdir($dir);
 }
 
+function wfu_getTree($dir) {
+	$tree = array();
+	$files = array_diff(scandir($dir), array('.','..'));
+	foreach ($files as $file) {
+		if ( is_dir("$dir/$file") ) array_push($tree, $file);
+	}
+	return $tree;
+}
+
 function wfu_parse_folderlist($subfoldertree) {
 	$ret['path'] = array();
 	$ret['label'] = array();
 	$ret['level'] = array();
 	$ret['default'] = array();
 
+	if ( substr($subfoldertree, 0, 4) == "auto" ) return $ret;
 	$subfolders = explode(",", $subfoldertree);
 	if ( count($subfolders) == 0 ) return $ret;
 	if ( count($subfolders) == 1 && trim($subfolders[0]) == "" ) return $ret;
@@ -421,7 +472,7 @@ function wfu_parse_folderlist($subfoldertree) {
 			}
 			//split item in folder path and folder name
 			$subfolder_items = explode('/', $subfolder);
-			if ( $subfolder_items[1] != "" ) {
+			if ( count($subfolder_items) > 1 && $subfolder_items[1] != "" ) {
 				$subfolder_dir = $subfolder_items[0];
 				$subfolder_label = $subfolder_items[1];
 			}
@@ -553,6 +604,46 @@ function wfu_debug_log($message) {
 	file_put_contents($logpath, $message, FILE_APPEND);
 }
 
+function wfu_safe_store_filepath($path) {
+	$code = wfu_create_random_string(16);
+	$_SESSION['wfu_filepath_safe_storage'][$code] = $path;
+	return $code;
+}
+
+function wfu_get_filepath_from_safe($code) {
+	//sanitize $code
+	$code = wfu_sanitize_code($code);
+	if ( $code == "" ) return false;
+	//return filepath from session variable, if exists
+	if ( !isset($_SESSION['wfu_filepath_safe_storage'][$code]) ) return false;
+	return $_SESSION['wfu_filepath_safe_storage'][$code];
+}
+
+function wfu_file_extension_restricted($filename) {
+	return ( 
+		substr($filename, -4) == ".php" ||
+		substr($filename, -3) == ".js" ||
+		substr($filename, -4) == ".pht" ||
+		substr($filename, -5) == ".php3" ||
+		substr($filename, -5) == ".php4" ||
+		substr($filename, -5) == ".php5" ||
+		substr($filename, -6) == ".phtml" ||
+		substr($filename, -4) == ".htm" ||
+		substr($filename, -5) == ".html" ||
+		substr($filename, -9) == ".htaccess" 
+		);
+}
+
+function wfu_human_filesize($size, $unit = "") {
+	if ( ( !$unit && $size >= 1<<30 ) || $unit == "GB" )
+		return number_format($size / (1<<30), 2)."GB";
+	if( ( !$unit && $size >= 1<<20 ) || $unit == "MB" )
+		return number_format($size / (1<<20), 2)."MB";
+	if( ( !$unit && $size >= 1<<10 ) || $unit == "KB" )
+		return number_format($size / (1<<10), 2)."KB";
+	return number_format($size)." bytes";
+}
+
 //********************* User Functions *****************************************************************************************************
 
 function wfu_get_user_role($user, $param_roles) {
@@ -578,6 +669,24 @@ function wfu_get_user_role($user, $param_roles) {
 	return $result_role;		
 }
 
+function wfu_get_user_valid_role_names($user) {
+	global $wp_roles;
+	
+	$result_roles = array();
+	if ( !empty( $user->roles ) && is_array( $user->roles ) ) {
+		/* get all valid roles */
+		$roles = $wp_roles->get_names();
+		/* Go through the array of the roles of the current user */
+		foreach ( $user->roles as $user_role ) {
+			$user_role = strtolower($user_role);
+			/* If one role of the current user matches to the roles allowed to upload */
+			if ( in_array($user_role, array_keys($roles)) ) array_push($result_roles, $user_role);
+		}
+	}
+
+	return $result_roles;		
+}
+
 //*********************** DB Functions *****************************************************************************************************
 
 //log action to database
@@ -589,8 +698,8 @@ function wfu_log_action($action, $filepath, $userid, $uploadid, $pageid, $sid, $
 
 	if ( !file_exists($filepath) && substr($action, 0, 5) != 'other' ) return;
 	$parts = pathinfo($filepath);
-	$relativepath = str_replace(ABSPATH, '', $filepath);
-	if ( substr($relativepath, 0, 1) != '/' ) $relativepath = '/'.$relativepath;
+	$relativepath = wfu_path_abs2rel($filepath);
+//	if ( substr($relativepath, 0, 1) != '/' ) $relativepath = '/'.$relativepath;
 	
 	$retid = 0;
 	if ( $action == 'upload' ) {
@@ -612,6 +721,7 @@ function wfu_log_action($action, $filepath, $userid, $uploadid, $pageid, $sid, $
 			array(
 				'userid' 	=> $userid,
 				'uploaduserid' 	=> $userid,
+				'sessionid' => session_id(),
 				'filepath' 	=> $relativepath,
 				'filehash' 	=> $filehash,
 				'filesize' 	=> $filesize,
@@ -625,6 +735,7 @@ function wfu_log_action($action, $filepath, $userid, $uploadid, $pageid, $sid, $
 			array(
 				'%d',
 				'%d',
+				'%s',
 				'%s',
 				'%s',
 				'%d',
@@ -667,8 +778,8 @@ function wfu_log_action($action, $filepath, $userid, $uploadid, $pageid, $sid, $
 	elseif ( substr($action, 0, 6) == 'rename' ) {
 		//get new filepath
 		$newfilepath = substr($action, 7);
-		$relativepath = str_replace(ABSPATH, '', $newfilepath);
-		if ( substr($relativepath, 0, 1) != '/' ) $relativepath = '/'.$relativepath;
+		$relativepath = wfu_path_abs2rel($newfilepath);
+//		if ( substr($relativepath, 0, 1) != '/' ) $relativepath = '/'.$relativepath;
 		//get stored file data from database without user data
 		$filerec = wfu_get_file_rec($filepath, false);
 		//log action only if there are previous stored file data
@@ -686,6 +797,7 @@ function wfu_log_action($action, $filepath, $userid, $uploadid, $pageid, $sid, $
 				array(
 					'userid' 	=> $userid,
 					'uploaduserid' 	=> $filerec->uploaduserid,
+					'sessionid' => $filerec->sessionid,
 					'filepath' 	=> $relativepath,
 					'filehash' 	=> $filerec->filehash,
 					'filesize' 	=> $filerec->filesize,
@@ -697,7 +809,7 @@ function wfu_log_action($action, $filepath, $userid, $uploadid, $pageid, $sid, $
 					'action' 	=> 'rename',
 					'linkedto' 	=> $filerec->idlog
 				),
-				array( '%d','%d', '%s', '%s', '%d', '%s', '%d', '%s', '%s', '%s', '%s', '%d' ) ) !== false )
+				array( '%d','%d', '%s', '%s', '%s', '%d', '%s', '%d', '%s', '%s', '%s', '%s', '%d' ) ) !== false )
 				$retid = $wpdb->insert_id;
 		}
 	}
@@ -719,6 +831,7 @@ function wfu_log_action($action, $filepath, $userid, $uploadid, $pageid, $sid, $
 				array(
 					'userid' 	=> $userid,
 					'uploaduserid' 	=> $filerec->uploaduserid,
+					'sessionid' => $filerec->sessionid,
 					'filepath' 	=> $filerec->filepath,
 					'filehash' 	=> $filerec->filehash,
 					'filesize' 	=> $filerec->filesize,
@@ -730,7 +843,7 @@ function wfu_log_action($action, $filepath, $userid, $uploadid, $pageid, $sid, $
 					'action' 	=> 'delete',
 					'linkedto' 	=> $filerec->idlog
 				),
-				array( '%d','%d', '%s', '%s', '%d', '%s', '%d', '%s', '%s', '%s', '%s', '%d' )) != false )
+				array( '%d','%d', '%s', '%s', '%s', '%d', '%s', '%d', '%s', '%s', '%s', '%s', '%d' )) != false )
 				$retid = $wpdb->insert_id;
 		}
 	}
@@ -752,6 +865,7 @@ function wfu_log_action($action, $filepath, $userid, $uploadid, $pageid, $sid, $
 				array(
 					'userid' 	=> $userid,
 					'uploaduserid' 	=> $filerec->uploaduserid,
+					'sessionid' => $filerec->sessionid,
 					'filepath' 	=> $filerec->filepath,
 					'filehash' 	=> $filerec->filehash,
 					'filesize' 	=> $filerec->filesize,
@@ -763,7 +877,7 @@ function wfu_log_action($action, $filepath, $userid, $uploadid, $pageid, $sid, $
 					'action' 	=> 'download',
 					'linkedto' 	=> $filerec->idlog
 				),
-				array( '%d','%d', '%s', '%s', '%d', '%s', '%d', '%s', '%s', '%s', '%s', '%d' )) != false )
+				array( '%d','%d', '%s', '%s', '%s', '%d', '%s', '%d', '%s', '%s', '%s', '%s', '%d' )) != false )
 				$retid = $wpdb->insert_id;
 		}
 	}
@@ -786,6 +900,7 @@ function wfu_log_action($action, $filepath, $userid, $uploadid, $pageid, $sid, $
 				array(
 					'userid' 	=> $userid,
 					'uploaduserid' 	=> $filerec->uploaduserid,
+					'sessionid' => $filerec->sessionid,
 					'filepath' 	=> $filerec->filepath,
 					'filehash' 	=> $filerec->filehash,
 					'filesize' 	=> $filerec->filesize,
@@ -797,18 +912,19 @@ function wfu_log_action($action, $filepath, $userid, $uploadid, $pageid, $sid, $
 					'action' 	=> 'modify',
 					'linkedto' 	=> $filerec->idlog
 				),
-				array( '%d','%d', '%s', '%s', '%d', '%s', '%d', '%s', '%s', '%s', '%s', '%d' )) != false )
+				array( '%d','%d', '%s', '%s', '%s', '%d', '%s', '%d', '%s', '%s', '%s', '%s', '%d' )) != false )
 				$retid = $wpdb->insert_id;
 		}
 	}
 	elseif ( substr($action, 0, 5) == 'other' ) {
 		$info = substr($action, 6);
 		$now_date = date('Y-m-d H:i:s');
-		//insert new download record
+		//insert new other type record
 		if ( $wpdb->insert($table_name1,
 			array(
 				'userid' 	=> $userid,
 				'uploaduserid' 	=> -1,
+				'sessionid'	=> '',
 				'filepath' 	=> $info,
 				'filehash' 	=> '',
 				'filesize' 	=> 0,
@@ -820,7 +936,7 @@ function wfu_log_action($action, $filepath, $userid, $uploadid, $pageid, $sid, $
 				'action' 	=> 'other',
 				'linkedto' 	=> -1
 			),
-			array( '%d','%d', '%s', '%s', '%d', '%s', '%d', '%s', '%s', '%s', '%s', '%d' )) != false )
+			array( '%d','%d', '%s', '%s', '%s', '%d', '%s', '%d', '%s', '%s', '%s', '%s', '%d' )) != false )
 			$retid = $wpdb->insert_id;
 	}
 	return $retid;
@@ -869,8 +985,8 @@ function wfu_get_file_rec($filepath, $include_userdata) {
 
 	if ( !file_exists($filepath) ) return null;
 
-	$relativepath = str_replace(ABSPATH, '', $filepath);
-	if ( substr($relativepath, 0, 1) != '/' ) $relativepath = '/'.$relativepath;
+	$relativepath = wfu_path_abs2rel($filepath);
+//	if ( substr($relativepath, 0, 1) != '/' ) $relativepath = '/'.$relativepath;
 	//if file hash is enabled, then search file based on its path and hash, otherwise find file based on its path and size
 	if ( isset($plugin_options['hashfiles']) && $plugin_options['hashfiles'] == '1' ) {
 		$filehash = md5_file($filepath);
@@ -899,9 +1015,7 @@ function wfu_reassign_hashes() {
 		$filerecs = $wpdb->get_results('SELECT * FROM '.$table_name1.' WHERE filehash = \'\' AND date_to = 0');
 		foreach( $filerecs as $filerec ) {
 			//calculate full file path
-			$filepath = ABSPATH;
-			if ( substr($filepath, -1) == '/' ) $filepath = substr($filepath, 0, -1);
-			$filepath .= $filerec->filepath;
+			$filepath = wfu_path_rel2abs($filerec->filepath);
 			if ( file_exists($filepath) ) {
 				$filehash = md5_file($filepath);
 				$wpdb->update($table_name1,
@@ -926,9 +1040,7 @@ function wfu_sync_database() {
 	foreach( $filerecs as $filerec ) {
 		$obsolete = true;
 		//calculate full file path
-		$filepath = ABSPATH;
-		if ( substr($filepath, -1) == '/' ) $filepath = substr($filepath, 0, -1);
-		$filepath .= $filerec->filepath;
+		$filepath = wfu_path_rel2abs($filerec->filepath);
 		if ( file_exists($filepath) ) {
 			if ( $plugin_options['hashfiles'] == '1' ) {
 				$filehash = md5_file($filepath);
@@ -952,6 +1064,53 @@ function wfu_sync_database() {
 		}
 	}
 	return $obsolete_count;
+}
+
+function wfu_get_recs_of_user($userid) {
+	global $wpdb;
+	$table_name1 = $wpdb->prefix . "wfu_log";
+	$table_name2 = $wpdb->prefix . "wfu_userdata";
+	$plugin_options = wfu_decode_plugin_options(get_option( "wordpress_file_upload_options" ));
+
+	//if $userid starts with 'guest' then retrieval of records is done using sessionid and uploaduserid is zero (for guests)
+	if ( substr($userid, 0, 5) == 'guest' )
+		$filerecs = $wpdb->get_results('SELECT * FROM '.$table_name1.' WHERE action <> \'other\' AND uploaduserid = 0 AND sessionid = \''.substr($userid, 5).'\' AND date_to = 0');
+	else
+		$filerecs = $wpdb->get_results('SELECT * FROM '.$table_name1.' WHERE action <> \'other\' AND uploaduserid = '.$userid.' AND date_to = 0');
+	$out = array();
+	foreach( $filerecs as $filerec ) {
+		$obsolete = true;
+		//calculate full file path
+		$filepath = wfu_path_rel2abs($filerec->filepath);
+		if ( file_exists($filepath) ) {
+			if ( $plugin_options['hashfiles'] == '1' ) {
+				$filehash = md5_file($filepath);
+				if ( $filehash == $filerec->filehash ) $obsolete = false;
+			}
+			else {
+				$filesize = filesize($filepath);
+				if ( $filesize == $filerec->filesize ) $obsolete = false;
+			}
+		}
+		if ( $obsolete ) {
+			$now_date = date('Y-m-d H:i:s');
+			//make previous record obsolete
+			$wpdb->update($table_name1,
+				array( 'date_to' => $now_date ),
+				array( 'idlog' => $filerec->idlog ),
+				array( '%s' ),
+				array( '%d' )
+			);
+		}
+		else {
+			$filerec->userdata = null;
+			if ( $filerec->uploadid != '' ) 
+				$filerec->userdata = $wpdb->get_results('SELECT * FROM '.$table_name2.' WHERE uploadid = \''.$filerec->uploadid.'\' AND date_to = 0');
+			array_push($out, $filerec);
+		}
+	}
+	
+	return $out;
 }
 
 //********************* Shortcode Options Functions ****************************************************************************************
@@ -1002,6 +1161,30 @@ function wfu_get_params_fields_from_index($params_index) {
 		list($fields['unique_id'], $fields['page_id'], $fields['shortcode_id'], $fields['user_login']) = explode("||", current($index_match));
 	}
 	return $fields; 
+}
+
+function wfu_safe_store_shortcode_data($data) {
+	$code = wfu_create_random_string(16);
+	$_SESSION['wfu_shortcode_data_safe_storage'][$code] = $data;
+	return $code;
+}
+
+function wfu_get_shortcode_data_from_safe($code) {
+	//sanitize $code
+	$code = wfu_sanitize_code($code);
+	if ( $code == "" ) return '';
+	//return shortcode data from session variable, if exists
+	if ( !isset($_SESSION['wfu_shortcode_data_safe_storage'][$code]) ) return '';
+	return $_SESSION['wfu_shortcode_data_safe_storage'][$code];
+}
+
+function wfu_clear_shortcode_data_from_safe($code) {
+	//sanitize $code
+	$code = wfu_sanitize_code($code);
+	if ( $code == "" ) return;
+	//clear shortcode data from session variable, if exists
+	if ( !isset($_SESSION['wfu_shortcode_data_safe_storage'][$code]) ) return;
+	unset($_SESSION['wfu_shortcode_data_safe_storage'][$code]);
 }
 
 function wfu_decode_dimensions($dimensions_str) {
@@ -1068,52 +1251,80 @@ function wfu_add_div() {
 //********************* Email Functions ****************************************************************************************************
 
 function wfu_send_notification_email($user, $only_filename_list, $target_path_list, $attachment_list, $userdata_fields, $params) {
-	if ( 0 == $user->ID ) {
-		$user_login = "guest";
-		$user_email = "";
+	global $blog_id;
+	
+	//apply wfu_before_email_notification filter
+	$changable_data['recipients'] = $params["notifyrecipients"];
+	$changable_data['subject'] = $params["notifysubject"];
+	$changable_data['message'] = $params["notifymessage"];
+	$changable_data['headers'] = $params["notifyheaders"];
+	$changable_data['user_data'] = $userdata_fields;
+	$changable_data['filename'] = $only_filename_list;
+	$changable_data['filepath'] = $target_path_list;
+	$changable_data['error_message'] = '';
+	$additional_data['shortcode_id'] = $params["uploadid"];
+	$ret_data = apply_filters('wfu_before_email_notification', $changable_data, $additional_data);
+	
+	if ( $ret_data['error_message'] == '' ) {
+		$notifyrecipients = $ret_data['recipients'];
+		$notifysubject = $ret_data['subject'];
+		$notifymessage = $ret_data['message'];
+		$notifyheaders = $ret_data['headers'];
+		$userdata_fields = $ret_data['user_data'];
+		$only_filename_list = $ret_data['filename'];
+		$target_path_list = $ret_data['filepath'];
+
+		if ( 0 == $user->ID ) {
+			$user_login = "guest";
+			$user_email = "";
+		}
+		else {
+			$user_login = $user->user_login;
+			$user_email = $user->user_email;
+		}
+		$search = array ('/%useremail%/', '/%n%/', '/%dq%/', '/%brl%/', '/%brr%/');	 
+		$replace = array ($user_email, "\n", "\"", "[", "]");
+		foreach ( $userdata_fields as $userdata_key => $userdata_field ) { 
+			$ind = 1 + $userdata_key;
+			array_push($search, '/%userdata'.$ind.'%/');  
+			array_push($replace, $userdata_field["value"]);
+		}   
+//		$notifyrecipients =  trim(preg_replace('/%useremail%/', $user_email, $params["notifyrecipients"]));
+		$notifyrecipients =  preg_replace($search, $replace, $notifyrecipients);
+		$search = array ('/%n%/', '/%dq%/', '/%brl%/', '/%brr%/');	 
+		$replace = array ("\n", "\"", "[", "]");
+		$notifyheaders =  preg_replace($search, $replace, $notifyheaders);
+		$search = array ('/%username%/', '/%useremail%/', '/%filename%/', '/%filepath%/', '/%blogid%/', '/%pageid%/', '/%pagetitle%/', '/%n%/', '/%dq%/', '/%brl%/', '/%brr%/');	 
+		$replace = array ($user_login, ( $user_email == "" ? "no email" : $user_email ), $only_filename_list, $target_path_list, $blog_id, $params["pageid"], get_the_title($params["pageid"]), "\n", "\"", "[", "]");
+		foreach ( $userdata_fields as $userdata_key => $userdata_field ) { 
+			$ind = 1 + $userdata_key;
+			array_push($search, '/%userdata'.$ind.'%/');  
+			array_push($replace, $userdata_field["value"]);
+		}   
+		$notifysubject = preg_replace($search, $replace, $notifysubject);
+		$notifymessage = preg_replace($search, $replace, $notifymessage);
+
+		if ( $params["attachfile"] == "true" ) {
+			$attachments = explode(",", $attachment_list);
+			$notify_sent = wp_mail($notifyrecipients, $notifysubject, $notifymessage, $notifyheaders, $attachments); 
+		}
+		else {
+			$notify_sent = wp_mail($notifyrecipients, $notifysubject, $notifymessage, $notifyheaders); 
+		}
+		return ( $notify_sent ? "" : WFU_WARNING_NOTIFY_NOTSENT_UNKNOWNERROR );
 	}
-	else {
-		$user_login = $user->user_login;
-		$user_email = $user->user_email;
-	}
-	$search = array ('/%useremail%/');	 
-	$replace = array ($user_email);
-	foreach ( $userdata_fields as $userdata_key => $userdata_field ) { 
-		$ind = 1 + $userdata_key;
-		array_push($search, '/%userdata'.$ind.'%/');  
-		array_push($replace, $userdata_field["value"]);
-	}   
-//	$notifyrecipients =  trim(preg_replace('/%useremail%/', $user_email, $params["notifyrecipients"]));
-	$notifyrecipients =  preg_replace($search, $replace, $params["notifyrecipients"]);
-	$search = array ('/%n%/');	 
-	$replace = array ("\n");
-	$notifyheaders =  preg_replace($search, $replace, $params["notifyheaders"]);
-	$search = array ('/%username%/', '/%useremail%/', '/%filename%/', '/%filepath%/', '/%n%/');	 
-	$replace = array ($user_login, ( $user_email == "" ? "no email" : $user_email ), $only_filename_list, $target_path_list, "\n");
-	foreach ( $userdata_fields as $userdata_key => $userdata_field ) { 
-		$ind = 1 + $userdata_key;
-		array_push($search, '/%userdata'.$ind.'%/');  
-		array_push($replace, $userdata_field["value"]);
-	}   
-	$notifysubject = preg_replace($search, $replace, $params["notifysubject"]);
-	$notifymessage = preg_replace($search, $replace, $params["notifymessage"]);
-	if ( $params["attachfile"] == "true" ) {
-		$attachments = explode(",", $attachment_list);
-		$notify_sent = wp_mail($notifyrecipients, $notifysubject, $notifymessage, $notifyheaders, $attachments); 
-	}
-	else {
-		$notify_sent = wp_mail($notifyrecipients, $notifysubject, $notifymessage, $notifyheaders); 
-	}
-	return ( $notify_sent ? "" : WFU_WARNING_NOTIFY_NOTSENT_UNKNOWNERROR );
+	else return $ret_data['error_message'];
 }
 
 //********************* Media Functions ****************************************************************************************************
 
-// function wfu_process_media_insert contribution from Aaron Olin
-function wfu_process_media_insert($file_path, $page_id){   
+// function wfu_process_media_insert contribution from Aaron Olin with some corrections regarding the upload path
+function wfu_process_media_insert($file_path, $page_id){
+	$wp_upload_dir = wp_upload_dir();
 	$filetype = wp_check_filetype( wfu_basename( $file_path ), null );
 
 	$attachment = array(
+		'guid'           => $wp_upload_dir['url'] . '/' . wfu_basename( $file_path ), 
 		'post_mime_type' => $filetype['type'],
 		'post_title'     => preg_replace( '/\.[^.]+$/', '', wfu_basename( $file_path ) ),
 		'post_content'   => '',
@@ -1130,22 +1341,102 @@ function wfu_process_media_insert($file_path, $page_id){
 	return $attach_id;	
 }
 
+//********************* Media Functions ****************************************************************************************************
+
+function wfu_safe_store_browser_actions($action_list) {
+	$code = wfu_create_random_string(16);
+	$_SESSION['wfu_browser_actions_safe_storage'][$code] = $action_list;
+	return $code;
+}
+
+function wfu_get_browser_actions_from_safe($code) {
+	//sanitize $code
+	$code = wfu_sanitize_code($code);
+	if ( $code == "" ) return false;
+	//return actions from session variable, if exists
+	if ( !isset($_SESSION['wfu_browser_actions_safe_storage'][$code]) ) return false;
+	return $_SESSION['wfu_browser_actions_safe_storage'][$code];
+}
+
 //********************* POST/GET Requests Functions ****************************************************************************************************
 
 function wfu_post_request($url, $params, $verifypeer = false) {
-	$peer_key = version_compare(PHP_VERSION, '5.6.0', '<') ? 'CN_name' : 'peer_name';
-	$http_array = array(
-		'method'  => 'POST',
-		'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-		'content' => http_build_query($params)
-	);
-	if ( $verifypeer ) {
-		$http_array['verify_peer'] = true;
-		$http_array[$peer_key] = 'www.google.com';
+	$plugin_options = wfu_decode_plugin_options(get_option( "wordpress_file_upload_options" ));
+	if ( isset($plugin_options['postmethod']) && $plugin_options['postmethod'] == 'curl' ) {
+		// POST request using CURL
+		$ch = curl_init($url);
+		$options = array(
+			CURLOPT_POST => true,
+			CURLOPT_POSTFIELDS => http_build_query($params),
+			CURLOPT_HTTPHEADER => array(
+				'Content-Type: application/x-www-form-urlencoded'
+			),
+			CURLINFO_HEADER_OUT => false,
+			CURLOPT_HEADER => false,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_SSL_VERIFYPEER => $verifypeer
+		);
+		curl_setopt_array($ch, $options);
+		$result = curl_exec($ch);
+		curl_close ($ch);
+		return $result;
 	}
-	$context_params = array( 'http' => $http_array );
-	$context = stream_context_create($context_params);
-	return file_get_contents($url, false, $context);
+	elseif ( isset($plugin_options['postmethod']) && $plugin_options['postmethod'] == 'socket' ) {
+		// POST request using sockets
+		$scheme = "";
+		$port = 80;
+		$timeout = null;
+		$errno = 0;
+        $errstr = '';
+		$url = parse_url($url);
+		$host = $url['host'];
+		$path = $url['path'];
+		if ( $url['scheme'] == 'https' ) { 
+			$scheme = "ssl://";
+			$port = 443;
+			$timeout = 30;
+		}
+		elseif ( $url['scheme'] != 'http' ) return '';
+		$handle = fsockopen($scheme.$host, $port, $errno, $errstr, (is_null($timeout) ? ini_get("default_socket_timeout") : $timeout));
+		if ( $errno !== 0 || $errstr !== '' ) $handle = false;
+		if ( $handle !== false ) {
+			$content = http_build_query($params);
+			$request = "POST " . $path . " HTTP/1.1\r\n";
+            $request .= "Host: " . $host . "\r\n";
+            $request .= "Content-Type: application/x-www-form-urlencoded\r\n";
+            $request .= "Content-length: " . strlen($content) . "\r\n";
+            $request .= "Connection: close\r\n\r\n";
+            $request .= $content . "\r\n\r\n";
+			fwrite($handle, $request, strlen($request));
+			$response = '';
+			while ( !feof($handle) ) {
+                $response .= fgets($handle, 4096);
+            }
+			fclose($handle);
+			if (0 === strpos($response, 'HTTP/1.1 200 OK')) {
+                $parts = preg_split("#\n\s*\n#Uis", $response);
+                return $parts[1];
+            }
+			return '';
+		}
+		return '';
+	}
+	else {
+		// POST request using file_get_contents
+		$peer_key = version_compare(PHP_VERSION, '5.6.0', '<') ? 'CN_name' : 'peer_name';
+		$http_array = array(
+			'method'  => 'POST',
+			'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+			'content' => http_build_query($params)
+		);
+		if ( $verifypeer ) {
+			$http_array['verify_peer'] = true;
+			$http_array[$peer_key] = 'www.google.com';
+		}
+		$context_params = array( 'http' => $http_array );
+		$context = stream_context_create($context_params);
+		return file_get_contents($url, false, $context);
+	}
 }
 
 ?>

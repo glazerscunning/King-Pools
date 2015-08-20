@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"get_r",
+				"get_row"
+			],
+			[
 				"vendo",
 				"vendor_id"
 			],
@@ -99,7 +103,7 @@
 			"file": "wp-content/plugins/king-pools-plugin/king-pools-plugin.php",
 			"settings":
 			{
-				"buffer_size": 21936,
+				"buffer_size": 23401,
 				"line_ending": "Unix"
 			}
 		},
@@ -155,7 +159,7 @@
 			"file": "wp-content/plugins/king-pools-portal/king_projects.php",
 			"settings":
 			{
-				"buffer_size": 27465,
+				"buffer_size": 28425,
 				"line_ending": "Unix"
 			}
 		},
@@ -229,6 +233,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"project_status",
+			"vendor_id",
+			"email_trigger",
 			"$result",
 			"view",
 			"'action'",
@@ -306,15 +313,15 @@
 					"file": "wp-content/plugins/king-pools-plugin/king-pools-plugin.php",
 					"settings":
 					{
-						"buffer_size": 21936,
+						"buffer_size": 23401,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								8615,
-								8615
+								10082,
+								10082
 							]
 						],
 						"settings":
@@ -324,7 +331,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 3702.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -369,8 +376,8 @@
 						"selection":
 						[
 							[
-								1451,
-								1451
+								173,
+								173
 							]
 						],
 						"settings":
@@ -380,7 +387,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1642.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -502,15 +509,15 @@
 					"file": "wp-content/plugins/king-pools-portal/king_projects.php",
 					"settings":
 					{
-						"buffer_size": 27465,
+						"buffer_size": 28425,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								396,
-								396
+								3585,
+								3585
 							]
 						],
 						"settings":
@@ -520,7 +527,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1210.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

@@ -111,6 +111,7 @@ DEFINE("WFU_WARNING_REDIRECT_NOTEXECUTED_FILESFAILED", __("Redirection not execu
 //define plugin messages
 DEFINE("WFU_NOTIFY_TESTMODE", __("Test Mode", "wordpress-file-upload"));
 DEFINE("WFU_SUBDIR_SELECTDIR", __("select dir...", "wordpress-file-upload"));
+DEFINE("WFU_SUBDIR_TYPEDIR", __("type dir", "wordpress-file-upload"));
 DEFINE("WFU_SUCCESSMESSAGE_DETAILS", __('Upload path: %filepath%', 'wordpress-file-upload'));
 DEFINE("WFU_FAILMESSAGE_DETAILS", __('Failed upload path: %filepath%', 'wordpress-file-upload'));
 DEFINE("WFU_USERDATA_REQUIREDLABEL", __(' (required)', 'wordpress-file-upload'));
@@ -127,6 +128,7 @@ DEFINE("WFU_TESTMESSAGE_FILE2_MESSAGE", __('File testfile 2 message', 'wordpress
 DEFINE("WFU_TESTMESSAGE_FILE2_ADMINMESSAGE", __('File testfile 2 administrator message', 'wordpress-file-upload'));
 
 //define admin area messages
+DEFINE("WFU_DASHBOARD_ADD_SHORTCODE_REJECTED", __("Failed to add the shortcode to the page/post. Please try again. If the message persists, contact administrator.", "wordpress-file-upload"));
 DEFINE("WFU_DASHBOARD_EDIT_SHORTCODE_REJECTED", __("Failed to edit the shortcode because the contents of the page changed. Try again to edit the shortcode.", "wordpress-file-upload"));
 DEFINE("WFU_DASHBOARD_DELETE_SHORTCODE_REJECTED", __("Failed to delete the shortcode because the contents of the page changed. Try again to delete it.", "wordpress-file-upload"));
 DEFINE("WFU_DASHBOARD_PAGE_OBSOLETE", __("The page containing the shortcode has been modified and it is no longer valid. Please go back to reload the shortcode.", "wordpress-file-upload"));
@@ -166,6 +168,7 @@ DEFINE("WFU_MAX_TIME_LIMIT", ini_get("max_input_time"));
 DEFINE("WFU_RESPONSE_URL", $siteurl.WPFILEUPLOAD_DIR."wfu_response.php");
 DEFINE("WFU_AJAX_URL", $siteurl."/wp-admin/admin-ajax.php");
 DEFINE("WFU_DOWNLOADER_URL", $siteurl.WPFILEUPLOAD_DIR."wfu_file_downloader.php");
+DEFINE("WFU_PHP_ARRAY_MAXLEN", '10000');
 DEFINE("WFU_PRO_VERSION_URL", 'http://www.iptanus.com/product/wordpress-file-upload-pro/');
 
 //define colors
@@ -221,7 +224,8 @@ function wfu_set_javascript_constants() {
 		"max_time_limit" => WFU_MAX_TIME_LIMIT,
 		"response_url" => WFU_RESPONSE_URL,
 		"ajax_url" => WFU_AJAX_URL,
-		"wfu_pageexit_prompt" => WFU_PAGEEXIT_PROMPT
+		"wfu_pageexit_prompt" => WFU_PAGEEXIT_PROMPT,
+		"wfu_subdir_typedir" => WFU_SUBDIR_TYPEDIR
 	);
 	$consts_txt = "";
 	foreach ( $consts as $key => $val )

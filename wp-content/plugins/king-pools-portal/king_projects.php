@@ -32,16 +32,6 @@ if($_REQUEST['action'] == 'view' || $_REQUEST['action'] == 'add'){
                                 );
         $_SESSION["customer_id"] = $result->customer_id;
 
-        $phases = $wpdb->get_results('SELECT * 
-                                        FROM wp_king_phases
-                                        ORDER BY phase_id'
-                                    );
-        
-        $vendors = $wpdb->get_results('SELECT * 
-                                        FROM wp_king_vendors
-                                        ORDER BY vendor_name'
-                                    );
-
     } else if ($_REQUEST['action'] == 'add'){
         $customers = $wpdb->get_results('SELECT customers.customer_id, customers.customer_firstname, customers.customer_lastname
                                         FROM wp_king_customers customers
@@ -49,23 +39,35 @@ if($_REQUEST['action'] == 'view' || $_REQUEST['action'] == 'add'){
                                         ORDER BY customers.customer_firstname, customers.customer_lastname'
                                        );   
     }
+
+    $phases = $wpdb->get_results('SELECT * 
+                                    FROM wp_king_phases
+                                    ORDER BY phase_id'
+                                );
+    
+    $vendors = $wpdb->get_results('SELECT * 
+                                    FROM wp_king_vendors
+                                    ORDER BY vendor_name'
+                                );    
 ?>
 <hr>  
-    
-<?php
-if($_REQUEST['action'] == 'view'){
-?>
-<div style="width:500px">
+
 <script type="text/javascript">
 
 jQuery(document).ready(function() {
-    jQuery('#schedule_date').datepicker({
+    jQuery('#vnd_schedule_date').datepicker({
+        dateFormat : 'yy-mm-dd'
+    });''
+    jQuery('#wo_schedule_date').datepicker({
         dateFormat : 'yy-mm-dd'
     });
+
 
     if(jQuery("select.project_type option:selected").val() != "construction-remodel"){
             jQuery('.construction_phase').hide();
     }
+
+    //jQuery('.work_order_scheduling').hide();
 
 <?php
 if(empty($result->vendor_name)){
@@ -74,8 +76,8 @@ if(empty($result->vendor_name)){
 <?php 
 }
 ?>    
-    jQuery(".phase_target").change(function() {
-        if(jQuery("select.phase_target option:selected").attr("email_trigger") > 0){
+    jQuery(".project_phase").change(function() {
+        if(jQuery("select.project_phase option:selected").attr("email_trigger") > 0){
             jQuery('.vendor_phase').fadeIn();
         }else{
             jQuery('.vendor_phase').fadeOut();
@@ -88,15 +90,42 @@ if(empty($result->vendor_name)){
         }else{
             jQuery('.construction_phase').fadeOut();
         }
-    });    
+
+        if(jQuery("select.project_type option:selected").val() != "construction-remodel"){
+            jQuery('.work_order_scheduling').fadeIn();
+        }else{
+            jQuery('.work_order_scheduling').fadeOut();
+        }
+
+    });  
+
+    jQuery(".project_status").change(function() {
+        if(jQuery("select.project_status option:selected").val() == "In Progress"){
+            jQuery( "<div>This status will trigger the new customer email.</div>" ).dialog({
+                  modal: true,
+                  buttons: {
+                    Ok: function() {
+                      jQuery( this ).dialog( "close" );
+                    }
+                  }
+            });
+        }
+    });        
 
 });
 
-</script>   
+</script> 
+    
+<?php
+if($_REQUEST['action'] == 'view'){  
+?>
+<div style="width:500px">
+  
 <h3>Project Assets</h3>
 <?php
 
 $_SESSION["project_id"] = $_REQUEST['id'];
+
 echo do_shortcode('[wordpress_file_upload uploadpath="uploads/king_portal" createpath="true" showtargetfolder="true" adminmessages="true" placements="title/filename+selectbutton/uploadbutton+progressbar/message/userdata" uploadtitle="" widths="progressbar:200px"]');
 
 echo "<hr>";
@@ -106,14 +135,15 @@ $dirlist = getFileList(KP_ASSET_UPLOAD_DIR);
 // output file list in HTML TABLE format
 echo "<table id='project_assets' border=\"1\">\n";
 echo "<thead>\n";
-echo "<tr><th>Delete</th><th>Name</th><th>Size</th><th>Last Modified</th></tr>\n";
+echo "<tr><th>Pool Plan?</th><th>Delete</th><th>Name</th><th>Size</th><th>Last Modified</th></tr>\n";
 echo "</thead>\n";
 echo "<tbody>\n";
 
 foreach($dirlist as $file) {
  
-    if(preg_match("/^". $_SESSION['customer_id'] . "-" . $_SESSION['project_id'] . ".*/", basename($file['name']))){    
+    if(preg_match("/.*". $_SESSION['customer_id'] . "-" . $_SESSION['project_id'] . ".*/", basename($file['name']))){    
         echo "<tr>\n";
+        echo "<td style='text-align:center;'><a href='?page=" . $_REQUEST['page'] . "&action=select_pool_plan&customer=" . urlencode($result->customer_firstname . " " . $result->customer_lastname) . "&file_name=" . urlencode(basename($file['name'])) . "'>Select</a></td>\n";
         echo "<td style='text-align:center;'><a href='?page=" . $_REQUEST['page'] . "&action=delete_asset&customer=" . urlencode($result->customer_firstname . " " . $result->customer_lastname) . "&file_name=" . urlencode(basename($file['name'])) . "'>X</a></td>\n";
         echo "<td>" . basename($file['name']) . "</td>\n";
         echo "<td>{$file['size']}</td>\n";
@@ -179,7 +209,7 @@ echo "</table>\n\n";
                 <?php
                 } else {
                 ?>
-                    <select name="project_status">
+                    <select name="project_status" class="project_status">
                         <option value="New" <?= ($result->project_status == "New") ? "selected='selected'" : "";?>>New</option>
                         <option value="In Progress" <?= ($result->project_status == "In Progress") ? "selected='selected'" : "";?>>In Progress</option>
                         <option value="Complete" <?= ($result->project_status == "Complete") ? "selected='selected'" : "";?>>Complete</option>
@@ -195,6 +225,14 @@ echo "</table>\n\n";
                 </th>
                 <td>
                     $<input type="text" name="project_amount" value="<?= $result->project_amount?>"/><i>(Final project amount)</i>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label><?php _e("Project Notes: " ); ?></label>
+                </th>
+                <td>
+                    <textarea id="project_notes" cols="50" rows="5" name="project_notes"><?= $result->project_notes?></textarea>
                 </td>
             </tr>                       
             <tr>
@@ -215,7 +253,7 @@ echo "</table>\n\n";
                     <label><?php _e("Construction Phase: " ); ?></label>
                 </th>
                 <td>
-                    <select name="project_phase" class="phase_target">
+                    <select name="project_phase" class="project_phase">
                         <option value="">N/A</option>
 <?php
                     foreach($phases as $phase){
@@ -228,6 +266,14 @@ echo "</table>\n\n";
                     </select>
                 </td>
             </tr>
+            <tr class="work_order_scheduling">
+                <th>
+                    <label><?php _e("Scheduling: " ); ?></label>
+                </th>
+                <td>
+                    <input type="text" id="wo_schedule_date" name="wo_schedule_date" value="<?= $result->schedule_date?>"/>                                  
+                </td>
+            </tr>             
             <tr class="vendor_phase">
                 <td colspan=2 style="color:blue">
                     <i>The selected vendor will be notified when updating this project.</i>
@@ -250,13 +296,13 @@ echo "</table>\n\n";
                     
                     </select>
                 </td>
-            </tr>                       
+            </tr>                                  
             <tr class="vendor_phase">
                 <th>
                     <label><?php _e("Scheduling: " ); ?></label>
                 </th>
                 <td>
-                    <input type="text" id="schedule_date" name="schedule_date" value="<?= $result->schedule_date?>"/>                                  
+                    <input type="text" id="vnd_schedule_date" name="vnd_schedule_date" value="<?= $result->schedule_date?>"/>                                  
                 </td>
             </tr>
             <tr class="vendor_phase">
@@ -264,7 +310,7 @@ echo "</table>\n\n";
                     <label><?php _e("Send pool plan to vendor?: " ); ?></label>
                 </th>
                 <td>
-                    <input type="checkbox" id="attach_plan" name="attach_plan" value="yes"/>                                  
+                    <input type="checkbox" id="attach_pool_plan" name="attach_pool_plan" value="yes"/>                                  
                 </td>
             </tr>            
         </tbody>
@@ -295,6 +341,7 @@ if($_REQUEST['action'] == 'view'){
     global $wpdb;
     $wpdb->delete( 'wp_king_projects', array( 'project_id' => $_REQUEST['id'] ) );
     
+    //TODO: 
     //Add code to remove files from uploads directory based on regex
     //Example: 2-3_financing.png
     //[1-100]-{$_REQUEST['id']}.*
@@ -306,6 +353,11 @@ if($_REQUEST['action'] == 'view'){
     unlink(KP_ASSET_UPLOAD_DIR . $_REQUEST['file_name']);
     echo "<div id='message' class='updated'>Project asset '" . urldecode($_REQUEST['file_name']) . "' has been deleted for customer '" . urldecode($_REQUEST['customer']) . "'.</div>";
 
+} else if($_REQUEST['action'] == 'select_pool_plan'){
+
+    rename(KP_ASSET_UPLOAD_DIR . $_REQUEST['file_name'], KP_ASSET_UPLOAD_DIR . "PoolPlan_" . $_REQUEST['file_name']);
+    echo "<div id='message' class='updated'>Project asset '" . urldecode($_REQUEST['file_name']) . "' has been selected as the pool plan for customer '" . urldecode($_REQUEST['customer']) . "'.</div>";
+
 } else if($_REQUEST['action'] == 'update'){
 
     global $wpdb;
@@ -315,7 +367,8 @@ if($_REQUEST['action'] == 'view'){
                                              'phase_id'       => $_REQUEST['project_phase'],
                                              'project_status' => $_REQUEST['project_status'],
                                              'project_amount' => $_REQUEST['project_amount'],
-                                             'project_updatedat' => date("Y-m-d H:i:s")
+                                             'project_updatedat' => date("Y-m-d H:i:s"),
+                                             'project_notes'  => $_REQUEST['project_notes']
                                              ), 
                                        array('project_id'=>$_REQUEST['project_id']));
 
@@ -326,40 +379,72 @@ if($_REQUEST['action'] == 'view'){
                                WHERE project_id = ' . $_REQUEST['project_id']
                             );
 
-    if($_REQUEST['last_project_status'] == 'New' && $_REQUEST['project_status'] == 'In Progress'){
-        startProject($_REQUEST['project_id']);
-        echo '<div id="message" class="updated">' . sendNewCustomerEmail($_REQUEST['project_id']) . '</div>';
-    }
+    if($_REQUEST['project_type'] == 'cleaning' || $_REQUEST['project_type'] == 'service-repair'){
 
-    if($result->phase_trigger_customer_email > 0){
-        echo '<div id="message" class="updated">' . sendProjectPhaseEmail($_REQUEST['project_id']) . '</div>';
-    }
+        if($_REQUEST['last_project_status'] == 'New' && $_REQUEST['project_status'] == 'In Progress'){
 
-    if($result->phase_trigger_vendor_email > 0){
+            startProject($_REQUEST['project_id']);
 
-        $wpdb->insert('wp_king_scheduling', array(
-                                                 'vendor_id'   => $_REQUEST['vendor_id'],
-                                                 'project_id'   => $_REQUEST['project_id'],
-                                                 'schedule_date'   => $_REQUEST['schedule_date'],
-                                                 'last_updated' => date("Y-m-d H:i:s"),
-                                                 'phase_id'     => $result->phase_id
-                                                 ));
+            if(!empty($_REQUEST['wo_schedule_date'])){
+                $wpdb->insert('wp_king_scheduling', array(
+                                                         'vendor_id'   => 0,
+                                                         'project_id'   => $_REQUEST['project_id'],
+                                                         'schedule_date'   => $_REQUEST['wo_schedule_date'],
+                                                         'last_updated' => date("Y-m-d H:i:s"),
+                                                         'phase_id'     => 0
+                                                         ));  
+                sendWorkOrderScheduledEmail($_REQUEST['project_id']);
+                echo '<div id="message" class="updated">Work Order has been scheduled for the week of ' . date_format($_REQUEST['wo_schedule_date'], 'm-d-Y') . '</div>'; 
+            }
 
-        $result = $wpdb->get_row('SELECT * 
-                                    FROM wp_king_vendors
-                                    WHERE vendor_id = ' . $_REQUEST['vendor_id']
-                                );
+        }       
+
+    }elseif ($_REQUEST['project_type'] == 'construction-remodel') {
         
-        sendVendorSchedulingEmail($_REQUEST['vendor_id'], $_REQUEST['project_id']);
+        if($_REQUEST['last_project_status'] == 'New' && $_REQUEST['project_status'] == 'In Progress'){
+
+            startProject($_REQUEST['project_id']);
+            echo '<div id="message" class="updated">' . sendNewCustomerEmail($_REQUEST['project_id']) . '</div>';
+
+        }
         
-        echo '<div id="message" class="updated">An email has been sent to ' . $result->vendor_email . ' to schedule services on ' . $_REQUEST['schedule_date'] . '</div>';
+        if($result->phase_trigger_customer_email > 0){
+            //Add logic to ONLY send customer phase update email if it has not already been sent
+            echo '<div id="message" class="updated">' . sendProjectPhaseEmail($_REQUEST['project_id']) . '</div>';
+        }
+
+        if($result->phase_trigger_vendor_email > 0){
+
+            $wpdb->insert('wp_king_scheduling', array(
+                                                     'vendor_id'   => $_REQUEST['vendor_id'],
+                                                     'project_id'   => $_REQUEST['project_id'],
+                                                     'schedule_date'   => $_REQUEST['schedule_date'],
+                                                     'last_updated' => date("Y-m-d H:i:s"),
+                                                     'phase_id'     => $result->phase_id
+                                                     ));
+
+            $result = $wpdb->get_row('SELECT * 
+                                        FROM wp_king_vendors
+                                        WHERE vendor_id = ' . $_REQUEST['vendor_id']
+                                    );
+            //Add logic to ONLY send vendor scheduling email if it has not already been sent
+            //Add SQL to data retrieval to get customer_id
+            
+            $poolPlanFileName = "PoolPlan_" . $customer_id . "-" . $_REQUEST['project_id'];
+
+            sendVendorSchedulingEmail($_REQUEST['vendor_id'], $_REQUEST['project_id'], $_REQUEST['attach_pool_plan'], $poolPlanFileName);
+            
+            echo '<div id="message" class="updated">An email has been sent to ' . $result->vendor_email . ' to schedule services on ' . date_format($_REQUEST['vnd_schedule_date'], 'm/d/Y') . '</div>';
+
+        }
+
+        echo '<div id="message" class="updated">Project has been updated!</div>';
 
     }
 
-    echo '<div id="message" class="updated">Project has been updated!</div>';
-    
 } else if($_REQUEST['action'] == 'add_project'){
     global $wpdb;
+
     $wpdb->insert('wp_king_projects', array(
                                              'project_status'  => 'New',
                                              'customer_id'     => $_REQUEST['customer_id'],
@@ -367,8 +452,15 @@ if($_REQUEST['action'] == 'view'){
                                              'phase_id'        => $_REQUEST['project_phase'],
                                              'project_updatedat' => date("Y-m-d H:i:s")
                                              ));
-    
-    echo '<div id="message" class="updated">Project has been created!</div>';
+
+    $project_id = $wpdb->insert_id;
+
+    if($_REQUEST['project_type'] == 'cleaning' || $_REQUEST['project_type'] == 'service-repair'){  
+        sendWorkOrderCreatedEmail($project_id); 
+        echo '<div id="message" class="updated">Work Order has been created!</div>';
+    }else{
+        echo '<div id="message" class="updated">Project has been created!</div>';
+    }
     
 } else if($_REQUEST['action'] == 'complete_project'){
     global $wpdb;

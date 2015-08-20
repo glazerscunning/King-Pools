@@ -32,7 +32,7 @@
 
 #project_edit_form span.description{ 
     font-size:20px;
-    color:#2ea2cc;
+    color:#461D7C;
 }
 
 #project_assets{
@@ -41,5 +41,11 @@
 
 #vendor_edit_form .form-table th, #customer_edit_form .form-table th, #project_edit_form .form-table th{
     width:150px;   
+}
+
+#project_notes{
+    outline: none;
+    resize: none;
+    overflow: auto;
 }
 

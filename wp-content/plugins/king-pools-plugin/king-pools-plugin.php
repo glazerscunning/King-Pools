@@ -108,6 +108,8 @@ function wfu_before_file_upload_handler($file_path, $file_unique_id) {
     
     $project_id = $_SESSION["project_id"];
     $customer_id = $_SESSION["customer_id"];
+    $pool_plan_flag = $_SESSION["project_asset_pool_plan"];
+    
     $file_path = preg_replace("/\\/(?=[^\\/]*$).*/", "/" . $customer_id . "-" . $project_id . "_" . basename($file_path), $file_path);
     
     return $file_path;
@@ -254,11 +256,11 @@ Thanks again, for your business.
 
 }
 
-function sendVendorScheduledEmail($vendor_id, $project_id){
+function sendVendorSchedulingEmail($vendor_id, $project_id, $sendPoolPlan, $poolPlanFileName){
 
     global $wpdb;
 
-    $status_text = '[Project Phase Change]';
+    $status_text = '[Vendor Scheduling Email]';
 
     add_filter( 'wp_mail_content_type', function( $content_type ) {
         return 'text/html';
@@ -266,16 +268,17 @@ function sendVendorScheduledEmail($vendor_id, $project_id){
 
     $notifyheaders = 'From: King Pools Inc. <noreply@kingpoolsinc.com>' . "\r\n";  
 
-    $notifysubject = "Project Phase Update" . " - " . date_format(new DateTime(), "m/d/Y");
+    $notifysubject = "King Pools Vendor Scheduling" . " - " . date_format(new DateTime(), "m/d/Y");
     
-    $project_details = $wpdb->get_row('SELECT projects.* , phases.phase_name, customers.customer_email
-                                    FROM wp_king_projects projects
-                                    LEFT JOIN wp_king_phases phases
-                                    ON projects.phase_id = phases.phase_id
-                                    LEFT JOIN wp_king_customers customers
-                                    ON projects.customer_id = customers.customer_id
-                                    WHERE projects.project_id = ' . $project_id 
+    //Add logic to retrieve all project details needed in email
+
+    $project_details = $wpdb->get_row('SELECT vendor.vendor_name, customer.customer_address, schedule.scheduled_date
+                                        FROM wp_king_vendors'
                                   );
+
+    if($sendPoolPlan == "yes"){
+        $attachments = array( KP_ASSET_UPLOAD_DIR . $poolPlanFileName );
+    }
 
     $notifyrecipients = $project_details->customer_email;
 
@@ -290,6 +293,8 @@ This email confirms that $vendor_name has been scheduled for $scheduled_date.
 <br><br>
 The customer site is located at $customer_address.
 <br><br>
+Please find attached the pool plan for this customer.
+<br><br>
 Thank you,<br>
 King Pools Inc.
                 </td>
@@ -302,7 +307,7 @@ King Pools Inc.
     </html>
     ';
 
-    //$notify_sent = wp_mail($notifyrecipients, $notifysubject, $notifymessage, $notifyheaders); 
+    //$notify_sent = wp_mail($notifyrecipients, $notifysubject, $notifymessage, $notifyheaders, $attachments); 
     $notify_sent = true;
 
     if($notify_sent){
@@ -379,7 +384,7 @@ function sendProjectFinishedEmail($project_id){
     
     $notifyrecipients = get_option('back_office_email');
 
-    $notifysubject = $notifysubject = "Project Finished" . " - " . date_format(new DateTime(), "m/d/Y");
+    $notifysubject = "Project Finished" . " - " . date_format(new DateTime(), "m/d/Y");
 
     $notifymessage = '
     <html>
@@ -459,6 +464,7 @@ King Pools, Inc.
 }
 
 function sendWorkOrderCreatedEmail($project_id){
+    global $wpdb;
 
     $status_text = '[Work Order Created]';
 
@@ -468,9 +474,16 @@ function sendWorkOrderCreatedEmail($project_id){
 
     $notifyheaders = 'From: King Pools Inc. <noreply@kingpoolsinc.com>' . "\r\n";  
     
-    $notifyrecipients = get_option('back_office_email');
+    $customer = $wpdb->get_row('SELECT customer_email
+                                    FROM wp_king_customers customers
+                                    JOIN wp_king_projects projects
+                                    ON projects.customer_id = customers.customer_id
+                                    WHERE projects.project_id = ' . $project_id
+                                     );
 
-    $notifysubject = get_option('back_office_subject') . " - " . date_format(new DateTime(), "m/d/Y");
+    $notifyrecipients = $customer->customer_email;
+
+    $notifysubject = "Work Order Created - " . date_format(new DateTime(), "m/d/Y");
 
     $notifymessage = '
     <html>
@@ -529,9 +542,16 @@ function sendWorkOrderScheduledEmail($project_id){
 
     $notifyheaders = 'From: King Pools Inc. <noreply@kingpoolsinc.com>' . "\r\n";  
     
-    $notifyrecipients = get_option('back_office_email');
+    $customer = $wpdb->get_row('SELECT customer_email
+                                    FROM wp_king_customers customers
+                                    JOIN wp_king_projects projects
+                                    ON projects.customer_id = customers.customer_id
+                                    WHERE projects.project_id = ' . $project_id
+                                     );
 
-    $notifysubject = get_option('back_office_subject') . " - " . date_format(new DateTime(), "m/d/Y");
+    $notifyrecipients = $customer->customer_email;
+
+    $notifysubject = "Work Order Scheduled - " . date_format(new DateTime(), "m/d/Y");
     
     $project_details = $wpdb->get_row('SELECT projects.*
                                     FROM wp_king_projects projects
@@ -546,7 +566,7 @@ function sendWorkOrderScheduledEmail($project_id){
             <tr>
                 <td>
 The work order for your swimming pool service/maintenance/repair is on our calendar for (the week of) 
-<h3>' . $project_details->project_start_date . '</h3>
+<h3>' . date_format($project_details->project_start_date, 'm/d/Y') . '</h3>
 <br><br>
 Please call us if you have any questions/concerns or need to add anything to the work order.  We will be 
 <br>
@@ -586,7 +606,7 @@ function sendWorkOrderReminderEmail($project_id){
     
     $notifyrecipients = get_option('back_office_email');
 
-    $notifysubject = get_option('back_office_subject') . " - " . date_format(new DateTime(), "m/d/Y");
+    $notifysubject =  "Work Order Reminder - " . date_format(new DateTime(), "m/d/Y");
 
     $notifymessage = '
     <html>
@@ -623,6 +643,8 @@ next 24 hours.
 
 function sendWorkOrderCompleteEmail($project_id){
 
+    global $wpdb;
+
     $status_text = '[Work Order Complete]';
 
     add_filter( 'wp_mail_content_type', function( $content_type ) {
@@ -631,9 +653,16 @@ function sendWorkOrderCompleteEmail($project_id){
 
     $notifyheaders = 'From: King Pools Inc. <noreply@kingpoolsinc.com>' . "\r\n";  
     
-    $notifyrecipients = get_option('back_office_email');
+    $customer = $wpdb->get_row('SELECT customer_email
+                                    FROM wp_king_customers customers
+                                    JOIN wp_king_projects projects
+                                    ON projects.customer_id = customers.customer_id
+                                    WHERE projects.project_id = ' . $project_id
+                                     );
 
-    $notifysubject = get_option('back_office_subject') . " - " . date_format(new DateTime(), "m/d/Y");
+    $notifyrecipients = $customer->customer_email;
+
+    $notifysubject = "Work Order Completed - " . date_format(new DateTime(), "m/d/Y");
 
     $notifymessage = '
     <html>
@@ -642,7 +671,7 @@ function sendWorkOrderCompleteEmail($project_id){
     <table>
             <tr>
                 <td>
-The work order for you swimming pool service/maintance/repair is complete, billed and paid.  
+The work order for your swimming pool service/maintance/repair is complete, billed and paid.  
 <br><br>
 We truly appreciate your business, and we\'re grateful for the trust you\'ve placed in us. Please don\'t 
 <br>
