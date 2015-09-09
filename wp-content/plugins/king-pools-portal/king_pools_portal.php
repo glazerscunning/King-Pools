@@ -114,10 +114,14 @@ function format_date($updated_at, $update_type){
   $interval = date_diff(new DateTime($updated_at), date_create("now"));
   
   if(($update_type == 'updateDate') && ($interval->format('%a') > get_option('project_stale_threshold'))){
-      return "<span style='color:red'>" . $interval->format('%a days ago') . "</span>";
+    return "<span style='color:red'>" . $interval->format('%a days ago') . "</span>";
   }else{
-      return $interval->format('%a days ago');
+    if($update_type == 'startDate' && ($updated_at == 0)){
+      return "<span style='color:red'>NOT STARTED</span>"; 
+    }
+    return $interval->format('%a days ago');
   }
+
 }
 
 

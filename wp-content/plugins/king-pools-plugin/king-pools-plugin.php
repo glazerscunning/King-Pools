@@ -256,7 +256,7 @@ Thanks again, for your business.
 
 }
 
-function sendVendorSchedulingEmail($vendor_id, $project_id, $sendPoolPlan, $poolPlanFileName){
+function sendVendorSchedulingEmail($project_id, $sendPoolPlan, $poolPlanFileName){
 
     global $wpdb;
 
@@ -269,12 +269,17 @@ function sendVendorSchedulingEmail($vendor_id, $project_id, $sendPoolPlan, $pool
     $notifyheaders = 'From: King Pools Inc. <noreply@kingpoolsinc.com>' . "\r\n";  
 
     $notifysubject = "King Pools Vendor Scheduling" . " - " . date_format(new DateTime(), "m/d/Y");
-    
-    //Add logic to retrieve all project details needed in email
 
-    $project_details = $wpdb->get_row('SELECT vendor.vendor_name, customer.customer_address, schedule.scheduled_date
-                                        FROM wp_king_vendors'
-                                  );
+    $project_details = $wpdb->get_row('SELECT vendor.vendor_name, customer.customer_email, customer.customer_address, sched.schedule_date
+                                        FROM wp_king_scheduling sched 
+                                        JOIN wp_king_vendors vendor ON
+                                        sched.vendor_id = vendor.vendor_id
+                                        JOIN wp_king_projects project ON
+                                        sched.project_id = project.project_id
+                                        JOIN wp_king_customers customer ON
+                                        project.customer_id = customer.customer_id
+                                        Where project.project_id = ' . $project_id
+                        );
 
     if($sendPoolPlan == "yes"){
         $attachments = array( KP_ASSET_UPLOAD_DIR . $poolPlanFileName );
@@ -289,7 +294,7 @@ function sendVendorSchedulingEmail($vendor_id, $project_id, $sendPoolPlan, $pool
     <table>
             <tr>
                 <td>
-This email confirms that $vendor_name has been scheduled for $scheduled_date.
+This email confirms that ' . $project_details->vendor_name . ' has been scheduled for ' . date_format(new DateTime($project_details->schedule_date),"m/d/Y") . '.
 <br><br>
 The customer site is located at $customer_address.
 <br><br>
