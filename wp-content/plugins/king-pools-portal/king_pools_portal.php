@@ -94,7 +94,7 @@ function getFileList($dir){
 function updateProject($project_id){
     global $wpdb;
     
-    $wpdb->update('wp_king_projects', array(
+    $wpdb->update($wpdb->prefix . 'king_projects', array(
                                              'project_updatedat' => date("Y-m-d H:i:s")
                                              ), 
                                        array('project_id'=>$project_id));    
@@ -103,7 +103,7 @@ function updateProject($project_id){
 function startProject($project_id){
     global $wpdb;
     
-    $wpdb->update('wp_king_projects', array(
+    $wpdb->update($wpdb->prefix . 'king_projects', array(
                                              'project_start_date' => date("Y-m-d H:i:s")
                                              ), 
                                        array('project_id'=>$project_id));    

@@ -61,12 +61,12 @@ class Project_List_Table extends WP_List_Table{
         
         if ($_REQUEST['list'] == 'construction-remodel'){
             $results = $wpdb->get_results('SELECT projects.* , customers.customer_firstname, customers.customer_lastname, phases.phase_name, project_types.project_type_name
-                                            FROM wp_king_projects projects
-                                            JOIN wp_king_customers customers
+                                            FROM ' . $wpdb->prefix . 'king_projects projects
+                                            JOIN ' . $wpdb->prefix . 'king_customers customers
                                             ON projects.customer_id = customers.customer_id
-                                            LEFT JOIN wp_king_phases phases
+                                            LEFT JOIN ' . $wpdb->prefix . 'king_phases phases
                                             ON projects.phase_id = phases.phase_id
-                                            LEFT JOIN wp_king_project_types project_types
+                                            LEFT JOIN ' . $wpdb->prefix . 'king_project_types project_types
                                             ON projects.project_type = project_types.project_type
                                             WHERE projects.project_type = "construction-remodel"
                                           ');
@@ -74,48 +74,48 @@ class Project_List_Table extends WP_List_Table{
         } else if ($_REQUEST['list'] == 'cleaning'){
             
             $results = $wpdb->get_results('SELECT projects.* , customers.customer_firstname, customers.customer_lastname, phases.phase_name, project_types.project_type_name
-                                            FROM wp_king_projects projects
-                                            JOIN wp_king_customers customers
+                                            FROM ' . $wpdb->prefix . 'king_projects projects
+                                            JOIN ' . $wpdb->prefix . 'king_customers customers
                                             ON projects.customer_id = customers.customer_id
-                                            LEFT JOIN wp_king_phases phases
+                                            LEFT JOIN ' . $wpdb->prefix . 'king_phases phases
                                             ON projects.phase_id = phases.phase_id
-                                            LEFT JOIN wp_king_project_types project_types
+                                            LEFT JOIN ' . $wpdb->prefix . 'king_project_types project_types
                                             ON projects.project_type = project_types.project_type
                                             WHERE projects.project_type = "cleaning"
                                           ');                
         } else if ($_REQUEST['list'] == 'service-repair'){
             
             $results = $wpdb->get_results('SELECT projects.* , customers.customer_firstname, customers.customer_lastname, phases.phase_name, project_types.project_type_name
-                                            FROM wp_king_projects projects
-                                            JOIN wp_king_customers customers
+                                            FROM ' . $wpdb->prefix . 'king_projects projects
+                                            JOIN ' . $wpdb->prefix . 'king_customers customers
                                             ON projects.customer_id = customers.customer_id
-                                            LEFT JOIN wp_king_phases phases
+                                            LEFT JOIN ' . $wpdb->prefix . 'king_phases phases
                                             ON projects.phase_id = phases.phase_id
-                                            LEFT JOIN wp_king_project_types project_types
+                                            LEFT JOIN ' . $wpdb->prefix . 'king_project_types project_types
                                             ON projects.project_type = project_types.project_type
                                             WHERE projects.project_type = "service-repair"
                                           ');                
         } else if ($_REQUEST['list'] == 'outstanding'){
             
             $results = $wpdb->get_results('SELECT projects.* , customers.customer_firstname, customers.customer_lastname, phases.phase_name, project_types.project_type_name
-                                            FROM wp_king_projects projects
-                                            JOIN wp_king_customers customers
+                                            FROM ' . $wpdb->prefix . 'king_projects projects
+                                            JOIN ' . $wpdb->prefix . 'king_customers customers
                                             ON projects.customer_id = customers.customer_id
-                                            LEFT JOIN wp_king_phases phases
+                                            LEFT JOIN ' . $wpdb->prefix . 'king_phases phases
                                             ON projects.phase_id = phases.phase_id
-                                            LEFT JOIN wp_king_project_types project_types
+                                            LEFT JOIN ' . $wpdb->prefix . 'king_project_types project_types
                                             ON projects.project_type = project_types.project_type
                                             ORDER BY project_updatedat ASC
                                           ');                
         } else {
         
             $results = $wpdb->get_results('SELECT projects.* , customers.customer_firstname, customers.customer_lastname, phases.phase_name, project_types.project_type_name
-                                            FROM wp_king_projects projects
-                                            JOIN wp_king_customers customers
+                                            FROM ' . $wpdb->prefix . 'king_projects projects
+                                            JOIN ' . $wpdb->prefix . 'king_customers customers
                                             ON projects.customer_id = customers.customer_id
-                                            LEFT JOIN wp_king_phases phases
+                                            LEFT JOIN ' . $wpdb->prefix . 'king_phases phases
                                             ON projects.phase_id = phases.phase_id
-                                            LEFT JOIN wp_king_project_types project_types
+                                            LEFT JOIN ' . $wpdb->prefix . 'king_project_types project_types
                                             ON projects.project_type = project_types.project_type
                                             ORDER BY project_updatedat ASC
                                           ');

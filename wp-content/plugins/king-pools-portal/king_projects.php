@@ -19,14 +19,14 @@ if($_REQUEST['action'] == 'view' || $_REQUEST['action'] == 'add'){
     
     if($_REQUEST['action'] == 'view'){
         $result = $wpdb->get_row('SELECT projects.* , customers.customer_firstname, customers.customer_lastname, vendors.vendor_name, vendors.vendor_id, phases.phase_name, phases.phase_type, scheduling.schedule_date
-                                   FROM wp_king_projects projects
-                                   JOIN wp_king_customers customers
+                                   FROM ' . $wpdb->prefix . 'king_projects projects
+                                   JOIN ' . $wpdb->prefix . 'king_customers customers
                                    ON projects.customer_id = customers.customer_id
-                                   LEFT JOIN wp_king_phases phases
+                                   LEFT JOIN ' . $wpdb->prefix . 'king_phases phases
                                    ON projects.phase_id = phases.phase_id
-                                   LEFT JOIN wp_king_scheduling scheduling 
+                                   LEFT JOIN ' . $wpdb->prefix . 'king_scheduling scheduling 
                                    ON scheduling.project_id = projects.project_id                                   
-                                   LEFT JOIN wp_king_vendors vendors
+                                   LEFT JOIN ' . $wpdb->prefix . 'king_vendors vendors
                                    ON vendors.vendor_id = scheduling.vendor_id
                                    WHERE projects.project_id = ' . $_REQUEST['id']
                                 );
@@ -34,19 +34,19 @@ if($_REQUEST['action'] == 'view' || $_REQUEST['action'] == 'add'){
 
     } else if ($_REQUEST['action'] == 'add'){
         $customers = $wpdb->get_results('SELECT customers.customer_id, customers.customer_firstname, customers.customer_lastname
-                                        FROM wp_king_customers customers
+                                        FROM ' . $wpdb->prefix . 'king_customers customers
                                         WHERE customers.customer_status = "active"
                                         ORDER BY customers.customer_firstname, customers.customer_lastname'
                                        );   
     }
 
     $phases = $wpdb->get_results('SELECT * 
-                                    FROM wp_king_phases
+                                    FROM ' . $wpdb->prefix . 'king_phases
                                     ORDER BY phase_id'
                                 );
     
     $vendors = $wpdb->get_results('SELECT * 
-                                    FROM wp_king_vendors
+                                    FROM ' . $wpdb->prefix . 'king_vendors
                                     ORDER BY vendor_name'
                                 );    
 ?>
@@ -107,13 +107,14 @@ echo "</table>\n\n";
 
 <?php include("inc/_project_form.php");?>
 
+</form>
 <hr>
 
 <?php
 } else if($_REQUEST['action'] == 'delete'){
     
     global $wpdb;
-    $wpdb->delete( 'wp_king_projects', array( 'project_id' => $_REQUEST['id'] ) );
+    $wpdb->delete($wpdb->prefix . 'king_projects', array( 'project_id' => $_REQUEST['id'] ) );
     
     //TODO: 
     //Add code to remove files from uploads directory based on regex
@@ -136,7 +137,7 @@ echo "</table>\n\n";
 
     global $wpdb;
  
-    $wpdb->update('wp_king_projects', array(
+    $wpdb->update($wpdb->prefix . 'king_projects', array(
                                              'project_type'   => $_REQUEST['project_type'],
                                              'phase_id'       => $_REQUEST['project_phase'],
                                              'project_status' => $_REQUEST['project_status'],
@@ -147,8 +148,8 @@ echo "</table>\n\n";
                                        array('project_id'=>$_REQUEST['project_id']));
 
     $result = $wpdb->get_row('SELECT projects.project_id, projects.phase_id, phases.phase_type, phases.phase_trigger_customer_email, phases.phase_trigger_vendor_email
-                               FROM wp_king_projects projects
-                               JOIN wp_king_phases phases
+                               FROM ' . $wpdb->prefix . 'king_projects projects
+                               JOIN ' . $wpdb->prefix . 'king_phases phases
                                ON projects.phase_id = phases.phase_id
                                WHERE project_id = ' . $_REQUEST['project_id']
                             );
@@ -160,15 +161,22 @@ echo "</table>\n\n";
             startProject($_REQUEST['project_id']);
 
             if(!empty($_REQUEST['wo_schedule_date'])){
-                $wpdb->insert('wp_king_scheduling', array(
+
+                $result = $wpdb->get_row('SELECT * FROM ' . $wpdb->prefix . 'king_scheduling WHERE project_id = ' . $_REQUEST['project_id']);
+
+                if($wpdb->num_rows == 0){
+                    $wpdb->insert($wpdb->prefix . 'king_scheduling', array(
                                                          'vendor_id'   => 0,
                                                          'project_id'   => $_REQUEST['project_id'],
                                                          'schedule_date'   => $_REQUEST['wo_schedule_date'],
                                                          'last_updated' => date("Y-m-d H:i:s"),
                                                          'phase_id'     => 0
                                                          ));  
-                sendWorkOrderScheduledEmail($_REQUEST['project_id']);
-                echo '<div id="message" class="updated">Work Order has been scheduled for the week of ' . date_format($_REQUEST['wo_schedule_date'], 'm-d-Y') . '</div>'; 
+                    sendWorkOrderScheduledEmail($_REQUEST['project_id']);
+                    echo '<div id="message" class="updated">Work Order has been scheduled for the week of ' . date_format($_REQUEST['wo_schedule_date'], 'm-d-Y') . '</div>'; 
+      
+                }
+
             }
 
         }       
@@ -183,13 +191,13 @@ echo "</table>\n\n";
         }
         
         if($result->phase_trigger_customer_email > 0){
-            //Add logic to ONLY send customer phase update email if it has not already been sent
+            //TODO: Add logic to ONLY send customer phase update email if it has not already been sent
             echo '<div id="message" class="updated">' . sendProjectPhaseEmail($_REQUEST['project_id']) . '</div>';
         }
 
         if($result->phase_trigger_vendor_email > 0){
 
-            $wpdb->insert('wp_king_scheduling', array(
+            $wpdb->insert($wpdb->prefix . 'king_scheduling', array(
                                                      'vendor_id'   => $_REQUEST['vendor_id'],
                                                      'project_id'   => $_REQUEST['project_id'],
                                                      'schedule_date'   => $_REQUEST['schedule_date'],
@@ -198,10 +206,10 @@ echo "</table>\n\n";
                                                      ));
 
             $result = $wpdb->get_row('SELECT * 
-                                        FROM wp_king_vendors
+                                        FROM ' . $wpdb->prefix . 'king_vendors
                                         WHERE vendor_id = ' . $_REQUEST['vendor_id']
                                     );
-            //Add logic to ONLY send vendor scheduling email if it has not already been sent
+            //TODO: Add logic to ONLY send vendor scheduling email if it has not already been sent
             
             $poolPlanFileName = "PoolPlan_" . $_SESSION['customer_id'] . "-" . $_REQUEST['project_id'];
 
@@ -218,7 +226,7 @@ echo "</table>\n\n";
 } else if($_REQUEST['action'] == 'add_project'){
     global $wpdb;
 
-    $wpdb->insert('wp_king_projects', array(
+    $wpdb->insert($wpdb->prefix . 'king_projects', array(
                                              'project_status'  => 'New',
                                              'customer_id'     => $_REQUEST['customer_id'],
                                              'project_type'    => $_REQUEST['project_type'],
@@ -237,7 +245,7 @@ echo "</table>\n\n";
     
 } else if($_REQUEST['action'] == 'complete_project'){
     global $wpdb;
-    $wpdb->update('wp_king_projects', array(
+    $wpdb->update($wpdb->prefix . 'king_projects', array(
                                              'project_status'  => 'Complete',
                                              'phase_id'       => $_REQUEST['project_phase'],
                                              'project_status' => $_REQUEST['project_status'],

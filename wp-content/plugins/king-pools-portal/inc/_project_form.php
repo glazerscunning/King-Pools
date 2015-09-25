@@ -161,4 +161,3 @@ if($_REQUEST['action'] == 'view'){
 }
 ?>           
     </p>
-</form>

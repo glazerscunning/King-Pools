@@ -14,7 +14,6 @@ jQuery(document).ready(function() {
     jQuery('.construction_phase').hide();
 
     if(jQuery("select.project_type option:selected").val() == "cleaning" || jQuery("select.project_type option:selected").val() == "service-repair"){
-        jQuery('.construction_phase').hide();
         jQuery('.work_order_scheduling').show();
     }else if(jQuery("select.project_type option:selected").val() == "construction-remodel"){
         jQuery('.construction_phase').show();
@@ -58,7 +57,7 @@ if(empty($result->vendor_name)){
     });  
 
     jQuery(".project_status").change(function() {
-        if(jQuery("select.project_status option:selected").val() == "In Progress" && jQuery(".project_type").val() == "construction-remodel")){
+        if(jQuery("select.project_status option:selected").val() == "In Progress" && jQuery(".project_type").val() == "construction-remodel"){
             jQuery( "<div>This status will trigger the new customer email.</div>" ).dialog({
                   modal: true,
                   buttons: {
