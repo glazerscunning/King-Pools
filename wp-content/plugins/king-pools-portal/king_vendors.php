@@ -48,6 +48,9 @@ if($_REQUEST['action'] == 'edit'){
 <?php
 } else if($_REQUEST['action'] == 'delete'){
     
+    global $wpdb;
+    $wpdb->delete($wpdb->prefix . 'king_vendors', array( 'vendor_id' => $_REQUEST['id'] ) );
+
     echo "<div id='message' class='error'>Vendor '" . $_REQUEST['name'] . "' has been deleted!</div>";
     
 } else if($_REQUEST['action'] == 'update'){
@@ -66,6 +69,7 @@ if($_REQUEST['action'] == 'edit'){
                                        array('vendor_id'=>$_REQUEST['vendor_id']));
     
     echo '<div id="message" class="updated">Vendor has been updated!</div>';
+
 } else if($_REQUEST['action'] == 'add_vendor'){
     global $wpdb;
     $wpdb->insert($wpdb->prefix . 'king_vendors', array(

@@ -71,6 +71,15 @@ if(empty($result->vendor_name)){
         }
     });        
 
+    jQuery("#update_project_button").click(function(){
+        if(jQuery("select.project_type option:selected").val() == "cleaning" || jQuery("select.project_type option:selected").val() == "service-repair"){
+            if(jQuery("#wo_schedule_date").val() == ''){
+                jQuery("#wo_schedule_date").css('border','1px solid red');
+                return false;
+            }
+        }
+    });
+
 });
 
 </script> 

@@ -48,6 +48,11 @@ jQuery("#customer_add_form").validate();
 <?php
 } else if($_REQUEST['action'] == 'delete'){
     
+    //TODO: Add DB statements to cleanup associations with projects, notifications etc.
+
+    global $wpdb;
+    $wpdb->delete($wpdb->prefix . 'king_customers', array( 'customer_id' => $_REQUEST['id'] ) );
+    
     echo '<div id="message" class="error">Customer has been deleted!</div>';
     
 } else if($_REQUEST['action'] == 'update'){

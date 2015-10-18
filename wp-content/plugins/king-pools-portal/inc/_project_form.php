@@ -151,12 +151,12 @@
 <?php
 if($_REQUEST['action'] == 'view'){
 ?>
-<input class="button button-primary" type="submit" name="Submit" value="<?php _e('Update Project', 'king_trdom' ) ?>" />
+<input id="update_project_button" class="button button-primary" type="submit" name="Submit" value="<?php _e('Update Project', 'king_trdom' ) ?>" />
 
 <?php
 } else {
 ?>
-<input class="button button-primary" type="submit" name="Submit" value="<?php _e('Add Project', 'king_trdom' ) ?>" /> 
+<input id="add_project_button" class="button button-primary" type="submit" name="Submit" value="<?php _e('Add Project', 'king_trdom' ) ?>" /> 
 <?php
 }
 ?>           

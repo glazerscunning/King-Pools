@@ -560,7 +560,7 @@ function sendWorkOrderScheduledEmail($project_id){
     
     $project_details = $wpdb->get_row('SELECT projects.*
                                     FROM wp_king_projects projects
-                                    AND projects.project_id = ' . $project_id
+                                    WHERE projects.project_id = ' . $project_id
                                      );
 
     $notifymessage = '
@@ -571,7 +571,7 @@ function sendWorkOrderScheduledEmail($project_id){
             <tr>
                 <td>
 The work order for your swimming pool service/maintenance/repair is on our calendar for (the week of) 
-<h3>' . date_format($project_details->project_start_date, 'm/d/Y') . '</h3>
+<h3>' . date_format(new DateTime($project_details->project_start_date), 'm/d/Y') . '</h3>
 <br><br>
 Please call us if you have any questions/concerns or need to add anything to the work order.  We will be 
 <br>

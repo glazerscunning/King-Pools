@@ -173,7 +173,7 @@ echo "</table>\n\n";
                                                          'phase_id'     => 0
                                                          ));  
                     sendWorkOrderScheduledEmail($_REQUEST['project_id']);
-                    echo '<div id="message" class="updated">Work Order has been scheduled for the week of ' . date_format($_REQUEST['wo_schedule_date'], 'm-d-Y') . '</div>'; 
+                    echo '<div id="message" class="updated">Work Order has been scheduled for the week of ' . date_format(new DateTime($_REQUEST['wo_schedule_date']), 'm-d-Y') . '</div>'; 
       
                 }
 
@@ -189,7 +189,7 @@ echo "</table>\n\n";
             echo '<div id="message" class="updated">' . sendNewCustomerEmail($_REQUEST['project_id']) . '</div>';
 
         }
-        
+
         if($result->phase_trigger_customer_email > 0){
             //TODO: Add logic to ONLY send customer phase update email if it has not already been sent
             echo '<div id="message" class="updated">' . sendProjectPhaseEmail($_REQUEST['project_id']) . '</div>';
@@ -223,6 +223,27 @@ echo "</table>\n\n";
 
     }
 
+    if ($_REQUEST['last_project_status'] == 'In Progress' && $_REQUEST['project_status'] == 'Complete'){
+        global $wpdb;
+        $wpdb->update($wpdb->prefix . 'king_projects', array(
+                                                 'project_status'  => 'Complete',
+                                                 'phase_id'       => $_REQUEST['project_phase'],
+                                                 'project_status' => $_REQUEST['project_status'],
+                                                 'project_amount' => $_REQUEST['project_amount'],
+                                                 'project_updatedat' => date("Y-m-d H:i:s")
+                                                 ), 
+                                           array('project_id'=>$_REQUEST['project_id']));
+
+        if($_REQUEST['project_type'] == 'cleaning' || $_REQUEST['project_type'] == 'service-repair'){  
+            echo '<div id="message" class="updated">' . sendWorkOrderCompleteEmail($_REQUEST['project_id']) . '</div>';
+            echo '<div id="message" class="updated">Project has been completed!</div>';    
+        }else{
+            echo '<div id="message" class="updated">' . sendProjectFinishedEmail($_REQUEST['project_id']) . '</div>';
+            echo '<div id="message" class="updated">Project has been completed!</div>';
+        }            
+    }
+
+
 } else if($_REQUEST['action'] == 'add_project'){
     global $wpdb;
 
@@ -243,24 +264,6 @@ echo "</table>\n\n";
         echo '<div id="message" class="updated">Project has been created!</div>';
     }
     
-} else if($_REQUEST['action'] == 'complete_project'){
-    global $wpdb;
-    $wpdb->update($wpdb->prefix . 'king_projects', array(
-                                             'project_status'  => 'Complete',
-                                             'phase_id'       => $_REQUEST['project_phase'],
-                                             'project_status' => $_REQUEST['project_status'],
-                                             'project_amount' => $_REQUEST['project_amount'],
-                                             'project_updatedat' => date("Y-m-d H:i:s")
-                                             ), 
-                                       array('project_id'=>$_REQUEST['project_id']));
-
-    if($_REQUEST['project_type'] == 'cleaning' || $_REQUEST['project_type'] == 'service-repair'){  
-        echo '<div id="message" class="updated">' . sendWorkOrderCompleteEmail($_REQUEST['project_id']) . '</div>';
-        echo '<div id="message" class="updated">Project has been completed!</div>';    
-    }else{
-        echo '<div id="message" class="updated">' . sendProjectFinishedEmail($_REQUEST['project_id']) . '</div>';
-        echo '<div id="message" class="updated">Project has been completed!</div>';
-    }
 }
 
 include("inc/_project_list_table.php");
