@@ -31,6 +31,7 @@ class Notifications_List_Table extends WP_List_Table{
             'notification_id'      => 'ID',
             'notification_to'      => 'Sent To',
             'notification_subject' => 'Subject',
+            'notification_body'    => 'Message',
             'notification_type'    => 'Type',
             'notification_date'    => 'Date/Time'
         );
@@ -64,6 +65,7 @@ class Notifications_List_Table extends WP_List_Table{
                         'notification_id'      => $row->notification_id,
                         'notification_to'      => $row->notification_to,
                         'notification_subject' => $row->notification_subject,
+                        'notification_body'    => '<a href=# class=show_email_link notification_id= ' . $row->notification_id . '>Show email</a><div class="notification_message" id="notification_message_' . $row->notification_id . '">' . $row->notification_body . '</div>',
                         'notification_type'    => $row->notification_type,
                         'notification_date'    => $row->notification_date
                         );
@@ -79,6 +81,7 @@ class Notifications_List_Table extends WP_List_Table{
             case 'notification_id';
             case 'notification_to':
             case 'notification_subject':
+            case 'notification_body':
             case 'notification_type':
             case 'notification_date':
             

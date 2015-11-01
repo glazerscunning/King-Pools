@@ -191,31 +191,37 @@ echo "</table>\n\n";
         }
 
         if($result->phase_trigger_customer_email > 0){
-            //TODO: Add logic to ONLY send customer phase update email if it has not already been sent
-            echo '<div id="message" class="updated">' . sendProjectPhaseEmail($_REQUEST['project_id']) . '</div>';
+            
+            $wpdb->get_row('SELECT * FROM ' . $wpdb->prefix . 'king_notifications WHERE project_id = ' . $_REQUEST['project_id'] . ' AND phase_id = ' . $result->phase_id);  
+
+            if($wpdb->num_rows == 0){       
+                echo '<div id="message" class="updated">' . sendProjectPhaseEmail($_REQUEST['project_id']) . '</div>';
+            }
         }
 
         if($result->phase_trigger_vendor_email > 0){
 
-            $wpdb->insert($wpdb->prefix . 'king_scheduling', array(
-                                                     'vendor_id'   => $_REQUEST['vendor_id'],
-                                                     'project_id'   => $_REQUEST['project_id'],
-                                                     'schedule_date'   => $_REQUEST['schedule_date'],
-                                                     'last_updated' => date("Y-m-d H:i:s"),
-                                                     'phase_id'     => $result->phase_id
-                                                     ));
+            $wpdb->get_row('SELECT * FROM ' . $wpdb->prefix . 'king_notifications WHERE project_id = ' . $_REQUEST['project_id'] . ' AND phase_id = ' . $result->phase_id . ' AND notification_type = "[Vendor Scheduling Email]"');
 
-            $result = $wpdb->get_row('SELECT * 
-                                        FROM ' . $wpdb->prefix . 'king_vendors
-                                        WHERE vendor_id = ' . $_REQUEST['vendor_id']
-                                    );
-            //TODO: Add logic to ONLY send vendor scheduling email if it has not already been sent
-            
-            $poolPlanFileName = "PoolPlan_" . $_SESSION['customer_id'] . "-" . $_REQUEST['project_id'];
+            if($wpdb->num_rows == 0){
 
-            sendVendorSchedulingEmail($_REQUEST['project_id'], $_REQUEST['attach_pool_plan'], $poolPlanFileName);
-            
-            echo '<div id="message" class="updated">An email has been sent to ' . $result->vendor_email . ' to schedule services on ' . date_format(new DateTime($_REQUEST['vnd_schedule_date']), 'm/d/Y') . '</div>';
+                $wpdb->insert($wpdb->prefix . 'king_scheduling', array(
+                                                         'vendor_id'   => $_REQUEST['vendor_id'],
+                                                         'project_id'   => $_REQUEST['project_id'],
+                                                         'schedule_date'   => $_REQUEST['vnd_schedule_date'],
+                                                         'last_updated' => date("Y-m-d H:i:s"),
+                                                         'phase_id'     => $result->phase_id
+                                                         ));
+
+                $result = $wpdb->get_row('SELECT * FROM ' . $wpdb->prefix . 'king_vendors WHERE vendor_id = ' . $_REQUEST['vendor_id']);
+                
+                $poolPlanFileName = "PoolPlan_" . $_SESSION['customer_id'] . "-" . $_REQUEST['project_id'];
+
+                sendVendorSchedulingEmail($_REQUEST['project_id'], $_REQUEST['attach_pool_plan'], $poolPlanFileName);
+                
+                echo '<div id="message" class="updated">An email has been sent to ' . $result->vendor_email . ' to schedule services on ' . date_format(new DateTime($_REQUEST['vnd_schedule_date']), 'm/d/Y') . '</div>';
+
+            }
 
         }
 

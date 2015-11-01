@@ -26,6 +26,20 @@ if($_REQUEST['auth_type'] == 'notification'){
 }
 ?>
 
+<script type="text/javascript">
+jQuery(document).ready(function() {
+
+    jQuery(".notification_message").hide();
+
+    jQuery(".show_email_link").click(function(){
+        jQuery("#notification_message_" + jQuery(this).attr('notification_id')).dialog({
+            width:500
+        });
+    });
+
+});
+</script>
+
 <div class="wrap">    
 <h2>
 <?= __( 'King Pools Notifications Management', 'king_trdom' );?>

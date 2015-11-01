@@ -115,14 +115,16 @@ function wfu_before_file_upload_handler($file_path, $file_unique_id) {
     return $file_path;
 }
 
-function addNotificationTrail($notification_type, $notifyrecipients, $notifysubject, $notification_body){
+function addNotificationTrail($notification_type, $notifyrecipients, $notifysubject, $notification_body, $phase_id = 0){
         global $wpdb;
         $wpdb->insert('wp_king_notifications', array(
                                                  'notification_to'      => $notifyrecipients,
                                                  'notification_subject' => $notifysubject,
                                                  'notification_body'    => $notification_body,
                                                  'notification_type'    => $notification_type,
-                                                 'notification_date'    => date("Y-m-d H:i:s")
+                                                 'notification_date'    => date("Y-m-d H:i:s"),
+                                                 'project_id'           => $_SESSION['project_id'],
+                                                 'phase_id'             => $phase_id
                                                  ));  
 }
 
@@ -248,7 +250,7 @@ Thanks again, for your business.
 
     if($notify_sent){
 
-        addNotificationTrail($status_text, $notifyrecipients, $notifysubject, $notifymessage);
+        addNotificationTrail($status_text, $notifyrecipients, $notifysubject, $notifymessage, $project_details->phase_id);
 
     }
 
@@ -270,7 +272,7 @@ function sendVendorSchedulingEmail($project_id, $sendPoolPlan, $poolPlanFileName
 
     $notifysubject = "King Pools Vendor Scheduling" . " - " . date_format(new DateTime(), "m/d/Y");
 
-    $project_details = $wpdb->get_row('SELECT vendor.vendor_name, customer.customer_email, customer.customer_address, sched.schedule_date
+    $project_details = $wpdb->get_row('SELECT vendor.vendor_name, customer.customer_email, customer.customer_address, sched.schedule_date, project.phase_id
                                         FROM wp_king_scheduling sched 
                                         JOIN wp_king_vendors vendor ON
                                         sched.vendor_id = vendor.vendor_id
@@ -296,7 +298,7 @@ function sendVendorSchedulingEmail($project_id, $sendPoolPlan, $poolPlanFileName
                 <td>
 This email confirms that ' . $project_details->vendor_name . ' has been scheduled for ' . date_format(new DateTime($project_details->schedule_date),"m/d/Y") . '.
 <br><br>
-The customer site is located at $customer_address.
+The customer site is located at ' . $project_details->customer_address . '.
 <br><br>
 Please find attached the pool plan for this customer.
 <br><br>
@@ -317,7 +319,7 @@ King Pools Inc.
 
     if($notify_sent){
 
-        addNotificationTrail($status_text, $notifyrecipients, $notifysubject, $notifymessage);
+        addNotificationTrail($status_text, $notifyrecipients, $notifysubject, $notifymessage, $project_details->phase_id);
 
     }
 
@@ -710,7 +712,7 @@ function sendBackOfficeStatus(){
 
     global $wpdb;
 
-    $status_text = 'Back Office Update';
+    $status_text = '[Back Office Update]';
 
     add_filter( 'wp_mail_content_type', function( $content_type ) {
         return 'text/html';

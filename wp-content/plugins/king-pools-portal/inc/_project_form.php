@@ -105,11 +105,6 @@
                 </td>
             </tr>             
             <tr class="vendor_phase">
-                <td colspan=2 style="color:blue">
-                    <i>The selected vendor will be notified when updating this project.</i>
-                </td>
-            </tr> 
-            <tr class="vendor_phase">
                 <th>
                     <label><?php _e("Vendor Selection: " ); ?></label>
                 </th>

@@ -8,7 +8,10 @@ jQuery(document).ready(function() {
         dateFormat : 'yy-mm-dd'
     });
 
-    jQuery('.project_amount').hide();
+    if(jQuery("select.project_status option:selected").val() != "Complete"){
+        jQuery('.project_amount').hide();
+    }
+
     jQuery('.work_order_scheduling').hide();
     jQuery('.vendor_phase').hide();
     jQuery('.construction_phase').hide();
