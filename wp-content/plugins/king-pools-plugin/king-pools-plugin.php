@@ -198,11 +198,11 @@ We appreciate your business.
 
 }
 
-function sendProjectPhaseEmail($project_id){
+function sendProjectPhaseEmail($project_id, $phase_id, $phase_name){
 
     global $wpdb;
 
-    $status_text = '[Project Phase Change]';
+    $status_text = '[Project Phase Change - ' . $phase_id . ' {' . $phase_name . '}]';
 
     add_filter( 'wp_mail_content_type', function( $content_type ) {
         return 'text/html';
@@ -258,11 +258,11 @@ Thanks again, for your business.
 
 }
 
-function sendVendorSchedulingEmail($project_id, $sendPoolPlan, $poolPlanFileName){
+function sendVendorSchedulingEmail($project_id, $vendor_id, $vendor_name, $sendPoolPlan, $poolPlanFileName){
 
     global $wpdb;
 
-    $status_text = '[Vendor Scheduling Email]';
+    $status_text = '[Vendor Scheduling Email - ' . $vendor_id . ' {' . $vendor_name . '}]';
 
     add_filter( 'wp_mail_content_type', function( $content_type ) {
         return 'text/html';

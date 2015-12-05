@@ -54,7 +54,7 @@
                     <label><?php _e("Project Amount: " ); ?></label>
                 </th>
                 <td>
-                    $<input type="text" name="project_amount" value="<?= $result->project_amount?>"/><i>(Final project amount)</i>
+                    $<input type="text" id="project_amount" name="project_amount" value="<?= $result->project_amount?>"/><i>(Final project amount)</i>
                 </td>
             </tr>
             <tr>

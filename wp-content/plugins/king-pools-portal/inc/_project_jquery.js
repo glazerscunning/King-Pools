@@ -10,6 +10,8 @@ jQuery(document).ready(function() {
 
     if(jQuery("select.project_status option:selected").val() != "Complete"){
         jQuery('.project_amount').hide();
+    }else{
+        jQuery('#update_project_button').hide();
     }
 
     jQuery('.work_order_scheduling').hide();
@@ -17,7 +19,9 @@ jQuery(document).ready(function() {
     jQuery('.construction_phase').hide();
 
     if(jQuery("select.project_type option:selected").val() == "cleaning" || jQuery("select.project_type option:selected").val() == "service-repair"){
-        jQuery('.work_order_scheduling').show();
+        if(jQuery("select.project_status option:selected").val() != "Complete"){
+            jQuery('.work_order_scheduling').show();
+        }
     }else if(jQuery("select.project_type option:selected").val() == "construction-remodel"){
         jQuery('.construction_phase').show();
     }
@@ -71,10 +75,17 @@ if(empty($result->vendor_name)){
             });
         }else if(jQuery("select.project_status option:selected").val() == "Complete"){
             jQuery('.project_amount').fadeIn();
+        }else{
+            jQuery('.project_amount').fadeOut();
         }
     });        
 
     jQuery("#update_project_button").click(function(){
+        if(jQuery("select.project_status option:selected").val() == "Complete" && jQuery("#project_amount").val() == 0){
+           jQuery("#project_amount").css('border','1px solid red'); 
+           return false;
+        }
+
         if(jQuery("select.project_type option:selected").val() == "cleaning" || jQuery("select.project_type option:selected").val() == "service-repair"){
             if(jQuery("#wo_schedule_date").val() == ''){
                 jQuery("#wo_schedule_date").css('border','1px solid red');

@@ -147,11 +147,16 @@ echo "</table>\n\n";
                                              ), 
                                        array('project_id'=>$_REQUEST['project_id']));
 
-    $result = $wpdb->get_row('SELECT projects.project_id, projects.phase_id, phases.phase_type, phases.phase_trigger_customer_email, phases.phase_trigger_vendor_email
+    $result = $wpdb->get_row('SELECT projects.project_id, projects.phase_id, phases.phase_type, phases.phase_name, phases.phase_trigger_customer_email, phases.phase_trigger_vendor_email, sched.vendor_id, vendors.vendor_name
                                FROM ' . $wpdb->prefix . 'king_projects projects
                                JOIN ' . $wpdb->prefix . 'king_phases phases
                                ON projects.phase_id = phases.phase_id
-                               WHERE project_id = ' . $_REQUEST['project_id']
+                               JOIN ' . $wpdb->prefix . 'king_scheduling sched
+                               ON projects.project_id = sched.project_id
+                               AND projects.phase_id = sched.phase_id
+                               JOIN ' . $wpdb->prefix . 'king_vendors vendors 
+                               ON sched.vendor_id = vendors.vendor_id
+                               WHERE projects.project_id = ' . $_REQUEST['project_id']
                             );
 
     if($_REQUEST['project_type'] == 'cleaning' || $_REQUEST['project_type'] == 'service-repair'){
@@ -191,17 +196,17 @@ echo "</table>\n\n";
         }
 
         if($result->phase_trigger_customer_email > 0){
-            
-            $wpdb->get_row('SELECT * FROM ' . $wpdb->prefix . 'king_notifications WHERE project_id = ' . $_REQUEST['project_id'] . ' AND phase_id = ' . $result->phase_id);  
+
+            $wpdb->get_row('SELECT * FROM ' . $wpdb->prefix . 'king_notifications WHERE project_id = ' . $_REQUEST['project_id'] . ' AND phase_id = ' . $result->phase_id . ' AND notification_type = "[Project Phase Change - ' . $result->phase_id . ' {' . $result->phase_name . '}]"');  
 
             if($wpdb->num_rows == 0){       
-                echo '<div id="message" class="updated">' . sendProjectPhaseEmail($_REQUEST['project_id']) . '</div>';
+                echo '<div id="message" class="updated">' . sendProjectPhaseEmail($_REQUEST['project_id'], $result->phase_id, $result->phase_name) . '</div>';
             }
         }
 
         if($result->phase_trigger_vendor_email > 0){
 
-            $wpdb->get_row('SELECT * FROM ' . $wpdb->prefix . 'king_notifications WHERE project_id = ' . $_REQUEST['project_id'] . ' AND phase_id = ' . $result->phase_id . ' AND notification_type = "[Vendor Scheduling Email]"');
+            $wpdb->get_row('SELECT * FROM ' . $wpdb->prefix . 'king_notifications WHERE project_id = ' . $_REQUEST['project_id'] . ' AND phase_id = ' . $result->phase_id . ' AND notification_type = "[Vendor Scheduling Email - ' . $result->vendor_id . ' {' . $result->vendor_name . '}]"');
 
             if($wpdb->num_rows == 0){
 
@@ -217,7 +222,7 @@ echo "</table>\n\n";
                 
                 $poolPlanFileName = "PoolPlan_" . $_SESSION['customer_id'] . "-" . $_REQUEST['project_id'];
 
-                sendVendorSchedulingEmail($_REQUEST['project_id'], $_REQUEST['attach_pool_plan'], $poolPlanFileName);
+                sendVendorSchedulingEmail($_REQUEST['project_id'], $result->vendor_id, $result->vendor_name, $_REQUEST['attach_pool_plan'], $poolPlanFileName);
                 
                 echo '<div id="message" class="updated">An email has been sent to ' . $result->vendor_email . ' to schedule services on ' . date_format(new DateTime($_REQUEST['vnd_schedule_date']), 'm/d/Y') . '</div>';
 
@@ -264,8 +269,26 @@ echo "</table>\n\n";
     $project_id = $wpdb->insert_id;
 
     if($_REQUEST['project_type'] == 'cleaning' || $_REQUEST['project_type'] == 'service-repair'){  
-        sendWorkOrderCreatedEmail($project_id); 
-        echo '<div id="message" class="updated">Work Order has been created!</div>';
+        
+        if(!empty($_REQUEST['wo_schedule_date'])){
+
+            $result = $wpdb->get_row('SELECT * FROM ' . $wpdb->prefix . 'king_scheduling WHERE project_id = ' . $project_id);
+
+            if($wpdb->num_rows == 0){
+                $wpdb->insert($wpdb->prefix . 'king_scheduling', array(
+                                                     'vendor_id'   => 0,
+                                                     'project_id'   => $project_id,
+                                                     'schedule_date'   => $_REQUEST['wo_schedule_date'],
+                                                     'last_updated' => date("Y-m-d H:i:s"),
+                                                     'phase_id'     => 0
+                                                     ));  
+                sendWorkOrderScheduledEmail($project_id);
+                echo '<div id="message" class="updated">Work Order has been scheduled for the week of ' . date_format(new DateTime($_REQUEST['wo_schedule_date']), 'm-d-Y') . '</div>'; 
+  
+            }
+
+        }
+
     }else{
         echo '<div id="message" class="updated">Project has been created!</div>';
     }
