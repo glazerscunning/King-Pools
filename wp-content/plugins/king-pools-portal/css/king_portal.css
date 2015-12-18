@@ -10,14 +10,6 @@
     float:left;    
 }
 
-.wp-list-table #lead_id {
-    width:165px;
-}
-
-.wp-list-table #lead_id, #customer_id, #project_id, #vendor_id {
-    width:175px;
-}
-
 .wp-list-table #customer_state {
     width:35px;
 }
@@ -47,5 +39,29 @@
     outline: none;
     resize: none;
     overflow: auto;
+}
+
+.wp-list-table #notification_id, .wp-list-table #lead_id{
+    width:25px;
+}
+
+.wp-list-table #vendor_id{
+    width:100px;
+}
+
+.wp-list-table #project_id, .wp-list-table #customer_id{
+    width:130px;
+}
+
+.wp-list-table #notification_body{
+    width:75px;
+}
+
+.wp-list-table #notification_date{
+    width:150px;
+}
+
+.wp-list-table #notification_to{
+    width:250px;
 }
 

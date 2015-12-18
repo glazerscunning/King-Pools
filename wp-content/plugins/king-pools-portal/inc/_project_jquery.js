@@ -82,7 +82,15 @@ if(empty($result->vendor_name)){
 
     jQuery("#update_project_button").click(function(){
         if(jQuery("select.project_status option:selected").val() == "Complete" && jQuery("#project_amount").val() == 0){
-           jQuery("#project_amount").css('border','1px solid red'); 
+            jQuery("#project_amount").css('border','1px solid red'); 
+            jQuery( "<div>Project amount must NOT be $0.</div>" ).dialog({
+                  modal: true,
+                  buttons: {
+                    Ok: function() {
+                      jQuery( this ).dialog( "close" );
+                    }
+                  }
+            });           
            return false;
         }
 

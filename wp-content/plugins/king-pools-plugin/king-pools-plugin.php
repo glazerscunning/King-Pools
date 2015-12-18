@@ -4,7 +4,7 @@
  * Plugin URI: http://wordpress.org/extend/plugins/
  * Description: Custom plugin handlers for King Pools Inc.
  * Author: Aaron Cunningham
- * Version: 2.0
+ * Version: 2.1
  * Author URI: http://www.kingpoolsinc.com
  * License: GPL2+
  * Text Domain: kingpoolsinc
@@ -537,7 +537,7 @@ King Pools, Inc.
 
 }
 
-function sendWorkOrderScheduledEmail($project_id){
+function sendWorkOrderScheduledEmail($project_id, $schedule_date){
 
     global $wpdb;
 
@@ -558,7 +558,7 @@ function sendWorkOrderScheduledEmail($project_id){
 
     $notifyrecipients = $customer->customer_email;
 
-    $notifysubject = "Work Order Scheduled - " . date_format(new DateTime(), "m/d/Y");
+    $notifysubject = "Work Order Scheduled - " . date_format(new DateTime($schedule_date), "m/d/Y");
     
     $project_details = $wpdb->get_row('SELECT projects.*
                                     FROM wp_king_projects projects
@@ -573,7 +573,7 @@ function sendWorkOrderScheduledEmail($project_id){
             <tr>
                 <td>
 The work order for your swimming pool service/maintenance/repair is on our calendar for (the week of) 
-<h3>' . date_format(new DateTime($project_details->project_start_date), 'm/d/Y') . '</h3>
+<h3>' . date_format(new DateTime($schedule_date), "m/d/Y") . '</h3>
 <br><br>
 Please call us if you have any questions/concerns or need to add anything to the work order.  We will be 
 <br>

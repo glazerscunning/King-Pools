@@ -29,7 +29,7 @@ if($_REQUEST['action'] == 'edit'){
 <?php
 } else {
 ?>
-<form method="post" id="customer_add_form" name="customer_add_form" action="?page=<?=$_REQUEST['page']?>&action=add_cust">
+<form method="post" id="customer_add_form" name="customer_add_form" action="?page=<?=$_REQUEST['page']?>&action=add_customer">
 <?php
 }
 ?>
@@ -56,7 +56,7 @@ jQuery("#customer_add_form").validate();
     echo '<div id="message" class="error">Customer has been deleted!</div>';
     
 } else if($_REQUEST['action'] == 'update'){
-    
+
     global $wpdb;
     $wpdb->update($wpdb->prefix . 'king_customers', array(
                                              'customer_firstname'  =>$_REQUEST['customer_firstname'],
@@ -71,7 +71,7 @@ jQuery("#customer_add_form").validate();
                                              ), 
                                        array('customer_id'=>$_REQUEST['customer_id']));
     
-    echo '<div id="message" class="updated">Customer #' . $_REQUEST['customer_id'] . ' has been updated!</div>';
+    echo '<div id="message" class="updated">Customer #' . $_REQUEST['customer_id'] . ' - {' . $_REQUEST['customer_firstname'] . ' '. $_REQUEST['customer_lastname'] . '} has been updated!</div>';
     
 } else if($_REQUEST['action'] == 'add_customer'){
     
@@ -92,7 +92,7 @@ jQuery("#customer_add_form").validate();
 } else if($_REQUEST['action'] == 'createproject'){
     
     global $wpdb;
-    $wpdb->insert($wpdb->prefix . 'king_projects', array('project_status'=>'New', 'customer_id'=>$_REQUEST['id']));
+    $wpdb->insert($wpdb->prefix . 'king_projects', array('project_status'=>'New', 'customer_id'=>$_REQUEST['id'], 'project_updatedat' => date("Y-m-d H:i:s")));
     
     echo '<div id="message" class="updated">A new project has been created!</div>';
     

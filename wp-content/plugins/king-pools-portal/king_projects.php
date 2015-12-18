@@ -151,10 +151,10 @@ echo "</table>\n\n";
                                FROM ' . $wpdb->prefix . 'king_projects projects
                                JOIN ' . $wpdb->prefix . 'king_phases phases
                                ON projects.phase_id = phases.phase_id
-                               JOIN ' . $wpdb->prefix . 'king_scheduling sched
+                               LEFT JOIN ' . $wpdb->prefix . 'king_scheduling sched
                                ON projects.project_id = sched.project_id
                                AND projects.phase_id = sched.phase_id
-                               JOIN ' . $wpdb->prefix . 'king_vendors vendors 
+                               LEFT JOIN ' . $wpdb->prefix . 'king_vendors vendors 
                                ON sched.vendor_id = vendors.vendor_id
                                WHERE projects.project_id = ' . $_REQUEST['project_id']
                             );
@@ -177,7 +177,7 @@ echo "</table>\n\n";
                                                          'last_updated' => date("Y-m-d H:i:s"),
                                                          'phase_id'     => 0
                                                          ));  
-                    sendWorkOrderScheduledEmail($_REQUEST['project_id']);
+                    sendWorkOrderScheduledEmail($_REQUEST['project_id'], $_REQUEST['wo_schedule_date']);
                     echo '<div id="message" class="updated">Work Order has been scheduled for the week of ' . date_format(new DateTime($_REQUEST['wo_schedule_date']), 'm-d-Y') . '</div>'; 
       
                 }
@@ -282,7 +282,7 @@ echo "</table>\n\n";
                                                      'last_updated' => date("Y-m-d H:i:s"),
                                                      'phase_id'     => 0
                                                      ));  
-                sendWorkOrderScheduledEmail($project_id);
+                sendWorkOrderScheduledEmail($project_id, $_REQUEST['wo_schedule_date']);
                 echo '<div id="message" class="updated">Work Order has been scheduled for the week of ' . date_format(new DateTime($_REQUEST['wo_schedule_date']), 'm-d-Y') . '</div>'; 
   
             }
