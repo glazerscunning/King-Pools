@@ -1,5 +1,7 @@
 <?php
 
+$_SESSION["project_id"] = $_REQUEST['id'];
+
 if( ! class_exists( 'WP_List_Table' ) ) {
     require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
 }
@@ -49,6 +51,35 @@ if($_REQUEST['action'] == 'view' || $_REQUEST['action'] == 'add'){
                                     FROM ' . $wpdb->prefix . 'king_vendors
                                     ORDER BY vendor_name'
                                 );    
+
+    $project_phase_link = $wpdb->get_results('SELECT * 
+                                    FROM ' . $wpdb->prefix . 'king_project_phase_link
+                                    Where project_id = ' . $_SESSION['project_id'] . '
+                                    ORDER BY phase_id'
+                                );
+
+foreach($phases as $key => $value) {
+
+    foreach($project_phase_link as $link){
+
+        if($link->phase_id == $phases[$key]->phase_id){
+            
+            if($link->status == 'complete'){
+                $phases[$key]->phase_status = 'complete';
+            }
+        
+        }else{
+        
+            if(empty($phases[$key]->phase_status)){
+                $phases[$key]->phase_status = 'incomplete';
+            }
+        
+        }
+    
+    }
+
+}
+
 ?>
 <hr>  
     
@@ -61,8 +92,6 @@ if($_REQUEST['action'] == 'view'){
   
 <h3>Project Assets</h3>
 <?php
-
-$_SESSION["project_id"] = $_REQUEST['id'];
 
 echo do_shortcode('[wordpress_file_upload uploadpath="uploads/king_portal" createpath="true" showtargetfolder="true" adminmessages="true" placements="title/filename+selectbutton/uploadbutton+progressbar/message/userdata" uploadtitle="" widths="progressbar:200px"]');
 

@@ -88,7 +88,7 @@
 <?php
                     foreach($phases as $phase){
 ?>
-                        <option vnd_email_trigger="<?=$phase->phase_trigger_vendor_email?>" value="<?=$phase->phase_id?>" <?= ($result->phase_id == $phase->phase_id) ? "selected='selected'" : "";?>><?=$phase->phase_id?>) <?=$phase->phase_name?></option>  
+                        <option vnd_email_trigger="<?=$phase->phase_trigger_vendor_email?>" value="<?=$phase->phase_id?>" <?= ($result->phase_id == $phase->phase_id) ? "selected='selected'" : "";?>><?=$phase->phase_id?>) <?=$phase->phase_name?> - <?=ucfirst($phase->phase_status)?></option>  
 <?php                        
                     }        
 ?>              
