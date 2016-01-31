@@ -41,8 +41,12 @@
     overflow: auto;
 }
 
-.wp-list-table #notification_id, .wp-list-table #lead_id{
+.wp-list-table #notification_id{
     width:25px;
+}
+
+.wp-list-table #lead_id{
+    width:165px;
 }
 
 .wp-list-table #vendor_id{
