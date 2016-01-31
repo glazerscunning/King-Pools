@@ -25,8 +25,8 @@ function king_projects() {
     include('king_projects.php');  
 }
 
-function king_work_orders() {  
-    include('king_work_orders.php');  
+function king_configure_pricing() {  
+    include('king_configure_pricing.php');  
 }
 
 function king_estimates() {  
@@ -39,6 +39,7 @@ function king_notifications() {
 
 function king_admin_actions() {   	
     add_menu_page("King Management Portal", "King Portal", 1, "king-management-portal", "king_admin");
+    add_submenu_page("king-management-portal", "Configure Pricing", "Configure Pricing", 1, "pricing-configuration", "king_configure_pricing");
     add_submenu_page("king-management-portal", "Estimate Management", "Manage Estimates", 1, "estimate-management", "king_estimates");
     add_submenu_page("king-management-portal", "Customer Management", "Manage Customers", 1, "customer-management", "king_customers");
     add_submenu_page("king-management-portal", "Project Management", "Manage Projects", 1, "project-management", "king_projects");

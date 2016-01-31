@@ -65,3 +65,7 @@
     width:250px;
 }
 
+.king_pricing_form .form-table th, .king_pricing_form .form-table td  {
+    padding: 0px;
+}
+
