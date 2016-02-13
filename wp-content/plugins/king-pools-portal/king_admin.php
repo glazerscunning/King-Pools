@@ -25,7 +25,10 @@ if($_POST['king_hidden'] == 'Y') {
     update_option('project_frequency', $project_frequency);
     
     $vendor_frequency = $_POST['vendor_frequency'];  
-    update_option('vendor_frequency', $vendor_frequency);      
+    update_option('vendor_frequency', $vendor_frequency);   
+
+    $pool_estimate_id = $_POST['pool_estimate_id'];  
+    update_option('pool_estimate_id', $pool_estimate_id);          
         
     $back_office_email = $_POST['back_office_email'];  
     update_option('back_office_email', $back_office_email);
@@ -46,6 +49,7 @@ $company_state = get_option('company_state');
 $company_zip = get_option('company_zip');
 $project_frequency = get_option('project_frequency');
 $vendor_frequency = get_option('vendor_frequency');
+$pool_estimate_id = get_option('pool_estimate_id');
 $project_stale_threshold = get_option('project_stale_threshold');
 $outstanding_project_threshold = get_option('outstanding_project_threshold');
 $back_office_email = get_option('back_office_email');
@@ -147,7 +151,13 @@ $customer_project_subject = get_option('customer_project_subject');
                         <label><?php _e("Vendor Frequency: " ); ?></label>
                     </th>
                     <td><input type="text" name="vendor_frequency" value="<?=$vendor_frequency; ?>" size="20"><i>(Number of days in between vendor update notifications)</i></td>
-                </tr>                  
+                </tr>   
+                <tr>
+                    <th>
+                        <label><?php _e("Pool Estimate Form ID: " ); ?></label>
+                    </th>
+                    <td><input type="text" name="pool_estimate_id" value="<?=$pool_estimate_id; ?>" size="20"><i>(ID of the Pool Estimator Gravity Form)</i></td>
+                </tr>                                  
             </tbody>
         </table>        
         
