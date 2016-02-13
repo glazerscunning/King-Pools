@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Responsive Theme\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-04-25 13:42:58 UTC\n"
-"PO-Revision-Date: 2014-05-28 06:06:35 UTC\n"
+"PO-Revision-Date: 2014-05-09 06:09:56 UTC\n"
 "Last-Translator: Web Translate It <support@webtranslateit.com>\n"
 "Language-Team: Hungarian, Hungary\n"
 "MIME-Version: 1.0\n"
@@ -391,7 +391,7 @@ msgstr ""
 
 #: core/includes/functions-sidebar.php
 msgid "Top Widget"
-msgstr "Felső Widgetek"
+msgstr ""
 
 #: blog.php
 #. Template Name of the plugin/theme
@@ -573,7 +573,7 @@ msgstr "Lásd a dokumentációt"
 
 #: core/includes/theme-options/theme-options.php
 msgid "Paste your shortcode, video or image source"
-msgstr "Illessz be egy shortcode-ot, egy videót vagy egy kép forrását"
+msgstr ""
 
 #: core/includes/theme-options/theme-options.php
 msgid "Default Layouts"
@@ -806,7 +806,7 @@ msgstr ""
 
 #: core/includes/functions-update.php
 msgid "blog post"
-msgstr "blog bejegyzés"
+msgstr ""
 
 #: core/includes/theme-options/theme-options.php
 msgid "Blog Title Toggle"
@@ -832,7 +832,7 @@ msgstr ""
 
 #: core/includes/theme-options/theme-options.php
 msgid "CSS Styles"
-msgstr "Egyedi CSS stílusok"
+msgstr ""
 
 #. Author of the plugin/theme
 # INSTRUCTION: Author of the plugin/theme
@@ -858,11 +858,11 @@ msgstr "Egyéni címplap engedélyezése"
 
 #: core/includes/theme-options/theme-options.php
 msgid "Enable minified css?"
-msgstr "Tömörített CSS engedélyezése?"
+msgstr ""
 
 #: core/includes/functions-sidebar.php
 msgid "Footer Widget"
-msgstr "Lábléc widgetek"
+msgstr ""
 
 #: core/includes/functions.php
 #: core/includes/functions.php
@@ -881,7 +881,7 @@ msgstr ""
 
 #: core/includes/functions.php
 msgid "Installing Plugin: %s"
-msgstr "Bővítmény telepítése: %s"
+msgstr ""
 
 #: core/includes/functions.php
 #: core/includes/functions.php
@@ -949,7 +949,7 @@ msgstr "Felülírja a WordPress %1skezdőoldal beállítását%2s"
 
 #: core/includes/functions.php
 msgid "Plugin activated successfully."
-msgstr "A bővítmény sikeresen aktiválva"
+msgstr ""
 
 #. Theme Name of the plugin/theme
 # INSTRUCTION: Theme Name of the plugin/theme
@@ -971,7 +971,7 @@ msgstr ""
 
 #: core/includes/theme-options/theme-options.php
 msgid "Scripts"
-msgstr "Egyedi szkriptek"
+msgstr ""
 
 #: searchform.php
 msgid "Search for:"
@@ -985,7 +985,7 @@ msgstr ""
 #. Translators: This is a big update. Please read the blog post beforeupdating.
 # INSTRUCTION: Translators: This is a big update. Please read the blog post beforeupdating.
 msgid "<strong>WARNING:</strong> There is a big <strong>Responsive Theme</strong> update available. Please read the %1$s before updating."
-msgstr "<strong>FIGYELEM:</strong> Egy jelentős frissítés érhető el a <strong>Responsive</strong> sablonból. Kérlek, olvasd el ezt a blogbejegyzést, mielőtt frissítenél: %1$s"
+msgstr ""
 
 #: core/includes/functions.php
 msgid "The Custom Front Page is disabled. You can enable it in the <a href=\"%1$s\">theme settings</a>."
@@ -1010,7 +1010,7 @@ msgstr "Fordítás"
 
 #: core/includes/classes/Responsive_Options.php
 msgid "Upgrade"
-msgstr "Frissítés"
+msgstr ""
 
 #: core/includes/functions.php
 msgid "Welcome to %1$s! Upgrade to %2$s today."

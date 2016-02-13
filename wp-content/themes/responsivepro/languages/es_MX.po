@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Responsive Theme\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-04-25 13:42:58 UTC\n"
-"PO-Revision-Date: 2014-05-28 06:06:33 UTC\n"
+"PO-Revision-Date: 2014-05-09 06:09:54 UTC\n"
 "Last-Translator: Web Translate It <support@webtranslateit.com>\n"
 "Language-Team: Spanish, Mexico\n"
 "MIME-Version: 1.0\n"
@@ -399,10 +399,11 @@ msgstr "Widget superior"
 msgid "Blog (full posts)"
 msgstr "Blog (publicaciones completas)"
 
+#: blog-excerpt.php
 #. Template Name of the plugin/theme
 # INSTRUCTION: Template Name of the plugin/theme
 msgid "Blog Excerpt (summary)"
-msgstr "Extracto del Blog (sumario)"
+msgstr "Blog Compacto (s&oacute;lo res&uacute;menes)"
 
 #: content-sidebar-page.php
 #: core/includes/post-custom-meta.php
@@ -738,59 +739,74 @@ msgstr "Incrustar en footer.php &darr;"
 msgid "Enter your custom footer script."
 msgstr "Introduce el script para tu pie de p&aacute;gina personalizado."
 
+#: core/includes/functions.php
 msgid "Activate Add Ons"
-msgstr "Activar Add Ons"
+msgstr ""
 
+#: core/includes/functions.php
 msgid "All plugins installed and activated successfully. %s"
-msgstr "Todos los plugins instalados y activados con éxito. %s"
+msgstr ""
 
 #: core/includes/classes/Responsive_Options.php
 #: core/includes/theme-options/theme-options.php
 msgid "All theme settings will be lost!"
 msgstr ""
 
+#: core/includes/functions-sidebar.php
 msgid "Area 10 - sidebar-colophon.php, 100% width Footer widgets"
-msgstr "Area 10 - sidebar-colophon.php, Widgets de Pie de Pagina de 100% de ancho"
+msgstr ""
 
+#: core/includes/functions-sidebar.php
 msgid "Area 11 - sidebar-top.php - Displays on the right of the header"
-msgstr "Area 11 - sidebar-top.php - Se ve a la Derecha del encabezado"
+msgstr ""
 
+#: core/includes/functions-sidebar.php
 msgid "Area 12 - sidebar-footer.php - Maximum of 3 widgets per row"
-msgstr "Area 12 - sidebar-footer.php - Maximo de 3 widgets por fila"
+msgstr ""
 
+#: core/includes/functions-sidebar.php
 msgid "Area 1 - sidebar.php - Displays on Default, Blog, Blog Excerpt page templates"
-msgstr "Area 1 - sidebar.php - Se ve por defecto, Blog, Plantillas de Paginas de Extracto de Blog"
+msgstr ""
 
+#: core/includes/functions-sidebar.php
 msgid "Area 2 - sidebar-right.php - Displays on Content/Sidebar page templates"
-msgstr "Area 2 - sidebar-right.php - Se ve en Contenido/Plantillas con Barra Lateral"
+msgstr ""
 
+#: core/includes/functions-sidebar.php
 msgid "Area 3 - sidebar-left.php - Displays on Sidebar/Content page templates"
-msgstr "Area 3 - sidebar-left.php - Se ve en barra lateral/Plantilla de Pagina de Contenido"
+msgstr ""
 
+#: core/includes/functions-sidebar.php
 msgid "Area 4 - sidebar-left-half.php - Displays on Sidebar Half Page/Content page templates"
-msgstr "Area 4 - sidebar-left-half.php - Se ve en on Barra Lateral de Mitad de Pagina/Plantilla de Pagina de Contenidos"
+msgstr ""
 
+#: core/includes/functions-sidebar.php
 msgid "Area 5 - sidebar-right-half.php - Displays on Content/Sidebar Half Page page templates"
-msgstr "Area 5 - sidebar-right-half.php - Se ve en Contenido/Plantilla Barra Lateral de Mitad de Pagina"
+msgstr ""
 
+#: core/includes/functions-sidebar.php
 msgid "Area 6 - sidebar-home.php - Displays on the Home Page"
-msgstr "Area 6 - sidebar-home.php - Se ve en Pagina de Inicio"
+msgstr ""
 
+#: core/includes/functions-sidebar.php
 msgid "Area 7 - sidebar-home.php - Displays on the Home Page"
-msgstr "Area 7 - sidebar-home.php - Se ve en Pagina de Inicio"
+msgstr ""
 
+#: core/includes/functions-sidebar.php
 msgid "Area 8 - sidebar-home.php - Displays on the Home Page"
-msgstr "rea 8 - sidebar-home.php - Se ve en Pagina de Inicio"
+msgstr ""
 
+#: core/includes/functions-sidebar.php
 msgid "Area 9 - sidebar-gallery.php - Displays on the page after an image has been clicked in a Gallery"
-msgstr "Area 9 - sidebar-gallery.php - Se ve en la Pagina luego de ser clickeada una imagen en una Galeria"
+msgstr ""
 
 #: core/includes/theme-options/theme-options.php
 msgid "Blog"
 msgstr ""
 
+#: core/includes/functions-update.php
 msgid "blog post"
-msgstr "entrada en el blog"
+msgstr ""
 
 #: core/includes/theme-options/theme-options.php
 msgid "Blog Title Toggle"
@@ -814,8 +830,9 @@ msgstr ""
 msgid "Click OK to Restore."
 msgstr ""
 
+#: core/includes/theme-options/theme-options.php
 msgid "CSS Styles"
-msgstr "Estilos CSS"
+msgstr ""
 
 #. Author of the plugin/theme
 # INSTRUCTION: Author of the plugin/theme
@@ -835,18 +852,22 @@ msgstr ""
 msgid "Do you want to restore?"
 msgstr ""
 
+#: core/includes/theme-options/theme-options.php
 msgid "Enable Custom Front Page"
-msgstr "Habilitar Portada Personalizada"
+msgstr ""
 
 #: core/includes/theme-options/theme-options.php
 msgid "Enable minified css?"
 msgstr ""
 
+#: core/includes/functions-sidebar.php
 msgid "Footer Widget"
-msgstr "Widget del Pie de Pagina"
+msgstr ""
 
+#: core/includes/functions.php
+#: core/includes/functions.php
 msgid "Help"
-msgstr "Ayuda"
+msgstr ""
 
 #. Author URI of the plugin/theme
 # INSTRUCTION: Author URI of the plugin/theme
@@ -858,11 +879,14 @@ msgstr "http://cyberchimps.com"
 msgid "http://cyberchimps.com/responsive-theme/"
 msgstr ""
 
+#: core/includes/functions.php
 msgid "Installing Plugin: %s"
-msgstr "Instalando Plugin: %s"
+msgstr ""
 
+#: core/includes/functions.php
+#: core/includes/functions.php
 msgid "Instructions"
-msgstr "Instrucciones"
+msgstr ""
 
 #: core/includes/functions.php
 msgid "Activate installed plugin"
@@ -919,27 +943,31 @@ msgid "This theme requires the following plugin: %1$s."
 msgid_plural "This theme requires the following plugins: %1$s."
 msgstr[0] ""
 
+#: core/includes/theme-options/theme-options.php
 msgid "Overrides the WordPress %1sfront page option%2s"
-msgstr "Anular opcione%2s de portada de WordPress%1s"
+msgstr ""
 
+#: core/includes/functions.php
 msgid "Plugin activated successfully."
-msgstr "Plugin activado correctamente."
+msgstr ""
 
 #. Theme Name of the plugin/theme
 # INSTRUCTION: Theme Name of the plugin/theme
 msgid "Responsive"
 msgstr ""
 
+#: core/includes/functions.php
 msgid "Responsive Add Features"
-msgstr "características Responsivo"
+msgstr ""
 
 #. Description of the plugin/theme
 # INSTRUCTION: Description of the plugin/theme
 msgid "Responsive Theme is a flexible foundation with fluid grid system that adapts your website to mobile devices and the desktop or any other viewing environment. Theme features 9 Page Templates, 11 Widget Areas, 6 Template Layouts, 4 Menu Positions and more. Powerful but simple Theme Options for full CMS control with easy Logo Upload, Social Networking and Webmaster Tools etc. Responsive is WooCommerce Compatible, Multilingual Ready (WPML), RTL-Language Support, Retina-Ready, Search Engine Friendly, W3C Markup Validated and currently translated into 45 languages. Cross-Browser compatible. <a href=\"http://cyberchimps.com/forum/free/responsive/\">Official support forum</a> (http://cyberchimps.com/forum/free/responsive/)"
 msgstr ""
 
+#: core/includes/functions.php
 msgid "Return to Required Plugins Installer"
-msgstr "Retornar al instalador de Plugins Requeridos"
+msgstr ""
 
 #: core/includes/theme-options/theme-options.php
 msgid "Scripts"
@@ -949,13 +977,15 @@ msgstr ""
 msgid "Search for:"
 msgstr ""
 
+#: core/includes/functions.php
 msgid "Something went wrong with the plugin API."
-msgstr "Algo salió mal con la API del plugin"
+msgstr ""
 
+#: core/includes/functions-update.php
 #. Translators: This is a big update. Please read the blog post beforeupdating.
 # INSTRUCTION: Translators: This is a big update. Please read the blog post beforeupdating.
 msgid "<strong>WARNING:</strong> There is a big <strong>Responsive Theme</strong> update available. Please read the %1$s before updating."
-msgstr "<strong>ADVERTENCIA:</strong> Hay una importante actualizacion disponible para <strong>Responsive Theme</strong>. Por Favor Leer el %1$s antes de actualizar."
+msgstr ""
 
 #: core/includes/functions.php
 msgid "The Custom Front Page is disabled. You can enable it in the <a href=\"%1$s\">theme settings</a>."
@@ -973,11 +1003,16 @@ msgstr ""
 msgid "Title Text"
 msgstr ""
 
+#: core/includes/functions.php
+#: core/includes/functions.php
 msgid "Translate"
-msgstr "Traducir"
+msgstr ""
 
+#: core/includes/classes/Responsive_Options.php
 msgid "Upgrade"
-msgstr "Actualizar"
+msgstr ""
 
+#: core/includes/functions.php
 msgid "Welcome to %1$s! Upgrade to %2$s today."
-msgstr "Bienvenido a %1$s! Actualizar a %2$s hoy."
+msgstr ""
+

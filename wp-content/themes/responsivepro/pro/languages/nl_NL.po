@@ -444,14 +444,16 @@ msgstr "Voer naam van Google Font in"
 msgid "Events Plugin Settings"
 msgstr "Gebeurtenissen Plugin configuratie"
 
+#: options/options-customizer.php
 msgid "Featured Area Layouts"
-msgstr "Uitgelichte zone"
+msgstr ""
 
 msgid "Full Width"
 msgstr "Volledige breedte"
 
+#: options/options-customizer.php
 msgid "Full Width Reverse"
-msgstr "Omgekeerd op volledige breedte"
+msgstr ""
 
 #: options/options-customizer.php
 msgid "Menu Background Color"
@@ -485,8 +487,9 @@ msgstr "Menu Tekstkleur"
 msgid "Page:"
 msgstr "Pagina:"
 
+#: options/options-customizer.php
 msgid "Reverse"
-msgstr "Omgekeerd"
+msgstr ""
 
 msgid "Search Page:"
 msgstr "Zoekpagina:"

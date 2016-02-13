@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Responsive Theme\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-04-25 13:42:58 UTC\n"
-"PO-Revision-Date: 2014-05-28 06:06:35 UTC\n"
+"PO-Revision-Date: 2014-05-09 06:09:56 UTC\n"
 "Last-Translator: Web Translate It <support@webtranslateit.com>\n"
 "Language-Team: Indonesian, Indonesia\n"
 "MIME-Version: 1.0\n"
@@ -446,10 +446,11 @@ msgstr ""
 msgid "Landing Page (no menu)"
 msgstr ""
 
+#: sitemap.php
 #. Template Name of the plugin/theme
 # INSTRUCTION: Template Name of the plugin/theme
 msgid "Sitemap"
-msgstr "Daftar isi"
+msgstr ""
 
 #: core/includes/post-custom-meta.php
 msgid "Layout"
@@ -1014,3 +1015,4 @@ msgstr ""
 #: core/includes/functions.php
 msgid "Welcome to %1$s! Upgrade to %2$s today."
 msgstr ""
+

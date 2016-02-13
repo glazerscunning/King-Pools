@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Responsive Pro\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-13 12:03:13 UTC\n"
-"PO-Revision-Date: 2014-05-26 13:27:11 UTC\n"
+"PO-Revision-Date: 2014-01-20 17:27:18 UTC\n"
 "Last-Translator: Web Translate It <support@webtranslateit.com>\n"
 "Language-Team: Ukrainian, Ukraine\n"
 "MIME-Version: 1.0\n"
@@ -14,476 +14,510 @@ msgstr ""
 
 #: options/options-customizer.php
 msgid "Hello, World!"
-msgstr "Привіт, Світ!"
+msgstr ""
 
 #: options/options-customizer.php
 msgid "Your H2 subheadline here"
-msgstr "Підзаголовок можна розмістити тут"
+msgstr ""
 
 #: options/options-customizer.php
 msgid "Your title, subtitle and this very content is editable from Theme Option. Call to Action button and its destination link as well. Image on your right can be an image or even YouTube video if you like."
-msgstr "Заголовок, підзаголовок і цей текст можна редагувати та замінити в розділі Налаштунки Теми. Текст кнопки заклику (Гасло), та URL-адресу на яку вона вказує, також можна змінити. Зображення праворуч можна замінити на будь-яке інше, або на відео з мережі YouTube."
+msgstr ""
 
 #: functions.php
 msgid "No Comments &darr;"
-msgstr "Коментарів нема &darr;"
+msgstr "Коментарів нема ↓"
 
 #: functions.php
 msgid "1 Comment &darr;"
-msgstr "1 Коментар &darr;"
+msgstr "1 Коментар ↓"
 
 #: functions.php
 msgid "% Comments &darr;"
 msgstr "% Коментарів &darr;"
 
+#: functions.php
 msgid "View all posts by %s"
-msgstr "Всі публікації користувача %s"
+msgstr ""
 
 #: functions.php
 #: functions.php
 msgid "Instructions"
-msgstr "Інструкції"
+msgstr ""
 
 #: functions.php
 #: functions.php
 msgid "Help"
-msgstr "Довідка"
+msgstr ""
 
 #: functions.php
 #: functions.php
 msgid "Translate"
-msgstr "Перекласти"
+msgstr ""
 
 #: functions.php
 #: functions.php
 msgid "Showcase"
-msgstr "Матеріали по Темі"
+msgstr ""
 
 #: functions.php
 #: functions.php
 msgid "More Themes"
-msgstr "Більше Тем"
+msgstr ""
 
 #: options/options-customizer.php
 #: options/options-customizer.php
 #: options/options-customizer.php
 msgid "Content/Sidebar"
-msgstr "Контент/Бічна панель"
+msgstr ""
 
 #: options/options-customizer.php
 #: options/options-customizer.php
 #: options/options-customizer.php
 msgid "Sidebar/Content"
-msgstr "Бічна панель/Контент"
+msgstr ""
 
 #: options/options-customizer.php
 #: options/options-customizer.php
 #: options/options-customizer.php
 msgid "Content/Sidebar Half Page"
-msgstr "Контент/...і бічна панель на пів сторінки"
+msgstr ""
 
 #: options/options-customizer.php
 #: options/options-customizer.php
 #: options/options-customizer.php
 msgid "Sidebar/Content Half Page"
-msgstr "Бічна панель/...і контент на пів сторінки"
+msgstr ""
 
 #: options/options-customizer.php
 #: options/options-customizer.php
 #: options/options-customizer.php
 msgid "Full Width Page (no sidebar)"
-msgstr "На весь екран (без бічної панелі)"
+msgstr ""
 
 #: options/options-customizer.php
 msgid "Default"
-msgstr "Стандартно"
+msgstr ""
 
 #: options/options.php
 msgid "Disable Call to Action Button?"
-msgstr "Вимкнути кнопку заклику (Гасло)?"
+msgstr ""
 
 #: options/options-customizer.php
 #: options/options-customizer.php
 msgid "Logo Upload"
-msgstr "Додати Лого"
+msgstr ""
 
 #: options/options.php
 msgid "Home Page"
-msgstr "Домівка"
+msgstr ""
 
 #: options/options-customizer.php
 msgid "Headline"
-msgstr "Заголовок"
+msgstr ""
 
 #: options/options-customizer.php
 msgid "Subheadline"
-msgstr "Підзаголовок"
+msgstr ""
 
 #: options/options-customizer.php
 msgid "Call to Action (URL)"
-msgstr "Веб-адреса кнопки заклику (URL)"
+msgstr ""
 
 #: options/options-customizer.php
 msgid "Enter your call to action URL"
-msgstr "Впишіть веб-адресу кнопки заклику (URL)"
+msgstr ""
 
+#: options/options-customizer.php
 msgid "Call to Action (Text)"
-msgstr "Текст на кнопці заклику"
+msgstr ""
 
 #: options/options-customizer.php
 msgid "Enter your call to action text"
-msgstr "Впишіть текст кнопки заклику"
+msgstr ""
 
 #: options/options-customizer.php
 msgid "Featured Content"
-msgstr "Рекламований контент"
+msgstr ""
 
 #: options/options-customizer.php
 msgid "Paste your shortcode, video or image source"
-msgstr "Впишіть веб-адресу зображення, відео або HTML-сумісний код."
+msgstr ""
 
 #: options/options-customizer.php
 msgid "Default Layouts"
-msgstr "Стандартний вигляд (макет)"
+msgstr ""
 
 #: options/options-customizer.php
 #: options/options.php
 msgid "Default Static Page Layout"
-msgstr "Стандартний вигляд домашньої (фіксованої) сторінки"
+msgstr ""
 
 #: options/options-customizer.php
 #: options/options.php
 msgid "Default Single Blog Post Layout"
-msgstr "Стандартний вигляд сторінки з однією публікацією"
+msgstr ""
 
 #: options/options-customizer.php
 #: options/options.php
 msgid "Default Blog Posts Index Layout"
-msgstr "Стандартний вигляд сторінки дописів"
+msgstr ""
 
 #: options/options.php
 msgid "Social Icons"
-msgstr "Іконки Соцмереж"
+msgstr ""
 
+#: functions.php
 msgid " by "
-msgstr " автор "
+msgstr ""
 
 #: functions.php
 msgid "Posted in"
-msgstr "Опубліковано в"
+msgstr ""
 
+#: functions.php
 msgid "Tags:"
-msgstr "Теги:"
+msgstr ""
 
 #: functions.php
 msgid "Permalink to %s"
-msgstr "Постійна адреса %s"
+msgstr ""
 
 #: functions.php
 msgid "Responsive Pro Options"
-msgstr "Налаштування теми Responsive Pro"
+msgstr ""
 
 #: options/options-customizer.php
 msgid "Customize"
-msgstr "Змінити"
+msgstr ""
 
 #: options/options-customizer.php
 msgid "Skins"
-msgstr "Теми (скіни)"
+msgstr ""
 
 #: options/options-customizer.php
 msgid "Skin Color"
-msgstr "Колір теми"
+msgstr ""
 
 #: options/options-customizer.php
 msgid "Typography"
-msgstr "Шрифти"
+msgstr ""
 
 #: options/options-customizer.php
 msgid "Heading Font"
-msgstr "Шрифт заголовка"
+msgstr ""
 
 #: options/options-customizer.php
 msgid "Google Heading Font"
-msgstr "Шрифти заголовка (від Google)"
+msgstr ""
 
 #: options/options-customizer.php
 msgid "Text Font"
-msgstr "Шрифт тексту"
+msgstr ""
 
 #: options/options-customizer.php
 msgid "Google Text Font"
-msgstr "Шрифти від Google"
+msgstr ""
 
 #: options/options-customizer.php
 msgid "Font Size"
-msgstr "Розмір шрифту"
+msgstr ""
 
 #: options/options-customizer.php
 msgid "Headings Color"
-msgstr "Колір тексту заголовка"
+msgstr ""
 
 #: options/options-customizer.php
 msgid "Text Color"
-msgstr "Колір тексту"
+msgstr ""
 
 #: options/options-customizer.php
 msgid "Link Color"
-msgstr "Колір посилання"
+msgstr ""
 
 #: options/options-customizer.php
 msgid "Link Hover Color"
-msgstr "Колір посилання при наведенні"
+msgstr ""
 
+#: options/options-customizer.php
 msgid "Enable custom front page"
-msgstr "Змінити Домашню сторінки"
+msgstr ""
 
 #: options/options-customizer.php
 msgid "Content"
-msgstr "Зміст"
+msgstr ""
 
 #: options/options.php
 msgid "Personalize"
-msgstr "Персоналізувати"
+msgstr ""
 
 #: options/options.php
 msgid "Favicon"
-msgstr "Зображення в рядку веб-адреси (Favicon)"
+msgstr ""
 
 #: options/options.php
 msgid "maximum width and height 32px"
-msgstr "Максимальні ширина та висота 32px"
+msgstr ""
 
 #: options/options.php
 #: options/options.php
 msgid "Upload"
-msgstr "Завантажити"
+msgstr ""
 
 #: options/options.php
 msgid "Apple Touch Icon"
-msgstr "Піктограма Apple Touch"
+msgstr ""
 
 #: options/options.php
 msgid "Custom mobile menu title"
-msgstr "Налаштувати стандартне меню для мобільних пристроїв"
+msgstr ""
 
 #: options/options.php
 msgid "Enter a custom mobile menu title"
-msgstr "Впишіть заголовок (назву) для стандартного меню на мобільних пристроях"
+msgstr ""
 
 #: options/options.php
 msgid "Templates"
-msgstr "Шаблони"
+msgstr ""
 
 #: options/options.php
 msgid "Excerpt Text"
-msgstr "Скорочений опис"
+msgstr ""
 
 #: options/options.php
 msgid "Read More..."
-msgstr "Читати все..."
+msgstr ""
 
 #: options/options.php
 msgid "Excerpt Length"
-msgstr "Довжина скороченого опису (к-сть символів)"
+msgstr ""
 
 #: options/options.php
 msgid "50"
-msgstr "50"
+msgstr ""
 
 #: options/options.php
 #: options/options.php
 #: options/options.php
 msgid "Post Excerpts"
-msgstr "Публікація скороченого опису"
+msgstr ""
 
 #: options/options.php
 #: options/options.php
 #: options/options.php
 msgid "Featured Images"
-msgstr "Рекламовані зображення"
+msgstr ""
 
 #: options/options.php
 #: options/options.php
 #: options/options.php
 msgid "Post Byline Author"
-msgstr "Вказувати автора публікації"
+msgstr ""
 
 #: options/options.php
 #: options/options.php
 #: options/options.php
 msgid "Post Byline Categories"
-msgstr "Публікувати категорії кожної публікації"
+msgstr ""
 
 #: options/options.php
 #: options/options.php
 #: options/options.php
 msgid "Post Byline Date"
-msgstr "Вказувати дату публікації"
+msgstr ""
 
 #: options/options.php
 #: options/options.php
 #: options/options.php
 msgid "Post Byline Comments"
-msgstr "Відображати коментарі до публікацій"
+msgstr ""
 
 #: options/options.php
 #: options/options.php
 #: options/options.php
 msgid "Post Byline Tags"
-msgstr "Публікувати Теги"
+msgstr ""
 
 #: options/options.php
 msgid "404 Title"
-msgstr "404 Заголовок"
+msgstr ""
 
+#: options/options.php
 msgid "404 Content"
-msgstr "404 Контент"
+msgstr ""
 
 #: options/options.php
 msgid "Scripts"
-msgstr "Скрипти"
+msgstr ""
 
 #: options/options.php
 msgid "Plugins"
-msgstr "Плагіни"
+msgstr ""
 
 #: options/options.php
 msgid "Please activate The Events Calendar plugin"
-msgstr "Будь ласка, активуйте плагін \"Календар подій\""
+msgstr ""
 
 #: options/options.php
 msgid "Install Events Calendar Plugin"
-msgstr "Встановити плагін \"Календар подій\""
+msgstr ""
 
 #: options/options.php
 msgid "WooCommerce Settings"
-msgstr "Налаштунки WooCommerce"
+msgstr ""
 
 #: options/options.php
 msgid "Please activate WooCommerce plugin"
-msgstr "Будь ласка, активуйте плагін WooCommerce"
+msgstr ""
 
 #: options/options.php
 msgid "Install WooCommerce Plugin"
-msgstr "Встановити плагін WooCommerce"
+msgstr ""
 
 #: options/options.php
 msgid "BBPress Settings"
-msgstr "Налаштунки BBPress"
+msgstr ""
 
 #: options/options.php
 msgid "Please activate BBPress plugin"
-msgstr "Будь ласка, активуйте плагін BBPress"
+msgstr ""
 
 #: options/options.php
 msgid "Install BBPress Plugin"
-msgstr "Встановити плагін BBPress"
+msgstr ""
 
 #: options/options.php
 msgid "Digital Downloads Settings"
-msgstr "Налаштунки Цифрових Завантажень"
+msgstr ""
 
 #: options/options.php
 msgid "Please activate Easy Digital Downloads plugin"
-msgstr "Будь ласка, активуйте плагін Цифрових Завантажень"
+msgstr ""
 
 #: options/options.php
 msgid "Install Easy Digital Downloads Plugin"
-msgstr "Встановити плагін Цифрових Завантажень"
+msgstr ""
 
+#: options/options.php
 msgid "404 Error"
-msgstr "404 Помилка"
+msgstr ""
 
+#: options/options.php
 msgid "404 Page:"
-msgstr "404 - Сторінка помилки:"
+msgstr ""
 
+#: options/options.php
 msgid "Archive page:"
-msgstr "Архів:"
+msgstr ""
 
+#: options/options.php
 msgid "Blog"
-msgstr "Сайт"
+msgstr ""
 
+#: options/options.php
 msgid "Blog Post Page:"
-msgstr "Сторінка публікацій:"
+msgstr ""
 
+#: options/options.php
 msgid "Blog Title Toggle"
-msgstr "Змінити назву сайту"
+msgstr ""
 
+#: options/options.php
+#: options/options.php
 msgid "check to disable"
-msgstr "Позначте щоб вимкнути"
+msgstr ""
 
+#: options/options.php
 msgid "CSS Styles"
-msgstr "Стилі CSS"
+msgstr ""
 
+#: options/options-customizer.php
+#: options/options-customizer.php
 msgid "Custom CSS"
-msgstr "Редактор CSS"
+msgstr ""
 
+#: options/options.php
 msgid "Disable breadcrumb list?"
-msgstr "Вимкнути рядок з адресою навігації по сайту?"
+msgstr ""
 
+#: options/options-customizer.php
 msgid "Enable Menu Background gradient"
-msgstr "Активувати фоновий градієнт для меню"
+msgstr ""
 
 #: options/options-customizer.php
 #: options/options-customizer.php
 msgid "Enter the Google Font name"
-msgstr "Впишіть назву шрифта Google Font"
+msgstr ""
 
+#: options/options.php
 msgid "Events Plugin Settings"
-msgstr "Налаштунки плагіна \"Події\""
+msgstr ""
 
 #: options/options-customizer.php
 msgid "Featured Area Layouts"
-msgstr "Вагляд рекламного блоку"
+msgstr ""
 
 #: options/options-customizer.php
 msgid "Full Width"
-msgstr "На весь екран"
+msgstr ""
 
+#: options/options-customizer.php
 msgid "Full Width Reverse"
-msgstr "Повноекранний реверс"
+msgstr ""
 
+#: options/options-customizer.php
 msgid "Menu Background Color"
-msgstr "Фоновий колір у меню"
+msgstr ""
 
+#: options/options-customizer.php
 msgid "Menu Background Color 2"
-msgstr "Другий фоновий колір меню"
+msgstr ""
 
 #: options/options-customizer.php
 msgid "Menu Colors"
-msgstr "Кольори меню"
+msgstr ""
 
+#: options/options-customizer.php
 msgid "Menu Hover Color"
-msgstr "Колір меню при наведенні"
+msgstr ""
 
+#: options/options-customizer.php
 msgid "Menu Hover Text Color"
-msgstr "Колір тексту меню при наведенні"
+msgstr ""
 
+#: options/options-customizer.php
 msgid "Menu Item Color"
-msgstr "Колір елемента Меню"
+msgstr ""
 
+#: options/options-customizer.php
 msgid "Menu Text Color"
-msgstr "Колір тексту в меню"
+msgstr ""
 
+#: options/options.php
 msgid "Page:"
-msgstr "Сторінка:"
+msgstr ""
 
+#: options/options-customizer.php
 msgid "Reverse"
-msgstr "Навпаки (реверс)"
+msgstr ""
 
+#: options/options.php
 msgid "Search Page:"
-msgstr "Пошук на сторінці:"
+msgstr ""
 
+#: options/options.php
 msgid "Single post page:"
-msgstr "Сторінка з однією публікацією"
+msgstr ""
 
+#: options/options.php
 msgid "Sorry, no content found"
-msgstr "Вибачте, нічого не знайдено"
+msgstr ""
 
 #: functions.php
 msgid "<span class=\"%1$s\">Posted on </span>%2$s"
-msgstr "<span class=\"%1$s\">Опубліковано </span>%2$s"
+msgstr ""
 
+#: options/options.php
 msgid "Title Text"
-msgstr "Текст заголовка"
+msgstr ""
+

@@ -8,43 +8,6 @@ Changelog Legend:
 [x] = Deleted
 [!] = Bugs
 
-1.0.1.2 (09/20/2014)
-[*] Update WooCommerce Settings link in theme options
-[*] Updated theme options links to CyberChimps.com
-[+] Added taxonomy description support to archive pages
-[!] Fix sytax error
-[+] Add iFeatured Slider as recommended plugin
-[*] Escape variables to improve security
-[*] Small code improvements
-[!] Fix stray p tag in activation notice
-[+] Add wrapper for Breadcrumb NavXT
-[+] Define content width depending on page template
-[*] Improve the organisation of the functions
-[*] Clean up code
-[!] Fix screen reader link
-[+] Add filter `responsive_number_footer_widgets` to change when the `fit` class is added in the footer widgets.
-[!] Improve Responsive Grid
-[x] Remove default logo as per WordPress.org guidelines
-[!] Fix very long submenu items
-[!] Fix path to ie7-fix.gif
-[!] Fix front page error message
-[*] Add taxonomy description to archive page
-[*] Seperate featured area from front page
-[*] Update cs_CZ translation
-[*] Small code style improvements
-[!] Update NL translation to fix theme options bug
-[*] Improve page template switch from Responsive v2.0
-[*] Enclose add_image_size within a function
-[+] Added `get_post_type()` to all `get_template_part()` so that CPT can have a differnt template in the child theme.
-[*] Improve comply to coding standards
-[*] Update Translations
-
-1.0.1.1 (06/20/2014)
-[*] Updated translations
-[*] Improved WooCommerce shop styles
-[*] Display correct featured image size on the differnt pages
-[+] Change page templates when reverting from Responsive v2.0
-
 1.0.1.0 (05/23/2014)
 [*] Updated link to landing page for Responsive 2.0
 [*] Updated translations

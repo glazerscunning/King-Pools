@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Responsive Theme\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-04-25 13:42:58 UTC\n"
-"PO-Revision-Date: 2014-05-28 06:06:34 UTC\n"
+"PO-Revision-Date: 2014-05-09 06:09:55 UTC\n"
 "Last-Translator: Web Translate It <support@webtranslateit.com>\n"
 "Language-Team: Hebrew, Israel\n"
 "MIME-Version: 1.0\n"
@@ -325,8 +325,10 @@ msgstr "תפריט בתת-כותרת עליונה"
 msgid "Footer Menu"
 msgstr "תפריט בתחתית הדף"
 
+#: core/includes/functions.php
+#: core/includes/functions.php
 msgid "Page %s"
-msgstr "עמוד %s"
+msgstr ""
 
 #: core/includes/functions.php
 msgid "<span class=\"%1$s\">Posted on </span>%2$s<span class=\"%3$s\"> by </span>%4$s"
@@ -391,40 +393,52 @@ msgstr "ווידג'ט Colophon"
 msgid "Top Widget"
 msgstr "ווידג'ט עליון"
 
+#: blog.php
 #. Template Name of the plugin/theme
 # INSTRUCTION: Template Name of the plugin/theme
 msgid "Blog (full posts)"
-msgstr "בלוג (עמודים מלאים)"
+msgstr ""
 
+#: blog-excerpt.php
 #. Template Name of the plugin/theme
 # INSTRUCTION: Template Name of the plugin/theme
 msgid "Blog Excerpt (summary)"
-msgstr "קטע מבלוג (תקציר)"
+msgstr ""
 
+#: content-sidebar-page.php
+#: core/includes/post-custom-meta.php
 #. Template Name of the plugin/theme
 # INSTRUCTION: Template Name of the plugin/theme
 msgid "Content/Sidebar"
-msgstr "תוכן/עמוד-צד"
+msgstr ""
 
+#: sidebar-content-page.php
+#: core/includes/post-custom-meta.php
 #. Template Name of the plugin/theme
 # INSTRUCTION: Template Name of the plugin/theme
 msgid "Sidebar/Content"
-msgstr "סרגל-צד/תוכן"
+msgstr ""
 
+#: content-sidebar-half-page.php
+#: core/includes/post-custom-meta.php
 #. Template Name of the plugin/theme
 # INSTRUCTION: Template Name of the plugin/theme
 msgid "Content/Sidebar Half Page"
-msgstr "תוכן/סרגל-צד חצי עמוד"
+msgstr ""
 
+#: sidebar-content-half-page.php
+#: core/includes/post-custom-meta.php
 #. Template Name of the plugin/theme
 # INSTRUCTION: Template Name of the plugin/theme
 msgid "Sidebar/Content Half Page"
-msgstr "סרגל-צד/תוכן חצי עמוד"
+msgstr ""
 
+#: full-width-page.php
+#: core/includes/post-custom-meta.php
 #. Template Name of the plugin/theme
 # INSTRUCTION: Template Name of the plugin/theme
 msgid "Full Width Page (no sidebar)"
-msgstr "עמוד מלא (ללא סרגל-צד)"
+msgstr ""
 
 #: landing-page.php
 #. Template Name of the plugin/theme
@@ -432,16 +446,20 @@ msgstr "עמוד מלא (ללא סרגל-צד)"
 msgid "Landing Page (no menu)"
 msgstr ""
 
+#: sitemap.php
 #. Template Name of the plugin/theme
 # INSTRUCTION: Template Name of the plugin/theme
 msgid "Sitemap"
-msgstr "מפת-אתר"
+msgstr ""
 
+#: core/includes/post-custom-meta.php
 msgid "Layout"
-msgstr "פריסה"
+msgstr ""
 
+#: core/includes/classes/Responsive_Options.php
+#: core/includes/post-custom-meta.php
 msgid "Default"
-msgstr "ברירת-מחדל"
+msgstr ""
 
 #: core/includes/theme-options/theme-options.php
 #: front-page.php
@@ -484,8 +502,9 @@ msgstr "להפוך את כפתור הקריאה לפעולה ללא זמין?"
 msgid "Save Options"
 msgstr "שמור אפשרויות"
 
+#: core/includes/classes/Responsive_Options.php
 msgid "Restore Defaults"
-msgstr "שחזור ברירת-מחדל"
+msgstr ""
 
 #: core/includes/theme-options/theme-options.php
 msgid "Logo Upload"
@@ -556,14 +575,17 @@ msgstr "ראה תיעוד"
 msgid "Paste your shortcode, video or image source"
 msgstr "הדבק Shortcode, וידאו או מקור לתמונה"
 
+#: core/includes/theme-options/theme-options.php
 msgid "Default Layouts"
-msgstr "פריסת ברירת-מחדל"
+msgstr ""
 
+#: core/includes/theme-options/theme-options.php
 msgid "Default Static Page Layout"
-msgstr "פריסת ברירת-מחדל עמוד סטטי"
+msgstr ""
 
+#: core/includes/theme-options/theme-options.php
 msgid "Default Single Blog Post Layout"
-msgstr "פריסת ברירת-מחדל עמוד בלוג"
+msgstr ""
 
 #: core/includes/theme-options/theme-options.php
 msgid "Default Blog Posts Index Layout"
@@ -932,7 +954,7 @@ msgstr ""
 #. Theme Name of the plugin/theme
 # INSTRUCTION: Theme Name of the plugin/theme
 msgid "Responsive"
-msgstr "רספונסיבי"
+msgstr ""
 
 #: core/includes/functions.php
 msgid "Responsive Add Features"
@@ -993,3 +1015,4 @@ msgstr ""
 #: core/includes/functions.php
 msgid "Welcome to %1$s! Upgrade to %2$s today."
 msgstr ""
+

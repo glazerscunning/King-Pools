@@ -89,19 +89,20 @@ function responsive_pro_theme_support() {
 	<div id="header-links-wrapper" class="grid col-940">
 		<div class="header-links">
 
-			<a class="button" href="<?php echo esc_url( 'http://cyberchimps.com/guides/r-pro/' ); ?>" title="<?php esc_attr_e( 'Instructions', 'responsive' ); ?>" target="_blank">
+			<a class="button" href="<?php echo esc_url( 'http://themeid.com/docs/', 'responsive' ); ?>" title="<?php esc_attr_e( 'Instructions', 'responsive' ); ?>" target="_blank">
 				<?php _e( 'Instructions', 'responsive' ); ?></a>
 
-			<a class="button button-primary" href="<?php echo esc_url( 'http://cyberchimps.com/forum/pro/responsive/' ); ?>" title="<?php esc_attr_e( 'Help', 'responsive' ); ?>" target="_blank">
+			<a class="button button-primary" href="<?php echo esc_url( 'http://themeid.com/support/', 'responsive' ); ?>" title="<?php esc_attr_e( 'Help', 'responsive' ); ?>" target="_blank">
 				<?php _e( 'Help', 'responsive' ); ?></a>
 
-			<a class="button" href="<?php echo esc_url( 'https://webtranslateit.com/en/projects/6525-Responsive-Pro' ); ?>" title="<?php esc_attr_e( 'Translate', 'responsive' ); ?>" target="_blank">
+			<a class="button" href="<?php echo esc_url( 'https://webtranslateit.com/en/projects/3598-Responsive-Theme', 'responsive' ); ?>" title="<?php esc_attr_e( 'Translate', 'responsive' ); ?>"
+			   target="_blank">
 				<?php _e( 'Translate', 'responsive' ); ?></a>
 
-			<a class="button" href="<?php echo esc_url( 'http://cyberchimps.com/showcase/' ); ?>" title="<?php esc_attr_e( 'Showcase', 'responsive' ); ?>" target="_blank">
+			<a class="button" href="<?php echo esc_url( 'http://themeid.com/showcase/', 'responsive' ); ?>" title="<?php esc_attr_e( 'Showcase', 'responsive' ); ?>" target="_blank">
 				<?php _e( 'Showcase', 'responsive' ); ?></a>
 
-			<a class="button" href="<?php echo esc_url( 'http://cyberchimps.com/store/' ); ?>" title="<?php esc_attr_e( 'More Themes', 'responsive' ); ?>" target="_blank">
+			<a class="button" href="<?php echo esc_url( 'http://themeid.com/themes/', 'responsive' ); ?>" title="<?php esc_attr_e( 'More Themes', 'responsive' ); ?>" target="_blank">
 				<?php _e( 'More Themes', 'responsive' ); ?></a>
 
 		</div>
@@ -408,23 +409,19 @@ if( !function_exists( 'responsive_pro_featured_image' ) ) {
 		// Get value of post byline tags toggle option from theme option for different pages
 		if( is_single() ) {
 			$show_image = responsive_pro_get_option( 'single_featured_images' );
-			$size = '';
-			$attr = array();
-		} elseif( is_archive() ) {
+		}
+		elseif( is_archive() ) {
 			$show_image = responsive_pro_get_option( 'archive_featured_images' );
-			$size = 'thumbnail';
-			$attr = array( 'class' => 'alignleft' );
-		} else {
+		}
+		else {
 			$show_image = responsive_pro_get_option( 'blog_featured_images' );
-			$size = '';
-			$attr = array();
 		}
 
 		if( $show_image && has_post_thumbnail() ) {
 			?>
 			<div class="featured-image">
 				<a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'responsive' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark">
-					<?php the_post_thumbnail( $size, $attr ); ?>
+					<?php the_post_thumbnail( 'thumbnail', array( 'class' => 'alignleft' ) ); ?>
 				</a>
 			</div>
 		<?php
@@ -737,10 +734,10 @@ function responsive_pro_excerpt_more_text( $more ) {
 	global $post;
 
 	// Get the excerpt more text from option.
-	$text = responsive_pro_get_option( 'excerpts_text', __( 'Read more &#8250;', 'responsive' ) );
-	$text = $text == '' ? __( 'Read more &#8250;', 'responsive' ) : $text;
+	$text = responsive_pro_get_option( 'excerpts_text', 'Read More...' );
+	$text = $text == '' ? 'Read More...' : $text;
 
-	$more = '<span class="ellipsis">&hellip;</span><p><a class="excerpt-more blog-excerpt" href="' . get_permalink( $post->ID ) . '">' . esc_html( $text ) . '</a></p>';
+	$more = '<p><a class="excerpt-more blog-excerpt" href="' . get_permalink( $post->ID ) . '">' . esc_html( $text ) . '</a></p>';
 
 	return $more;
 
@@ -778,9 +775,7 @@ function responsive_pro_admin_bar_link() {
  * Add admin_bar_menu hook inside admin_init so that it will not affect the frontend admin bar.
  */
 function responsive_pro_init_admin_bar_menu() {
-	if ( ! current_user_can('manage_options') ) {
-		add_action( 'admin_bar_menu', 'responsive_pro_admin_bar_link', 133 );
-	}
+	add_action( 'admin_bar_menu', 'responsive_pro_admin_bar_link', 133 );
 }
 
 add_action( 'admin_init', 'responsive_pro_init_admin_bar_menu' );

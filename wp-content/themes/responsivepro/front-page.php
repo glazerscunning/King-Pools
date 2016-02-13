@@ -52,3 +52,4 @@ else {
 
 	get_footer();
 }
+?>

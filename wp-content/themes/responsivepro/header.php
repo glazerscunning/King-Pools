@@ -48,9 +48,7 @@ if( !defined( 'ABSPATH' ) ) {
 
 <?php responsive_container(); // before container hook ?>
 <div id="container" class="hfeed">
-	<div class="skip-container cf">
-		<a class="skip-link screen-reader-text focusable" href="#content"><?php _e( '&darr; Skip to Main Content', 'responsive' ); ?></a>
-	</div><!-- .skip-container -->
+
 <?php responsive_header(); // before header hook ?>
 	<div id="header">
 

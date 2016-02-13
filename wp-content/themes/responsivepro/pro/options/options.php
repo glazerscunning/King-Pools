@@ -479,7 +479,7 @@ function responsive_pro_options( $options ) {
 				'type'          => 'plugins',
 				'id'            => 'woocommerce',
 				'url'           => 'woocommerce/woocommerce.php',
-				'settings_page' => 'admin.php?page=wc-settings',
+				'settings_page' => 'admin.php?page=woocommerce_settings',
 				'width'         => 'full'
 			),
 			array(

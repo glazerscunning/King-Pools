@@ -24,24 +24,23 @@
 @media screen and (max-width:767px) and (min-width:481px) {
 	/* Shop page */
 	.woocommerce-page #content-woocommerce .products li.product {
-		width: 30%;
+		width: 29.7%;
 	}
 
-	.woocommerce ul.products li.product:nth-child(3n + 1),.woocommerce-page ul.products li.product:nth-child(3n + 1) {
-		float: left;
-		margin-right: 5% !important;
-		clear: left!important;
+	.woocommerce ul.products li.first, .woocommerce-page ul.products li.first {
+		clear: none !important;
 	}
 
-	.woocommerce ul.products li.product:nth-child(3n + 2),.woocommerce-page ul.products li.product:nth-child(3n + 2) {
-		float: left;
-		clear: none;
+	.woocommerce ul.products li.first, .woocommerce-page ul.products li.last {
+		margin-right: 3.8% !important;
 	}
 
-	.woocommerce ul.products li.product:nth-child(3n),.woocommerce-page ul.products li.product:nth-child(3n) {
-		float: right;
+	.woocommerce-page #content-woocommerce .products li.product:nth-child(3n + 3) {
 		margin-right: 0 !important;
-		clear: none;
+	}
+
+	.woocommerce-page #content-woocommerce .products li.product:nth-child(3n + 1) {
+		clear: left;
 	}
 
 	/* Product page */
@@ -56,6 +55,26 @@
 }
 
 @media screen and (max-width:480px) {
+	/* Shop page */
+	.woocommerce-page #content-woocommerce .products li.product {
+		width: 46.45%;
+	}
+
+	.woocommerce ul.products li.first, .woocommerce-page ul.products li.first {
+		clear: none !important;
+	}
+
+	.woocommerce ul.products li.first, .woocommerce-page ul.products li.last {
+		margin-right: 3.8% !important;
+	}
+
+	.woocommerce-page #content-woocommerce .products li.product:nth-child(even) {
+		margin-right: 0 !important;
+	}
+
+	.woocommerce-page #content-woocommerce .products li.product:nth-child(odd) {
+		clear: left;
+	}
 
 	/* Product page */
 	.single-product h1, .single-product h2 {
@@ -69,13 +88,6 @@
 
 	/* Checkout page */
 	.woocommerce-checkout .woocommerce .col2-set .col-1, .woocommerce-page .col2-set .col-1, .woocommerce-checkout .woocommerce .col2-set .col-2, .woocommerce-page .col2-set .col-2 {
-		width: 100%;
-	}
-}
-
-@media screen and (max-width:320px) {
-	/* Shop page */
-	.woocommerce-page #content-woocommerce .products li.product {
 		width: 100%;
 	}
 }

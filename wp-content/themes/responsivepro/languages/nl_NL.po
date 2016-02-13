@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Responsive Theme\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-04-25 13:42:58 UTC\n"
-"PO-Revision-Date: 2014-05-29 20:16:36 UTC\n"
+"PO-Revision-Date: 2014-05-09 06:09:58 UTC\n"
 "Last-Translator: Web Translate It <support@webtranslateit.com>\n"
 "Language-Team: Dutch, Netherlands\n"
 "MIME-Version: 1.0\n"
@@ -741,98 +741,98 @@ msgstr "Vul je aangepaste voettekstscript in."
 
 #: core/includes/functions.php
 msgid "Activate Add Ons"
-msgstr "Schakel add-ons in"
+msgstr ""
 
 #: core/includes/functions.php
 msgid "All plugins installed and activated successfully. %s"
-msgstr "Alle plugins werden met succes geïnstalleerd en geactiveerd. %s"
+msgstr ""
 
 #: core/includes/classes/Responsive_Options.php
 #: core/includes/theme-options/theme-options.php
 msgid "All theme settings will be lost!"
-msgstr "Alle thema-instellingen zullen verloren gaan!"
+msgstr ""
 
 #: core/includes/functions-sidebar.php
 msgid "Area 10 - sidebar-colophon.php, 100% width Footer widgets"
-msgstr "Gebied 10 - sidebar-colophon.php, voettekst widget van volledige (100%) breedte"
+msgstr ""
 
 #: core/includes/functions-sidebar.php
 msgid "Area 11 - sidebar-top.php - Displays on the right of the header"
-msgstr "Gebied 11 - sidebar-top.php - Wordt rechts van de header weergegeven"
+msgstr ""
 
 #: core/includes/functions-sidebar.php
 msgid "Area 12 - sidebar-footer.php - Maximum of 3 widgets per row"
-msgstr "Gebied 12 - sidebar-footer.php - Maximaal 3 widgets per rij"
+msgstr ""
 
 #: core/includes/functions-sidebar.php
 msgid "Area 1 - sidebar.php - Displays on Default, Blog, Blog Excerpt page templates"
-msgstr "Gebied 1 - sidebar.php - Wordt weergegeven op standaard sjablonen, blogpaginasjablonen en op uittreksels van blogpaginasjablonen"
+msgstr ""
 
 #: core/includes/functions-sidebar.php
 msgid "Area 2 - sidebar-right.php - Displays on Content/Sidebar page templates"
-msgstr "Gebied 2 - sidebar-right - Wordt weergegeven op inhoud/zijbalk paginasjablonen"
+msgstr ""
 
 #: core/includes/functions-sidebar.php
 msgid "Area 3 - sidebar-left.php - Displays on Sidebar/Content page templates"
-msgstr "Gebied 3 - sidebar-left.php - Wordt weergegeven op zijbalk/inhoud paginasjablonen"
+msgstr ""
 
 #: core/includes/functions-sidebar.php
 msgid "Area 4 - sidebar-left-half.php - Displays on Sidebar Half Page/Content page templates"
-msgstr "Gebied 4 - sidebar-left-half.php - Wordt weergegeven op de Zijbalk halverwege pagina/Inhoud paginasjablonen"
+msgstr ""
 
 #: core/includes/functions-sidebar.php
 msgid "Area 5 - sidebar-right-half.php - Displays on Content/Sidebar Half Page page templates"
-msgstr "Gebied 5 - sidebar-right-half.php - Wordt weergegeven op de Inhoud/Zijbalk halverwege pagina paginasjablonen"
+msgstr ""
 
 #: core/includes/functions-sidebar.php
 msgid "Area 6 - sidebar-home.php - Displays on the Home Page"
-msgstr "Gebied 6 - sidebar-home.php - Wordt op de homepagina weergegeven"
+msgstr ""
 
 #: core/includes/functions-sidebar.php
 msgid "Area 7 - sidebar-home.php - Displays on the Home Page"
-msgstr "Gebied 7 - sidebar-home.php - Wordt op de hompagina weergegeven"
+msgstr ""
 
 #: core/includes/functions-sidebar.php
 msgid "Area 8 - sidebar-home.php - Displays on the Home Page"
-msgstr "Gebied 8 - sidebar-home.php - Wordt op de homepagina weergegeven"
+msgstr ""
 
 #: core/includes/functions-sidebar.php
 msgid "Area 9 - sidebar-gallery.php - Displays on the page after an image has been clicked in a Gallery"
-msgstr "Gebied 9 - sidebar-gallery.php - Wordt weergegeven op de pagina die verschijnt nadat er op een afbeelding in een galerij is geklikt"
+msgstr ""
 
 #: core/includes/theme-options/theme-options.php
 msgid "Blog"
-msgstr "Blog"
+msgstr ""
 
 #: core/includes/functions-update.php
 msgid "blog post"
-msgstr "blogbericht"
+msgstr ""
 
 #: core/includes/theme-options/theme-options.php
 msgid "Blog Title Toggle"
-msgstr "Blogtitel aan/uit-knop"
+msgstr ""
 
 #: core/includes/theme-options/theme-options.php
 #: core/includes/theme-options/theme-options.php
 msgid "check to disable"
-msgstr "Selecteer om uit te schakelen"
+msgstr ""
 
 #: core/includes/theme-options/theme-options.php
 msgid "check to enable"
-msgstr "Selecteer om in te schakelen"
+msgstr ""
 
 #: core/includes/theme-options/theme-options.php
 msgid "Click here"
-msgstr "Klik hier"
+msgstr ""
 
 #: core/includes/classes/Responsive_Options.php
 #: core/includes/theme-options/theme-options.php
 msgid "Click OK to Restore."
-msgstr "Klik op OK om de instellingen terug te zetten"
+msgstr ""
 
 #: core/includes/theme-options/theme-options.php
 msgid "CSS Styles"
-msgstr "CSS-stijlen"
+msgstr ""
 
 #. Author of the plugin/theme
 # INSTRUCTION: Author of the plugin/theme
@@ -841,28 +841,28 @@ msgstr "CyberChimps.com"
 
 #: header.php
 msgid "&darr; Skip to Main Content"
-msgstr "&darr; Doorgaan naar hoofdinhoud"
+msgstr ""
 
 #: core/includes/theme-options/theme-options.php
 msgid "Disable breadcrumb list?"
-msgstr "Kruimelpad uitschakelen?"
+msgstr ""
 
 #: core/includes/classes/Responsive_Options.php
 #: core/includes/theme-options/theme-options.php
 msgid "Do you want to restore?"
-msgstr "Wilt u de instellingen terugzetten?"
+msgstr ""
 
 #: core/includes/theme-options/theme-options.php
 msgid "Enable Custom Front Page"
-msgstr "Schakel aangepaste frontpagina in"
+msgstr "Schakel Aangepaste voorpagina in"
 
 #: core/includes/theme-options/theme-options.php
 msgid "Enable minified css?"
-msgstr "Gecomprimeerde css inschakelen?"
+msgstr ""
 
 #: core/includes/functions-sidebar.php
 msgid "Footer Widget"
-msgstr "Voettekst widget"
+msgstr ""
 
 #: core/includes/functions.php
 #: core/includes/functions.php
@@ -877,11 +877,11 @@ msgstr "http://cyberchimps.com"
 #. Theme URI of the plugin/theme
 # INSTRUCTION: Theme URI of the plugin/theme
 msgid "http://cyberchimps.com/responsive-theme/"
-msgstr "http://cyberchimps.com/responsive-theme/"
+msgstr ""
 
 #: core/includes/functions.php
 msgid "Installing Plugin: %s"
-msgstr "Bezig met installeren plugin: %s"
+msgstr ""
 
 #: core/includes/functions.php
 #: core/includes/functions.php
@@ -891,127 +891,117 @@ msgstr "Instructies"
 #: core/includes/functions.php
 msgid "Activate installed plugin"
 msgid_plural "Activate installed plugins"
-msgstr[0] "Activeer geïnstalleerde plugin"
-msgstr[1] "Activeer geïnstalleerde plugins"
+msgstr[0] ""
 
 #: core/includes/functions.php
 msgid "Begin installing plugin"
 msgid_plural "Begin installing plugins"
-msgstr[0] "Begin met het installeren van de plugin"
-msgstr[1] "Begin met het installeren van de plugins"
+msgstr[0] ""
 
 #: comments.php
 msgid "One comment on &ldquo;%2$s&rdquo;"
 msgid_plural "%1$s comments on &ldquo;%2$s&rdquo;"
-msgstr[0] "Een reactie op &ldquo;%2$s&rdquo;"
-msgstr[1] "%1$s reacties op &ldquo;%2$s&rdquo;"
+msgstr[0] ""
 
 #: core/includes/functions.php
 msgid "Sorry, but you do not have the correct permissions to activate the %s plugin. Contact the administrator of this site for help on getting the plugin activated."
 msgid_plural ""
-msgstr[0] "Sorry, maar u heeft niet de juiste machtigingen om de %s plugin te activeren. Gelieve contact op te nemen met de beheerder van deze site voor hulp met de activatie van de plugin."
-msgstr[1] "Sorry, maar u heeft niet de juiste machtigingen om deze %s plugins te activeren. Gelieve contact op te nemen met de beheerder van deze site voor hulp met de activatie van deze plugins."
+msgstr[0] ""
 
 #: core/includes/functions.php
 msgid "Sorry, but you do not have the correct permissions to install the %s plugin. Contact the administrator of this site for help on getting the plugin installed."
 msgid_plural ""
-msgstr[0] "Sorry, maar u heeft niet de juiste machtigingen om de %s plugin te installeren. Gelieve contact op te nemen met de beheerder van deze site voor hulp met de installatie van de plugin. "
-msgstr[1] "Sorry, maar u heeft niet de juiste machtigingen om de %s plugins te installeren. Gelieve contact op te nemen met de beheerder van deze site voor hulp met de installatie van de plugins. "
+msgstr[0] ""
 
 #: core/includes/functions.php
 msgid "Sorry, but you do not have the correct permissions to update the %s plugin. Contact the administrator of this site for help on getting the plugin updated."
 msgid_plural ""
-msgstr[0] "Sorry, maar u heeft niet de juiste machtigingen om de %s plugin te updaten. Neem contact op met de beheerder van deze site voor hulp met het updaten van de plugin."
-msgstr[1] "Sorry, maar u heeft niet de juiste machtigingen om de %s plugins te updaten. Neem contact op met de beheerder van deze site voor hulp met het updaten van de plugins."
+msgstr[0] ""
 
 #: core/includes/functions.php
 msgid "The following plugin needs to be updated to its latest version to ensure maximum compatibility with this theme: %1$s."
 msgid_plural ""
-msgstr[0] "Volgende plugin moet geüpdatet worden naar de meest recente versie om een maximale compatibiliteit met dit thema te verzekeren: %1$s."
-msgstr[1] "Volgende plugins moeten geüpdatet worden naar hun meest recente versie om een maximale compatibiliteit met dit thema te verzekeren: %1$s."
+msgstr[0] ""
 
 #: core/includes/functions.php
 msgid "The following recommended plugin is currently inactive: %1$s."
 msgid_plural "The following recommended plugins are currently inactive: %1$s."
-msgstr[0] "Volgende aanbevolen plugin is momenteel uitgeschakeld: %1$s."
-msgstr[1] "Volgende aanbevolen plugins zijn momenteel uitgeschakeld: %1$s."
+msgstr[0] ""
 
 #: core/includes/functions.php
 msgid "The following required plugin is currently inactive: %1$s."
 msgid_plural "The following required plugins are currently inactive: %1$s."
-msgstr[0] "Volgende vereiste plugin is momenteel uitgeschakeld: %1$s."
-msgstr[1] "Volgende vereiste plugins zijn momenteel uitgeschakeld: %1$s."
+msgstr[0] ""
 
 #: core/includes/functions.php
 msgid "This theme recommends the following plugin: %1$s."
 msgid_plural "This theme recommends the following plugins: %1$s."
-msgstr[0] "Dit thema raadt volgende plugin aan: %1$s."
-msgstr[1] "Dit thema raadt volgende plugins aan: %1$s."
+msgstr[0] ""
 
 #: core/includes/functions.php
 msgid "This theme requires the following plugin: %1$s."
 msgid_plural "This theme requires the following plugins: %1$s."
-msgstr[0] "Dit thema heeft volgende plugin nodig: %1$s."
-msgstr[1] "Dit thema heeft volgende plugins nodig: %1$s."
+msgstr[0] ""
 
+#: core/includes/theme-options/theme-options.php
 msgid "Overrides the WordPress %1sfront page option%2s"
-msgstr "Overschrijft de Wordpress %1sfrontpaginaoptie%2s"
+msgstr ""
 
 #: core/includes/functions.php
 msgid "Plugin activated successfully."
-msgstr "Plugin met succes geactiveerd."
+msgstr ""
 
 #. Theme Name of the plugin/theme
 # INSTRUCTION: Theme Name of the plugin/theme
 msgid "Responsive"
-msgstr "Responsive"
+msgstr ""
 
 #: core/includes/functions.php
 msgid "Responsive Add Features"
-msgstr "Responsive functies toevoegen"
+msgstr ""
 
 #. Description of the plugin/theme
 # INSTRUCTION: Description of the plugin/theme
 msgid "Responsive Theme is a flexible foundation with fluid grid system that adapts your website to mobile devices and the desktop or any other viewing environment. Theme features 9 Page Templates, 11 Widget Areas, 6 Template Layouts, 4 Menu Positions and more. Powerful but simple Theme Options for full CMS control with easy Logo Upload, Social Networking and Webmaster Tools etc. Responsive is WooCommerce Compatible, Multilingual Ready (WPML), RTL-Language Support, Retina-Ready, Search Engine Friendly, W3C Markup Validated and currently translated into 45 languages. Cross-Browser compatible. <a href=\"http://cyberchimps.com/forum/free/responsive/\">Official support forum</a> (http://cyberchimps.com/forum/free/responsive/)"
-msgstr "Het Responsive thema is een flexibele basis met een veerkrachtig rastersysteem dat de weergave van uw website aanpast aan elk platform (Desktop, tablet, smartphone, enz.). Het thema heeft 9 paginasjablonen, 11 widget-gebieden, 6 sjabloonlayouts, 4 menuposities en meer. Krachtige maar eenvoudige themaopties voor volledige CMS-controle met eenvoudige logo-upload, hulpmiddelen voor sociale netwerken en webmasters enz. Responsive is compatibel met WooCommerce, meertalig (WPML), ondersteuning voor talen die van rechts naar links (RTL) worden geschreven, Retina-ready, zoekmachinevriendelijk, W3C-opmaak gevalideerd en momenteel vertaald naar 45 talen. Cross-browser compatibel.  <a href=\"http://cyberchimps.com/forum/free/responsive/\">Officieel ondersteuningsforum</a> (http://cyberchimps.com/forum/free/responsive/)"
+msgstr ""
 
 #: core/includes/functions.php
 msgid "Return to Required Plugins Installer"
-msgstr "Terug naar vereist installatieprogramma voor plugins"
+msgstr ""
 
 #: core/includes/theme-options/theme-options.php
 msgid "Scripts"
-msgstr "Scripts"
+msgstr ""
 
 #: searchform.php
 msgid "Search for:"
-msgstr "Zoeken naar:"
+msgstr ""
 
 #: core/includes/functions.php
 msgid "Something went wrong with the plugin API."
-msgstr "Er ging iets mis met de plugin API."
+msgstr ""
 
 #: core/includes/functions-update.php
 #. Translators: This is a big update. Please read the blog post beforeupdating.
 # INSTRUCTION: Translators: This is a big update. Please read the blog post beforeupdating.
 msgid "<strong>WARNING:</strong> There is a big <strong>Responsive Theme</strong> update available. Please read the %1$s before updating."
-msgstr "<strong>OPGELET:</strong> Er is een belangrijke <strong>Responsive Theme</strong> update beschikbaar. Gelieve eerst de %1$s na te lezen alvorens te updaten."
+msgstr ""
 
 #: core/includes/functions.php
 msgid "The Custom Front Page is disabled. You can enable it in the <a href=\"%1$s\">theme settings</a>."
-msgstr "De aangepaste frontpagina is uitgeschakeld. U kunt deze inschakelen in de <a href=\"%1$s\"> thema-instellingen</a>."
+msgstr ""
 
 #: core/includes/functions.php
 msgid "The Custom Front Page is enabled. You can disable it in the <a href=\"%1$s\">theme settings</a>."
-msgstr "De aangepaste frontpagina is ingeschakeld. U kunt deze uitschakelen in de <a href=\"%1$s\"> thema-instellingen</a>."
+msgstr ""
 
 #: core/includes/upsell/theme-upsell.php
 msgid "Themes You Can Trust"
-msgstr "Thema's waarop u kunt vertrouwen"
+msgstr ""
 
 #: core/includes/theme-options/theme-options.php
 msgid "Title Text"
-msgstr "Titel tekst"
+msgstr ""
 
 #: core/includes/functions.php
 #: core/includes/functions.php
@@ -1020,8 +1010,9 @@ msgstr "Vertaal"
 
 #: core/includes/classes/Responsive_Options.php
 msgid "Upgrade"
-msgstr "Upgrade"
+msgstr ""
 
 #: core/includes/functions.php
 msgid "Welcome to %1$s! Upgrade to %2$s today."
 msgstr "Welkom bij %1$s! Upgrade vandaag nog naar %2$s."
+
