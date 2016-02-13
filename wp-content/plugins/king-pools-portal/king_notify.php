@@ -33,7 +33,7 @@ jQuery(document).ready(function() {
 
     jQuery(".show_email_link").click(function(){
         jQuery("#notification_message_" + jQuery(this).attr('notification_id')).dialog({
-            width:500
+            width:750
         });
     });
 
