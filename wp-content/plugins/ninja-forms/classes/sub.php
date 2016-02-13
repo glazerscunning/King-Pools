@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * Submission.
  * This class handles storing, retrieving, editing a submission.
@@ -272,6 +272,22 @@ class NF_Sub {
 	 */
 	public function update_meta( $meta_key, $value ) {
 		return $this->add_meta( $meta_key, $value );
+	}
+
+	/**
+	 * Delete a meta value.
+	 *
+	 * @access public
+	 * @since 2.9
+	 * @return bool
+	 */
+	public function delete_meta( $meta_key, $value = '' ) {
+		if ( empty( $value ) ) {
+			return delete_post_meta( $this->sub_id, $meta_key );
+		} else {
+			return delete_post_meta( $this->sub_id, $meta_key, $value );
+		}
+		
 	}
 
 	/**

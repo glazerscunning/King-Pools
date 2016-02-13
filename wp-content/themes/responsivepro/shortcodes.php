@@ -6,7 +6,7 @@ add_shortcode('getRequestValue', function($atts){
 });
 
 add_shortcode('getEstimate', function($atts){
-    
+
     $king_pricing_options = get_option('king_pricing_options');
 
     $estimate_type = $atts['estimate_type'];
@@ -38,135 +38,135 @@ add_shortcode('getEstimate', function($atts){
     $options_estimate = 0;
     $total_estimate = 0;
     
+
     if($pool_type == 'diving-pool'){
         if($pool_size_diving == 'diving-small'){
-            $pool_estimate += $king_pricing_options['diving_small_price'];
+            $pool_estimate += intval($king_pricing_options['diving_small_price']);
         }else if($pool_size_diving == 'diving-medium'){
-            $pool_estimate += $king_pricing_options['diving_medium_price'];
+            $pool_estimate += intval($king_pricing_options['diving_medium_price']);
         }else if($pool_size_diving == 'diving-large'){
-            $pool_estimate += $king_pricing_options['diving_large_price'];
+            $pool_estimate += intval($king_pricing_options['diving_large_price']);
         }
     } else if($pool_type == 'activity-pool'){
         if($pool_size_activity == 'activity-small'){
-            $pool_estimate += $king_pricing_options['play_small_price'];
+            $pool_estimate += intval($king_pricing_options['play_small_price']);
         }else if($pool_size_activity == 'activity-medium'){
-            $pool_estimate += $king_pricing_options['play_medium_price'];
+            $pool_estimate += intval($king_pricing_options['play_medium_price']);
         }else if($pool_size_activity == 'activity-large'){
-            $pool_estimate += $king_pricing_options['play_large_price'];
+            $pool_estimate += intval($king_pricing_options['play_large_price']);
         }
     }
     
     if($spa_option == 'yes'){
         if($spa_size == 'level'){
-            $pool_estimate += $king_pricing_options['spa_level_price'];
+            $pool_estimate += intval($king_pricing_options['spa_level_price']);
         }else if($spa_size == 'raised-medium'){
-            $pool_estimate += $king_pricing_options['spa_medium_price'];
+            $pool_estimate += intval($king_pricing_options['spa_medium_price']);
         }else if($spa_size == 'raised-large'){
-            $pool_estimate += $king_pricing_options['spa_large_price'];
+            $pool_estimate += intval($king_pricing_options['spa_large_price']);
         }
     }
     
     if($decking_option == 'small'){
-        $pool_estimate += $king_pricing_options['decking_small_price'];
+        $pool_estimate += intval($king_pricing_options['decking_small_price']);
     }else if($decking_option == 'medium'){
-        $pool_estimate += $king_pricing_options['decking_medium_price'];
+        $pool_estimate += intval($king_pricing_options['decking_medium_price']);
     }else if($decking_option == 'large'){
-        $pool_estimate += $king_pricing_options['decking_large_price'];
+        $pool_estimate += intval($king_pricing_options['decking_large_price']);
     }
     
     if($rock_waterfall_option == 'small'){
-        $options_estimate += $king_pricing_options['rockwfall_small_price'];
+        $options_estimate += intval($king_pricing_options['rockwfall_small_price']);
     }else if($rock_waterfall_option == 'medium'){
-        $options_estimate += $king_pricing_options['rockwfall_medium_price'];
+        $options_estimate += intval($king_pricing_options['rockwfall_medium_price']);
     }else if($rock_waterfall_option == 'large'){
-        $options_estimate += $king_pricing_options['rockwfall_large_price'];
+        $options_estimate += intval($king_pricing_options['rockwfall_large_price']);
     }
     
     if($tanning_ledge_option == 'step-down'){
-        $options_estimate += $king_pricing_options['tanledge_stepdown_price'];
+        $options_estimate += intval($king_pricing_options['tanledge_stepdown_price']);
     }else if($tanning_ledge_option == 'beach-entry'){
-        $options_estimate += $king_pricing_options['tanledge_beachentry_price'];
+        $options_estimate += intval($king_pricing_options['tanledge_beachentry_price']);
     }
 
     if($grotto_cave_option == 'standard'){
-        $options_estimate += $king_pricing_options['grottocave_standard_price'];
+        $options_estimate += intval($king_pricing_options['grottocave_standard_price']);
     }else if($grotto_cave_option == 'large'){
-        $options_estimate += $king_pricing_options['grottocave_large_price'];
+        $options_estimate += intval($king_pricing_options['grottocave_large_price']);
     }else if($grotto_cave_option == 'xlarge'){
-        $options_estimate += $king_pricing_options['grottocave_xlarge_price'];
+        $options_estimate += intval($king_pricing_options['grottocave_xlarge_price']);
     }
 
     if($rock_grotto_slide_option == 'small'){
-        $options_estimate += $king_pricing_options['rockwfall_grotto_slide_small_price'];
+        $options_estimate += intval($king_pricing_options['rockwfall_grotto_slide_small_price']);
     }else if($rock_grotto_slide_option == 'standard'){
-        $options_estimate += $king_pricing_options['rockwfall_grotto_slide_standard_price'];
+        $options_estimate += intval($king_pricing_options['rockwfall_grotto_slide_standard_price']);
     }
 
     if($slide_option == 'standard'){
-        $options_estimate += $king_pricing_options['slide_standard_price'];
+        $options_estimate += intval($king_pricing_options['slide_standard_price']);
     }else if($slide_option == 'large'){
-        $options_estimate += $king_pricing_options['slide_large_price'];
+        $options_estimate += intval($king_pricing_options['slide_large_price']);
     }
 
     if($lounge_table_option == 'stone-lounge'){
-        $options_estimate += $king_pricing_options['lounge_table_price'];
+        $options_estimate += intval($king_pricing_options['lounge_table_price']);
     }
 
     if($firepit_option == 'wood'){
-        $options_estimate += $king_pricing_options['firepit_wood_price'];
+        $options_estimate += intval($king_pricing_options['firepit_wood_price']);
     }else if($firepit_option == 'gas'){
-        $options_estimate += $king_pricing_options['firepit_gas_price'];
+        $options_estimate += intval($king_pricing_options['firepit_gas_price']);
     }
 
     if($fireplace_option == 'fire-place'){
-        $options_estimate += $king_pricing_options['fireplace_price'];
+        $options_estimate += intval($king_pricing_options['fireplace_price']);
     }
 
     if($outdoor_kitchen_option == 'outdoor-kitchen'){
-        $options_estimate += $king_pricing_options['outdoor_kitchen_price'];
+        $options_estimate += intval($king_pricing_options['outdoor_kitchen_price']);
     }
 
     if($big_green_egg_option == 'small'){
-        $options_estimate += $king_pricing_options['greenegg_small_price'];
+        $options_estimate += intval($king_pricing_options['greenegg_small_price']);
     }elseif ($big_green_egg_option == 'medium') {
-        $options_estimate += $king_pricing_options['greenegg_medium_price'];
+        $options_estimate += intval($king_pricing_options['greenegg_medium_price']);
     }elseif ($big_green_egg_option == 'large') {
-        $options_estimate += $king_pricing_options['greenegg_large_price'];
+        $options_estimate += intval($king_pricing_options['greenegg_large_price']);
     }
 
     if($gas_grill_option == 'small'){
-        $options_estimate += $king_pricing_options['gasgrill_small_price'];
+        $options_estimate += intval($king_pricing_options['gasgrill_small_price']);
     }elseif ($gas_grill_option == 'medium') {
-        $options_estimate += $king_pricing_options['gasgrill_medium_price'];
+        $options_estimate += intval($king_pricing_options['gasgrill_medium_price']);
     }elseif ($gas_grill_option == 'large') {
-        $options_estimate += $king_pricing_options['gasgrill_large_price'];
+        $options_estimate += intval($king_pricing_options['gasgrill_large_price']);
     }
 
     if($arbor_pergola_option == 'small'){
-        $options_estimate += $king_pricing_options['arbor_small_price'];
+        $options_estimate += intval($king_pricing_options['arbor_small_price']);
     }elseif ($arbor_pergola_option == 'medium') {
-        $options_estimate += $king_pricing_options['arbor_medium_price'];
+        $options_estimate += intval($king_pricing_options['arbor_medium_price']);
     }elseif ($arbor_pergola_option == 'large') {
-        $options_estimate += $king_pricing_options['arbor_large_price'];
+        $options_estimate += intval($king_pricing_options['arbor_large_price']);
     }
 
     if($gazebo_cabana_option == 'small'){
-        $options_estimate += $king_pricing_options['gazebo_small_price'];
+        $options_estimate += intval($king_pricing_options['gazebo_small_price']);
     }elseif ($gazebo_cabana_option == 'medium') {
-        $options_estimate += $king_pricing_options['gazebo_medium_price'];
+        $options_estimate += intval($king_pricing_options['gazebo_medium_price']);
     }elseif ($gazebo_cabana_option == 'large') {
-        $options_estimate += $king_pricing_options['gazebo_large_price'];
+        $options_estimate += intval($king_pricing_options['gazebo_large_price']);
     }
 
     if($landscaping_option == 'small'){
-        $options_estimate += $king_pricing_options['landscaping_small_price'];
+        $options_estimate += intval($king_pricing_options['landscaping_small_price']);
     }elseif ($landscaping_option == 'medium') {
-        $options_estimate += $king_pricing_options['landscaping_medium_price'];
+        $options_estimate += intval($king_pricing_options['landscaping_medium_price']);
     }elseif ($landscaping_option == 'large') {
-        $options_estimate += $king_pricing_options['landscaping_large_price'];
+        $options_estimate += intval($king_pricing_options['landscaping_large_price']);
     }
-    
-    
+
     $total_estimate = $pool_estimate + $options_estimate;
     
     if($estimate_type == 'form'){

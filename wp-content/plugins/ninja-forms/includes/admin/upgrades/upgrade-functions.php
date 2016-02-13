@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * Upgrade Functions
  *
@@ -13,7 +13,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
- * Display Upgrade Notices
+ * DEPRECATED - Display Upgrade Notices
  *
  * @since 2.7
  * @return void
@@ -28,8 +28,8 @@ function nf_show_upgrade_notices() {
 
 	if ( ! $n_conversion_complete ) {
 		printf(
-			'<div class="update-nag"><p>' . __( 'Ninja Forms needs to upgrade your form notifications, click <a href="%s">here</a> to start the upgrade.', 'ninja-forms' ) . '</p></div>',
-			admin_url( 'index.php?page=nf-processing&action=convert_notifications' )
+			'<div class="update-nag"><p>' . __( 'Ninja Forms needs to upgrade your form notifications, click %shere%s to start the upgrade.', 'ninja-forms' ) . '</p></div>',
+			'<a href="' . admin_url( 'index.php?page=nf-processing&action=convert_notifications' ) . '">', '</a>'
 		);
 	}
 
@@ -37,8 +37,8 @@ function nf_show_upgrade_notices() {
 
 	if ( $n_conversion_complete && ! $update_email_settings_complete ) {
 		printf(
-			'<div class="update-nag"><p>' . __( 'Ninja Forms needs to update your email settings, click <a href="%s">here</a> to start the upgrade.', 'ninja-forms' ) . '</p></div>',
-			admin_url( 'index.php?page=nf-processing&action=update_email_settings' )
+			'<div class="update-nag"><p>' . __( 'Ninja Forms needs to update your email settings, click %shere%s to start the upgrade.', 'ninja-forms' ) . '</p></div>',
+			'<a href="' . admin_url( 'index.php?page=nf-processing&action=update_email_settings' ) . '">', '</a>'
 		);
 	}
 
@@ -52,8 +52,8 @@ function nf_show_upgrade_notices() {
 			$step = 1;
 		}
 		printf(
-			'<div class="update-nag"><p>' . __( 'Ninja Forms needs to upgrade the submissions table, click <a href="%s">here</a> to start the upgrade.', 'ninja-forms' ) . '</p></div>',
-			admin_url( 'index.php?page=nf-upgrades&nf-upgrade=upgrade_subs_to_cpt&step=' . $step )
+			'<div class="update-nag"><p>' . __( 'Ninja Forms needs to upgrade the submissions table, click %shere%s to start the upgrade.', 'ninja-forms' ) . '</p></div>',
+			'<a href="' . admin_url( 'index.php?page=nf-upgrades&nf-upgrade=upgrade_subs_to_cpt&step=' . $step ) . '">', '</a>'
 		);
 	}
 
@@ -62,7 +62,7 @@ function nf_show_upgrade_notices() {
 	if ( $upgrade_notice != 'closed' ) {
 		printf(
 			'<div class="update-nag"><p>' . __( 'Thank you for updating to version 2.7 of Ninja Forms. Please update any Ninja Forms extensions from ', 'ninja-forms' ) . '<a href="http://ninjaforms.com/your-account/purchases/"</a>ninjaforms.com</a>. <a href="%s">Dismiss this notice</a></p></div>',
-			add_query_arg( array( 'nf_action' => 'dismiss_upgrade_notice' ) )
+			esc_url( add_query_arg( array( 'nf_action' => 'dismiss_upgrade_notice' ) ) )
 		);
 	}
 
@@ -73,8 +73,19 @@ function nf_show_upgrade_notices() {
 	if ( defined( 'NINJA_FORMS_SAVE_PROGRESS_VERSION' ) && version_compare( NINJA_FORMS_SAVE_PROGRESS_VERSION, '1.1.3' ) == -1 ) {
 		echo '<div class="error"><p>' . __( 'Your version of the Ninja Forms Save Progress extension isn\'t compatible with version 2.7 of Ninja Forms. It needs to be at least version 1.1.3. Please update this extension at ', 'ninja-forms' ) . '<a href="http://ninjaforms.com/your-account/purchases/"</a>ninjaforms.com</a></p></div>';
 	}
+
+	$forms_conversion_complete = get_option( 'nf_convert_forms_complete', false );
+
+	if ( ! $forms_conversion_complete ) {
+		$title = urlencode( __( 'Updating Form Database', 'ninja-forms' ) );
+		printf(
+			'<div class="update-nag">' . __( 'Ninja Forms needs to upgrade your form settings, click %shere%s to start the upgrade.', 'ninja-forms' ) . '</div>',
+			'<a href="' . admin_url( 'index.php?page=nf-processing&action=convert_forms&title=' . $title ) . '">', '</a>'
+		);
+	}
+
 }
-add_action( 'admin_notices', 'nf_show_upgrade_notices' );
+//add_action( 'admin_notices', 'nf_show_upgrade_notices' );
 
 /**
  * Triggers all upgrade functions
@@ -194,7 +205,7 @@ add_action( 'nf_upgrade_subs_to_cpt', 'nf_v27_upgrade_subs_to_cpt' );
  */
 function nf_dismiss_upgrade_notice() {
 	update_option( 'nf_upgrade_notice', 'closed' );
-	wp_redirect( remove_query_arg( 'nf_action' ) );
+	wp_redirect( esc_url_raw( remove_query_arg( 'nf_action' ) ) );
 	exit;
 }
 
@@ -320,10 +331,12 @@ function nf_change_email_fav() {
 
 	$wpdb->query( $sql );
 
+	if ( isset ( $email_address['id'] ) && ! empty ( $email_address['id'] ) ) {
+		$sql = 'INSERT INTO `'.NINJA_FORMS_FAV_FIELDS_TABLE_NAME.'` (`id`, `row_type`, `type`, `order`, `data`, `name`) VALUES
+		(' . $email_address['id'] . ', 0, \'_text\', 0, \'a:25:{s:5:"label";s:5:"Email";s:9:"label_pos";s:5:"above";s:13:"default_value";s:0:"";s:4:"mask";s:0:"";s:10:"datepicker";s:1:"0";s:5:"email";s:1:"1";s:10:"send_email";s:1:"0";s:10:"from_email";s:1:"0";s:10:"first_name";s:1:"0";s:9:"last_name";s:1:"0";s:9:"from_name";s:1:"0";s:14:"user_address_1";s:1:"0";s:14:"user_address_2";s:1:"0";s:9:"user_city";s:1:"0";s:8:"user_zip";s:1:"0";s:10:"user_phone";s:1:"0";s:10:"user_email";s:1:"1";s:21:"user_info_field_group";s:1:"1";s:3:"req";s:1:"0";s:5:"class";s:0:"";s:9:"show_help";s:1:"0";s:9:"help_text";s:0:"";s:17:"calc_auto_include";s:1:"0";s:11:"calc_option";s:1:"0";s:11:"conditional";s:0:"";}\', \'Email\')';
+		$wpdb->query($sql);		
+	}
 
-	$sql = 'INSERT INTO `'.NINJA_FORMS_FAV_FIELDS_TABLE_NAME.'` (`id`, `row_type`, `type`, `order`, `data`, `name`) VALUES
-	(' . $email_address['id'] . ', 0, \'_text\', 0, \'a:25:{s:5:"label";s:5:"Email";s:9:"label_pos";s:5:"above";s:13:"default_value";s:0:"";s:4:"mask";s:0:"";s:10:"datepicker";s:1:"0";s:5:"email";s:1:"1";s:10:"send_email";s:1:"0";s:10:"from_email";s:1:"0";s:10:"first_name";s:1:"0";s:9:"last_name";s:1:"0";s:9:"from_name";s:1:"0";s:14:"user_address_1";s:1:"0";s:14:"user_address_2";s:1:"0";s:9:"user_city";s:1:"0";s:8:"user_zip";s:1:"0";s:10:"user_phone";s:1:"0";s:10:"user_email";s:1:"1";s:21:"user_info_field_group";s:1:"1";s:3:"req";s:1:"0";s:5:"class";s:0:"";s:9:"show_help";s:1:"0";s:9:"help_text";s:0:"";s:17:"calc_auto_include";s:1:"0";s:11:"calc_option";s:1:"0";s:11:"conditional";s:0:"";}\', \'Email\')';
-	$wpdb->query($sql);
 }
 
 /**
@@ -346,3 +359,30 @@ function nf_change_state_dropdown_fav() {
 	
 	$wpdb->query( $sql );
 }
+
+/**
+ * Check our option to see if we've updated all of our forms.
+ * If we haven't, loop through all of our forms and see if any need to be updated.
+ *
+ * @since 2.9
+ * @return void
+ */
+function nf_29_update_all_form_settings_check() {
+
+	$forms_conversion_complete = get_option( 'nf_convert_forms_complete', false );
+
+	if ( $forms_conversion_complete )
+		return false;
+
+	$url = admin_url( 'index.php?page=nf-upgrade-handler' );
+	
+	?>
+	<script type="text/javascript">
+		jQuery(document).ready(function() {
+			window.location.href = "<?php echo $url; ?>";
+		} );
+	</script>
+	<?php
+}
+
+add_action( 'nf_admin_before_form_list', 'nf_29_update_all_form_settings_check' );

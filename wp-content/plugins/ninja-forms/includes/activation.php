@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined( 'ABSPATH' ) ) exit;
 
 /*
  *
@@ -64,20 +64,6 @@ function ninja_forms_activation( $network_wide ){
 
 		$opt = $plugin_settings;
 
-		if( ! empty( $current_version ) && version_compare( $current_version, '2.0' , '<' ) ){
-			nf_pre_20_activation( $current_version );
-			$opt = nf_pre_20_opts();
-		}
-
-		$sql = "CREATE TABLE IF NOT EXISTS ".NINJA_FORMS_TABLE_NAME." (
-		  `id` int(11) NOT NULL AUTO_INCREMENT,
-		  `data` longtext CHARACTER SET utf8 NOT NULL,
-		  `date_updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-		  PRIMARY KEY (`id`)
-		) DEFAULT CHARSET=utf8 ;";
-
-		dbDelta($sql);
-
 		$sql = "CREATE TABLE IF NOT EXISTS ".NINJA_FORMS_FAV_FIELDS_TABLE_NAME." (
 		`id` int(11) NOT NULL AUTO_INCREMENT,
 		`row_type` int(11) NOT NULL,
@@ -89,7 +75,10 @@ function ninja_forms_activation( $network_wide ){
 		) DEFAULT CHARSET=utf8;";
 
 		dbDelta($sql);
-
+		
+		if (!function_exists('nf_change_email_fav')){
+  			require_once dirname(__FILE__).'/admin/upgrades/upgrade-functions.php';
+		}
 		// Remove old email settings.
 		nf_change_email_fav();
 
@@ -193,6 +182,8 @@ function ninja_forms_activation( $network_wide ){
 			update_option( 'nf_upgrade_notice', 'closed' );
 			update_option( 'nf_update_email_settings_complete', true );
 			update_option( 'nf_email_fav_updated', true );
+			update_option( 'nf_convert_forms_complete', true );
+			update_option( 'nf_database_migrations', true );
 	 	}
 
 	 	update_option( "ninja_forms_settings", $opt );

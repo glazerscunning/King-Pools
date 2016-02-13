@@ -190,7 +190,7 @@ class Estimate_List_Table extends WP_List_Table{
         //Build row actions
         if(strtolower($item['status']) == 'unconverted'){
             $actions = array(
-                'edit'    => sprintf('<a href="?page=gf_entries&view=entry&id=1&lid=%s&filter=&paged=1&pos=1&field_id=&operator=">Edit</a>',$item['lead_id']),
+                'edit'    => sprintf('<a href="?page=gf_entries&view=entry&id=5&lid=%s&filter=&paged=1&pos=1&field_id=&operator=">Edit</a>',$item['lead_id']),
                 'convert' => sprintf('<a href="?page=%s&action=%s&id=%s&list=unconverted">Convert to Customer</a>',$_REQUEST['page'],'convert',$item['lead_id']),
             );
         }else{

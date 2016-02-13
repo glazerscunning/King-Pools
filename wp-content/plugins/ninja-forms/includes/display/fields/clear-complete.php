@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Function that resets the field values to default if the form has been submitted.
@@ -75,7 +75,7 @@ function nf_clear_complete( $form_id ) {
 				} else {
 					$date_format = 'm/d/Y';
 				}
-				$default_value = date( $date_format, strtotime( 'now' ) );
+				$default_value = date( $date_format, current_time( 'timestamp' ) );
 				break;
 		}
 

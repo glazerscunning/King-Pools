@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * Notification
  * 
@@ -152,6 +152,19 @@ class NF_Notification
 	public function update_setting( $meta_key, $meta_value ) {
 		nf_update_object_meta( $this->id, $meta_key, $meta_value );
 		return true;
+	}
+
+	/**
+	 * Get our notification type name
+	 * 
+	 * @access public
+	 * @since 2.9
+	 * @return string $name
+	 */
+	public function type_name() {
+		$type = $this->type;
+		// Call our type edit screen.
+		return Ninja_Forms()->notification_types[ $type ]->name;
 	}
 
 }

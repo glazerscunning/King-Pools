@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * Class for our email notification type.
  *
@@ -31,8 +31,8 @@ class NF_Notification_Email extends NF_Notification_Base_Type
 
 		if ( $id == '' ) {
 			$email_format = 'html';
-			$from_name = '';
-			$from_address = '';
+			$from_name = get_bloginfo( 'name' );
+			$from_address = get_bloginfo( 'admin_email' );
 			$reply_to = '';
 			$to = '';
 			$cc = '';
@@ -261,10 +261,13 @@ class NF_Notification_Email extends NF_Notification_Base_Type
 		$email_from 	= $from_name.' <'.$from_address.'>';
 
 		$subject 		= $this->process_setting( $id, 'email_subject' );
-		$subject 		= implode( ' ', $subject );
+		$subject 		= $this->flatten_array_recursive( ' ', $subject );
+
 		if ( empty( $subject ) ) {
 			$subject = $form_title;
-		}
+		} elseif( is_array( $subject ) ){
+            $subject = implode( ',', $subject );
+        }
 
 		$message 		= $this->process_setting( $id, 'email_message' );
 		if ( is_array ( $message ) )
@@ -346,6 +349,9 @@ class NF_Notification_Email extends NF_Notification_Base_Type
 		}
 
 		if ( is_array( $to ) AND !empty( $to ) ){
+
+            $to = explode( ",", $this->flatten_array_recursive( ',', $to ) );
+
 			wp_mail( $to, $subject, $message, $headers, $attachments );
 		}
 
@@ -354,6 +360,28 @@ class NF_Notification_Email extends NF_Notification_Base_Type
 			//unlink ( $csv_attachment );
 		}
 	}
+
+    public function flatten_array_recursive( $glue = ',', array $array = array() ) {
+
+        $return = array();
+
+        foreach ( $array as $value ) {
+
+            if ( is_array( $value ) ) {
+
+                $return[] = $this->flatten_array_recursive( $glue, $value );
+
+            } else {
+
+                $return[] = $value;
+
+            }
+
+        }
+
+        return implode( $glue, $return );
+
+    }
 
 	/**
 	 * Explode our settings by ` and extract each value.
