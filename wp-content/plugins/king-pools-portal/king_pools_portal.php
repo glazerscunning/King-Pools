@@ -2,7 +2,7 @@
 /*
 Plugin Name: King Pools Management Portal
 Description: The is a complete Customer, Vendor and Back Office management portal for King Pools Inc.
-Version: 2.2
+Version: 2.3
 Author: Aaron Cunningham
 */
 
@@ -37,6 +37,10 @@ function king_notifications() {
     include('king_notify.php');  
 }
 
+function king_users() {  
+    include('king_users.php');  
+}
+
 function king_admin_actions() {   	
     add_menu_page("King Management Portal", "King Portal", 1, "king-management-portal", "king_admin");
     add_submenu_page("king-management-portal", "Configure Pricing", "Configure Pricing", 1, "pricing-configuration", "king_configure_pricing");
@@ -45,6 +49,7 @@ function king_admin_actions() {
     add_submenu_page("king-management-portal", "Project Management", "Manage Projects", 1, "project-management", "king_projects");
     add_submenu_page("king-management-portal", "Vendor Management", "Manage Vendors", 1, "vendor-management", "king_vendors");
     add_submenu_page("king-management-portal", "Notification Management", "Manage Notifications", 1, "notification-management", "king_notifications");
+    add_submenu_page("king-management-portal", "User Management", "Manage Users", 1, "users-management", "king_users");
 }
 
 add_action('admin_menu', 'king_admin_actions');

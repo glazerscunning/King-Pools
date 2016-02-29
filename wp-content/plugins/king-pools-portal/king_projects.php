@@ -1,6 +1,9 @@
 <?php
+//session_start();
 
-$_SESSION["project_id"] = $_REQUEST['id'];
+if(!empty($_REQUEST['id'])){
+    $_SESSION['project_id'] = $_REQUEST['id'];
+}
 
 if( ! class_exists( 'WP_List_Table' ) ) {
     require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
@@ -175,6 +178,13 @@ echo "</table>\n\n";
                                              'project_notes'  => $_REQUEST['project_notes']
                                              ), 
                                        array('project_id'=>$_REQUEST['project_id']));
+
+    $wpdb->insert($wpdb->prefix . 'king_project_phase_link', array(
+                                             'project_id'   => $_REQUEST['project_id'],
+                                             'phase_id'       => (intval($_REQUEST['project_phase']) - 1),
+                                             'status' => 'complete',
+                                             'complete_date' => date("Y-m-d")
+                                             ));
 
     $result = $wpdb->get_row('SELECT projects.project_id, projects.phase_id, phases.phase_type, phases.phase_name, phases.phase_trigger_customer_email, phases.phase_trigger_vendor_email, sched.vendor_id, vendors.vendor_name
                                FROM ' . $wpdb->prefix . 'king_projects projects

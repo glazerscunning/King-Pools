@@ -9,7 +9,9 @@
  * License: GPL2+
  * Text Domain: kingpoolsinc
  */
- 
+
+$notification_debug = false;
+
 function jp_rm_menu() {
 	if( class_exists( 'Jetpack' ) && !current_user_can( 'manage_options' ) ) {
 	
@@ -116,8 +118,17 @@ function wfu_before_file_upload_handler($file_path, $file_unique_id) {
 }
 
 function addNotificationTrail($notification_type, $notifyrecipients, $notifysubject, $notification_body, $phase_id = 0){
+        
+        if($notification_debug){
+                echo $notification_type . "<br>";
+                echo $notifyrecipients . "<br>";
+                echo $notifysubject . "<br>";
+                echo $notification_body . "<br>";
+                echo $phase_id . "<br>";
+        }
+
         global $wpdb;
-        $wpdb->insert('wp_king_notifications', array(
+        $wpdb->insert($wpdb->prefix . 'king_notifications', array(
                                                  'notification_to'      => $notifyrecipients,
                                                  'notification_subject' => $notifysubject,
                                                  'notification_body'    => $notification_body,
@@ -125,7 +136,7 @@ function addNotificationTrail($notification_type, $notifyrecipients, $notifysubj
                                                  'notification_date'    => date("Y-m-d H:i:s"),
                                                  'project_id'           => $_SESSION['project_id'],
                                                  'phase_id'             => $phase_id
-                                                 ));  
+                                                 ));
 }
 
 //Functions for send notifications
