@@ -10,6 +10,10 @@
     float:left;    
 }
 
+form table.form-table input{
+    width:250px;
+}
+
 .wp-list-table #customer_state {
     width:35px;
 }
