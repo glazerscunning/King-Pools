@@ -139,6 +139,19 @@ function addNotificationTrail($notification_type, $notifyrecipients, $notifysubj
                                                  ));
 }
 
+function sendMail($notifyrecipients, $notifysubject, $notifymessage, $notifyheaders, $attachments){
+
+    if(KP_ENV == "PROD"){
+
+        return wp_mail($notifyrecipients, $notifysubject, $notifymessage, $notifyheaders, $attachments);
+
+    }else{
+
+        return true;
+    }
+
+}
+
 //Functions for send notifications
 
 function sendNewCustomerEmail($project_id){
@@ -196,8 +209,7 @@ We appreciate your business.
     </html>
     ';
 
-    //$notify_sent = wp_mail($notifyrecipients, $notifysubject, $notifymessage, $notifyheaders); 
-    $notify_sent = true;
+    $notify_sent = sendMail($notifyrecipients, $notifysubject, $notifymessage, $notifyheaders); 
 
     if($notify_sent){
 
@@ -256,8 +268,8 @@ Thanks again, for your business.
     </html>
     ';
 
-    //$notify_sent = wp_mail($notifyrecipients, $notifysubject, $notifymessage, $notifyheaders); 
-    $notify_sent = true;
+    $notify_sent = sendMail($notifyrecipients, $notifysubject, $notifymessage, $notifyheaders); 
+    
 
     if($notify_sent){
 
@@ -325,8 +337,8 @@ King Pools Inc.
     </html>
     ';
 
-    //$notify_sent = wp_mail($notifyrecipients, $notifysubject, $notifymessage, $notifyheaders, $attachments); 
-    $notify_sent = true;
+    $notify_sent = sendMail($notifyrecipients, $notifysubject, $notifymessage, $notifyheaders, $attachments); 
+    
 
     if($notify_sent){
 
@@ -377,8 +389,8 @@ We truly appreciate your business, and we\'re grateful for the trust you\'ve pla
     </html>
     ';
 
-    //$notify_sent = wp_mail($notifyrecipients, $notifysubject, $notifymessage, $notifyheaders); 
-    $notify_sent = true;
+    $notify_sent = sendMail($notifyrecipients, $notifysubject, $notifymessage, $notifyheaders); 
+    
 
     if($notify_sent){
 
@@ -468,8 +480,8 @@ King Pools, Inc.
     </html>
     ';
 
-    //$notify_sent = wp_mail($notifyrecipients, $notifysubject, $notifymessage, $notifyheaders); 
-    $notify_sent = true;
+    $notify_sent = sendMail($notifyrecipients, $notifysubject, $notifymessage, $notifyheaders); 
+    
 
     if($notify_sent){
 
@@ -535,8 +547,8 @@ King Pools, Inc.
     </html>
     ';
 
-    //$notify_sent = wp_mail($notifyrecipients, $notifysubject, $notifymessage, $notifyheaders); 
-    $notify_sent = true;
+    $notify_sent = sendMail($notifyrecipients, $notifysubject, $notifymessage, $notifyheaders); 
+    
 
     if($notify_sent){
 
@@ -599,8 +611,8 @@ in touch soon.
     </html>
     ';
 
-    //$notify_sent = wp_mail($notifyrecipients, $notifysubject, $notifymessage, $notifyheaders); 
-    $notify_sent = true;
+    $notify_sent = sendMail($notifyrecipients, $notifysubject, $notifymessage, $notifyheaders); 
+    
 
     if($notify_sent){
 
@@ -646,8 +658,8 @@ next 24 hours.
     </html>
     ';
 
-    //$notify_sent = wp_mail($notifyrecipients, $notifysubject, $notifymessage, $notifyheaders); 
-    $notify_sent = true;
+    $notify_sent = sendMail($notifyrecipients, $notifysubject, $notifymessage, $notifyheaders); 
+    
 
     if($notify_sent){
 
@@ -706,8 +718,8 @@ you for many years to come.
     </html>
     ';
 
-    //$notify_sent = wp_mail($notifyrecipients, $notifysubject, $notifymessage, $notifyheaders); 
-    $notify_sent = true;
+    $notify_sent = sendMail($notifyrecipients, $notifysubject, $notifymessage, $notifyheaders); 
+    
 
     if($notify_sent){
 
@@ -781,8 +793,7 @@ function sendBackOfficeStatus(){
     </html>
     ';
 
-    //$notify_sent = wp_mail($notifyrecipients, $notifysubject, $notifymessage, $notifyheaders); 
-    $notify_sent = true;
+    $notify_sent = sendMail($notifyrecipients, $notifysubject, $notifymessage, $notifyheaders); 
 
     if($notify_sent){
 

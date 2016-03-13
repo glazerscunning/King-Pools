@@ -65,7 +65,7 @@ if($_POST['king_hidden'] == 'Y') {
     <?php    echo "<h2>" . __( 'Pool Estimate Pricing Configuration', 'king_trdom' ) . "</h2>"; ?>  
       
     <hr>  
-    <form name="king_pricing_form" class="king_pricing_form" method="post" action="<?php echo str_replace( '%7E', '~', $_SERVER['REQUEST_URI']); ?>">    
+    <form id="king_pricing_form" name="king_pricing_form" class="king_pricing_form" method="post" action="<?php echo str_replace( '%7E', '~', $_SERVER['REQUEST_URI']); ?>">    
         <?php    echo "<h3>" . __( 'Play Pools', 'king_trdom' ) . "</h3>"; ?>
         <table class="form-table">
             <tbody>
@@ -441,8 +441,11 @@ if($_POST['king_hidden'] == 'Y') {
 
         <input type="hidden" name="king_hidden" value="Y">
         <p class="submit">  
-        <input class="button button-primary" type="submit" name="Submit" value="<?php _e('Update Options', 'king_trdom' ) ?>" />  
+        <input id="update_options" class="button button-primary" type="submit" name="Submit" value="<?php _e('Update Options', 'king_trdom' ) ?>" />  
         </p>  
+        <div id="errors_dialog" title="Pricing Validation">
+          <p>All values must be numeric and greater than zero.</p>
+        </div>        
     </form>
     <hr>
 </div>

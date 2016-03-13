@@ -8,6 +8,7 @@ Author: Aaron Cunningham
 
 DEFINE("KP_ASSET_UPLOAD_DIR", WP_CONTENT_DIR . "/uploads/king_portal/");
 DEFINE("WPFILEUPLOAD_DIR", '/'.PLUGINDIR .'/wp-file-upload/');
+DEFINE("KP_ENV", "DEV");
 
 function king_admin() {  
     include('king_admin.php');  
