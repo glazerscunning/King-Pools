@@ -14,6 +14,9 @@ if( ! class_exists( 'WP_List_Table' ) ) {
 <?php
 global $wpdb;
 
+$allCount = get_users('meta_key=traffic_source');
+$fanCount = get_users('meta_key=traffic_source&meta_value=105.3 The Fan Radio');
+
 $query = "SELECT
             (select count(*) FROM wp_users users JOIN wp_usermeta meta ON users.ID = meta.user_id WHERE meta_key = 'traffic_source' ) as AllCount, 
             (select count(*) FROM wp_users users JOIN wp_usermeta meta ON users.ID = meta.user_id WHERE meta_key = 'traffic_source' AND meta_value = '105.3 The Fan Radio' ) as FanCount, 

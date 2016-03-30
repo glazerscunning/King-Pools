@@ -4,7 +4,7 @@
  * Plugin URI: http://wordpress.org/extend/plugins/
  * Description: Custom plugin handlers for King Pools Inc.
  * Author: Aaron Cunningham
- * Version: 2.1
+ * Version: 2.2
  * Author URI: http://www.kingpoolsinc.com
  * License: GPL2+
  * Text Domain: kingpoolsinc
@@ -146,8 +146,8 @@ function sendMail($notifyrecipients, $notifysubject, $notifymessage, $notifyhead
         return wp_mail($notifyrecipients, $notifysubject, $notifymessage, $notifyheaders, $attachments);
 
     }else{
-
-        return true;
+        return wp_mail('ronkingpools@gmail.com', $notifysubject, $notifymessage, $notifyheaders, $attachments);
+        //return true;
     }
 
 }
@@ -165,8 +165,8 @@ function sendNewCustomerEmail($project_id){
     });
 
     $project_details = $wpdb->get_row('SELECT projects.*, customers.customer_email
-                                    FROM wp_king_projects projects
-                                    LEFT JOIN wp_king_customers customers
+                                    FROM ' . $wpdb->prefix . 'king_projects projects
+                                    LEFT JOIN ' . $wpdb->prefix . 'king_customers customers
                                     ON projects.customer_id = customers.customer_id
                                     WHERE projects.project_id = ' . $project_id 
                                   );
@@ -236,10 +236,10 @@ function sendProjectPhaseEmail($project_id, $phase_id, $phase_name){
     $notifysubject = "Project Phase Update" . " - " . date_format(new DateTime(), "m/d/Y");
     
     $project_details = $wpdb->get_row('SELECT projects.* , phases.phase_name, customers.customer_email
-                                    FROM wp_king_projects projects
-                                    LEFT JOIN wp_king_phases phases
+                                    FROM ' . $wpdb->prefix . 'king_projects projects
+                                    LEFT JOIN ' . $wpdb->prefix . 'king_phases phases
                                     ON projects.phase_id = phases.phase_id
-                                    LEFT JOIN wp_king_customers customers
+                                    LEFT JOIN ' . $wpdb->prefix . 'king_customers customers
                                     ON projects.customer_id = customers.customer_id
                                     WHERE projects.project_id = ' . $project_id 
                                   );
@@ -296,12 +296,12 @@ function sendVendorSchedulingEmail($project_id, $vendor_id, $vendor_name, $sendP
     $notifysubject = "King Pools Vendor Scheduling" . " - " . date_format(new DateTime(), "m/d/Y");
 
     $project_details = $wpdb->get_row('SELECT vendor.vendor_name, customer.customer_email, customer.customer_address, sched.schedule_date, project.phase_id
-                                        FROM wp_king_scheduling sched 
-                                        JOIN wp_king_vendors vendor ON
+                                        FROM ' . $wpdb->prefix . 'king_scheduling sched 
+                                        JOIN ' . $wpdb->prefix . 'king_vendors vendor ON
                                         sched.vendor_id = vendor.vendor_id
-                                        JOIN wp_king_projects project ON
+                                        JOIN ' . $wpdb->prefix . 'king_projects project ON
                                         sched.project_id = project.project_id
-                                        JOIN wp_king_customers customer ON
+                                        JOIN ' . $wpdb->prefix . 'king_customers customer ON
                                         project.customer_id = customer.customer_id
                                         Where project.project_id = ' . $project_id
                         );
@@ -505,8 +505,8 @@ function sendWorkOrderCreatedEmail($project_id){
     $notifyheaders = 'From: King Pools Inc. <noreply@kingpoolsinc.com>' . "\r\n";  
     
     $customer = $wpdb->get_row('SELECT customer_email
-                                    FROM wp_king_customers customers
-                                    JOIN wp_king_projects projects
+                                    FROM ' . $wpdb->prefix . 'king_customers customers
+                                    JOIN ' . $wpdb->prefix . 'king_projects projects
                                     ON projects.customer_id = customers.customer_id
                                     WHERE projects.project_id = ' . $project_id
                                      );
@@ -573,8 +573,8 @@ function sendWorkOrderScheduledEmail($project_id, $schedule_date){
     $notifyheaders = 'From: King Pools Inc. <noreply@kingpoolsinc.com>' . "\r\n";  
     
     $customer = $wpdb->get_row('SELECT customer_email
-                                    FROM wp_king_customers customers
-                                    JOIN wp_king_projects projects
+                                    FROM ' . $wpdb->prefix . 'king_customers customers
+                                    JOIN ' . $wpdb->prefix . 'king_projects projects
                                     ON projects.customer_id = customers.customer_id
                                     WHERE projects.project_id = ' . $project_id
                                      );
@@ -584,7 +584,7 @@ function sendWorkOrderScheduledEmail($project_id, $schedule_date){
     $notifysubject = "Work Order Scheduled - " . date_format(new DateTime($schedule_date), "m/d/Y");
     
     $project_details = $wpdb->get_row('SELECT projects.*
-                                    FROM wp_king_projects projects
+                                    FROM ' . $wpdb->prefix . 'king_projects projects
                                     WHERE projects.project_id = ' . $project_id
                                      );
 
@@ -684,8 +684,8 @@ function sendWorkOrderCompleteEmail($project_id){
     $notifyheaders = 'From: King Pools Inc. <noreply@kingpoolsinc.com>' . "\r\n";  
     
     $customer = $wpdb->get_row('SELECT customer_email
-                                    FROM wp_king_customers customers
-                                    JOIN wp_king_projects projects
+                                    FROM ' . $wpdb->prefix . 'king_customers customers
+                                    JOIN ' . $wpdb->prefix . 'king_projects projects
                                     ON projects.customer_id = customers.customer_id
                                     WHERE projects.project_id = ' . $project_id
                                      );
@@ -748,12 +748,12 @@ function sendBackOfficeStatus(){
     $notifysubject = get_option('back_office_subject') . " - " . date_format(new DateTime(), "m/d/Y");
     
     $projects_list = $wpdb->get_results('SELECT projects.* , customers.customer_firstname, customers.customer_lastname, phases.phase_name, project_types.project_type_name
-                                    FROM wp_king_projects projects
-                                    JOIN wp_king_customers customers
+                                    FROM ' . $wpdb->prefix . 'king_projects projects
+                                    JOIN ' . $wpdb->prefix . 'king_customers customers
                                     ON projects.customer_id = customers.customer_id
-                                    LEFT JOIN wp_king_phases phases
+                                    LEFT JOIN ' . $wpdb->prefix . 'king_phases phases
                                     ON projects.phase_id = phases.phase_id
-                                    LEFT JOIN wp_king_project_types project_types
+                                    LEFT JOIN ' . $wpdb->prefix . 'king_project_types project_types
                                     ON projects.project_type = project_types.project_type
                                     ORDER BY project_updatedat ASC
                                   ');

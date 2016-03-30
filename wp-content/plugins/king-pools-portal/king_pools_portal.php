@@ -2,7 +2,7 @@
 /*
 Plugin Name: King Pools Management Portal
 Description: The is a complete Customer, Vendor and Back Office management portal for King Pools Inc.
-Version: 2.3
+Version: 2.4
 Author: Aaron Cunningham
 */
 

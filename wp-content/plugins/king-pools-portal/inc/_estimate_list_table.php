@@ -196,7 +196,7 @@ class Estimate_List_Table extends WP_List_Table{
             );
         }else{
             $actions = array(
-                'edit'    => sprintf('<a href="?page=gf_entries&view=entry&id=1&lid=%s&filter=&paged=1&pos=1&field_id=&operator=">Edit</a>',$item['lead_id'])
+                'edit'    => sprintf('<a href="?page=gf_entries&view=entry&id=' . $pool_estimate_id . '&lid=%s&filter=&paged=1&pos=1&field_id=&operator=">Edit</a>',$item['lead_id'])
             );            
         }
         

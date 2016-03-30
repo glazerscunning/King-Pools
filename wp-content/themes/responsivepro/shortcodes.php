@@ -171,7 +171,7 @@ add_shortcode('getEstimate', function($atts){
     
     if($estimate_type == 'form'){
         global $wpdb;
-        $wpdb->insert('wp_king_estimates',
+        $wpdb->insert($wpdb->prefix . 'king_estimates',
                       array('lead_id' => $entry_id,
                             'value'   => $total_estimate,
                             'status'  => 'unconverted'),
