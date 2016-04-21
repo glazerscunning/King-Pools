@@ -5,6 +5,15 @@ if ( !defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+function modify_jquery() {
+if (!is_admin()) {
+    wp_deregister_script('jquery');
+    wp_register_script('jquery', 'https://code.jquery.com/jquery-1.11.3.min.js');
+    wp_enqueue_script('jquery');
+}
+}
+add_action('init', 'modify_jquery');
+
 /**
  * Theme's Functions and Definitions
  *
@@ -721,6 +730,7 @@ if ( !function_exists( 'responsive_js' ) ) {
 
 		// JS at the bottom for fast page loading.
 		// except for Modernizr which enables HTML5 elements & feature detects.
+		
 		wp_enqueue_script( 'modernizr', $template_directory_uri . '/core/' . $directory . '/responsive-modernizr' . $suffix . '.js', array( 'jquery' ), '2.6.1', false );
 		wp_enqueue_script( 'responsive-scripts', $template_directory_uri . '/core/' . $directory . '/responsive-scripts' . $suffix . '.js', array( 'jquery' ), '1.2.5', true );
 		if ( !wp_script_is( 'tribe-placeholder' ) ) {

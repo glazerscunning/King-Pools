@@ -17,6 +17,10 @@ if($_REQUEST['action'] == 'delete'){
     
     echo '<div id="message" class="error">Estimate has been deleted!</div>';
     
+} else if($_REQUEST['action'] == 'delete_estimate'){
+        global $wpdb;
+        $wpdb->delete($wpdb->prefix . 'king_estimates', array( 'lead_id' => 2340 ) );
+
 } else if($_REQUEST['action'] == 'convert'){
     global $wpdb;
  
