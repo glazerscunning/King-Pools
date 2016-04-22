@@ -109,10 +109,20 @@
                 <td>
                     <select name="vendor_type">
                         <option value="">Select...</option>
-                        <option value="excavation" <?= ($result->vendor_type == "excavation") ? "selected='selected'" : "";?>>Excavation</option>
-                        <option value="steel" <?=($result->vendor_type == "steel") ? "selected='selected'" : "";?>>Steel</option>
-                        <option value="plumbing" <?=($result->vendor_type == "plumbing") ? "selected='selected'" : "";?>>Plumbing</option>
+                        <option value="cleanup" <?=($result->vendor_type == "cleanup") ? "selected='selected'" : "";?>>Cleanup</option>
                         <option value="concrete" <?=($result->vendor_type == "concrete") ? "selected='selected'" : "";?>>Concrete</option>
+                        <option value="decking" <?=($result->vendor_type == "decking") ? "selected='selected'" : "";?>>Decking</option>
+                        <option value="electrical" <?=($result->vendor_type == "electrical") ? "selected='selected'" : "";?>>Electrical</option>
+                        <option value="excavation" <?= ($result->vendor_type == "excavation") ? "selected='selected'" : "";?>>Excavation</option>
+                        <option value="gas_line" <?=($result->vendor_type == "gas_line") ? "selected='selected'" : "";?>>Gas Line</option>
+                        <option value="gunite_plaster" <?=($result->vendor_type == "gunite_plaster") ? "selected='selected'" : "";?>>Gunite/Plaster</option>
+                        <option value="licensed_plumber" <?=($result->vendor_type == "licensed_plumber") ? "selected='selected'" : "";?>>Licensed Plumber</option>
+                        <option value="pool_equipment" <?=($result->vendor_type == "pool_equipment") ? "selected='selected'" : "";?>>Pool Equipment</option>
+                        <option value="pool_plumbing" <?=($result->vendor_type == "pool_plumbing") ? "selected='selected'" : "";?>>Pool Plumbing</option>
+                        <option value="sprinkler" <?=($result->vendor_type == "sprinkler") ? "selected='selected'" : "";?>>Sprinkler</option>
+                        <option value="steel" <?=($result->vendor_type == "steel") ? "selected='selected'" : "";?>>Steel</option>
+                        <option value="structure" <?=($result->vendor_type == "structure") ? "selected='selected'" : "";?>>Structure</option>
+                        <option value="tile_coping" <?=($result->vendor_type == "tile_coping") ? "selected='selected'" : "";?>>Tile/Coping</option>
                     </select>                    
                 </td>
             </tr>               

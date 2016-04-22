@@ -253,9 +253,9 @@ function sendProjectPhaseEmail($project_id, $phase_id, $phase_name){
     <table>
             <tr>
                 <td>
-The next phase of your pool building project is [' . $project_details->phase_name . '] and has been scheduled and will be 
+The next phase of your pool building project is [' . $project_details->phase_name . '] and has been scheduled 
 <br>
-taking place within the next 24 – 72 hours.
+to take place within the next 2 - 7 days.
 <br><br>
 Thanks again, for your business.
                 </td>
